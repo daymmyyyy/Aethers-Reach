@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -19,6 +22,12 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
+    [Header("Distance Tracking")]
+    public Text distanceText;
+    public float distanceMultiplier = 0.01f;
+    private Vector3 startPosition;
+
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isHoldingUp;
@@ -28,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
+        startPosition = transform.position;
     }
 
     void Update()
@@ -47,6 +57,8 @@ public class PlayerController : MonoBehaviour
         {
             hasStartedGliding = true;
         }
+
+        UpdateDistanceCounter();
     }
 
     void FixedUpdate()
@@ -83,4 +95,36 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
+    private void UpdateDistanceCounter()
+    {
+        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
+        float kilometers = distanceTravelled * distanceMultiplier;
+        distanceText.text = kilometers.ToString("F2") + " km";
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Loop through all contact points
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            Vector2 normal = contact.normal;
+
+            // If hitting bottom or side
+            if (normal.y < 0.5f)
+            {
+                Die();
+                break;
+            }
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player has died!");
+        // add death animation
+        SceneManager.LoadScene("MainMenu");
+        Destroy(gameObject);
+    }
+
+
 }
