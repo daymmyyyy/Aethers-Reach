@@ -3,15 +3,16 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    public float forwardSpeed = 5f;
+    [Header("Ground Movement Settings")]
+    public float runSpeed = 5f;
     public float jumpForce = 10f;
 
-    [Header("Glide Settings")]
-    public bool enableGlide = true;
-    public float glideGravityScale = 0.5f;
-    public float normalGravityScale = 3f;
-    public float maxGlideTime = 2f; // ⏱ Max glide duration in seconds
+    [Header("Glide & Wind Settings")]
+    public float glideSpeed = 4f;      
+    public float windLiftForce = 8f;
+    public float maxVerticalSpeed = 5f;
+    public float gravityScale = 3f;
+    public float glideGravityScale = 0.8f;
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -20,50 +21,66 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
-    private bool jumpPressed;
-    private float currentGlideTime;
+    private bool isHoldingUp;
+    private bool hasStartedGliding = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = normalGravityScale;
+        rb.gravityScale = gravityScale;
     }
 
     void Update()
     {
+        // Check if player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isHoldingUp = Input.GetKey(KeyCode.UpArrow);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        // Jump if grounded
+        if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            jumpPressed = true;
+            Jump();
         }
 
-        // Reset glide timer on landing
-        if (isGrounded)
+        // First-time gliding activation
+        if (!hasStartedGliding && !isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            currentGlideTime = 0f;
+            hasStartedGliding = true;
         }
     }
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(forwardSpeed, rb.velocity.y);
+        Vector2 velocity = rb.velocity;
 
-        if (jumpPressed)
+        if (isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            jumpPressed = false;
-        }
-
-        // Handle gliding
-        if (enableGlide && Input.GetKey(KeyCode.UpArrow) && !isGrounded && rb.velocity.y <= 0 && currentGlideTime < maxGlideTime)
-        {
-            rb.gravityScale = glideGravityScale;
-            currentGlideTime += Time.fixedDeltaTime;
+            // Move forward when grounded
+            velocity.x = runSpeed;
         }
         else
         {
-            rb.gravityScale = normalGravityScale;
+            if (hasStartedGliding && isHoldingUp)
+            {
+                // Apply wind lift and forward glide
+                velocity.x = glideSpeed;
+                velocity.y += windLiftForce * Time.fixedDeltaTime;
+                velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, maxVerticalSpeed);
+                rb.gravityScale = glideGravityScale;
+            }
+            else
+            {
+                // Fall normally, keep horizontal velocity
+                velocity.x = rb.velocity.x;
+                rb.gravityScale = gravityScale;
+            }
         }
+
+        rb.velocity = velocity;
+    }
+
+    private void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 }
