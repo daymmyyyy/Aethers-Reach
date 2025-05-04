@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public float maxVerticalSpeed = 5f;
     public float gravityScale = 3f;
     public float glideGravityScale = 0.8f;
+    private float takeoffMomentum = 0f;
+    public float momentumMultiplier = 1f;
+
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isHoldingUp;
     private bool hasStartedGliding = false;
+
+
 
     void Start()
     {
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if (!hasStartedGliding && !isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
             hasStartedGliding = true;
+            takeoffMomentum = rb.velocity.magnitude; // momentum at the start of gliding
+
         }
 
         UpdateDistanceCounter();
@@ -74,10 +81,12 @@ public class PlayerController : MonoBehaviour
         {
             if (hasStartedGliding && isHoldingUp)
             {
-                // Apply wind lift and forward glide
+                float adjustedLift = windLiftForce * Mathf.Clamp01(takeoffMomentum * momentumMultiplier);
+
+                // apply wind lift and forward glide
                 velocity.x = glideSpeed;
-                velocity.y += windLiftForce * Time.fixedDeltaTime;
-                velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, maxVerticalSpeed);
+                velocity.y += adjustedLift * Time.fixedDeltaTime;
+                velocity.y = Mathf.Min(windLiftForce, maxVerticalSpeed);
                 rb.gravityScale = glideGravityScale;
             }
             else
@@ -94,6 +103,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        takeoffMomentum = rb.velocity.magnitude;
     }
     private void UpdateDistanceCounter()
     {
@@ -104,6 +114,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
+        {
+            Die();
+        }
+
         // Loop through all contact points
         foreach (ContactPoint2D contact in collision.contacts)
         {
