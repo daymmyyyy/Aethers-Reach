@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 131737899}
   - component: {fileID: 131737901}
   - component: {fileID: 131737902}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestSkyIslandPlatformSprites_JGuy_1.5.25_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 153436370}
   - component: {fileID: 153436371}
   - component: {fileID: 153436372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestSkyIslandPlatformSprites_JGuy_1.5.25_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,11 +441,11 @@ PolygonCollider2D:
       - {x: 1.77625, y: 0.41312596}
       - {x: 1.9074999, y: 0.24437597}
       - {x: 2.03875, y: 0.22562598}
-      - {x: 2.18875, y: 0.41312596}
-      - {x: 2.18875, y: 0.90062594}
-      - {x: 2.11375, y: 0.99437594}
-      - {x: 2.0575, y: 1.0131259}
-      - {x: -2.1237497, y: 1.0131259}
+      - {x: 2.1591964, y: 0.42297712}
+      - {x: 2.1788986, y: 0.8661468}
+      - {x: 2.103899, y: 0.95989716}
+      - {x: 2.042723, y: 0.9884982}
+      - {x: -2.1040473, y: 0.9884983}
       - {x: -2.1612499, y: 0.91937596}
       - {x: -2.1612499, y: 0.60062593}
       - {x: -2.1049998, y: 0.50687593}
@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 681162080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1128902, y: 23.6, z: -10}
+  m_LocalPosition: {x: 4.1104546, y: 23.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 1359823740}
   - component: {fileID: 1359823739}
   - component: {fileID: 1359823741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestSkyIslandPlatformSprites_JGuy_1.5.25_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1451,7 +1451,7 @@ Transform:
   m_GameObject: {fileID: 1518366662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1128902, y: 23.6, z: -10}
+  m_LocalPosition: {x: 4.1104546, y: 23.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 2040555423}
   - component: {fileID: 2040555425}
   - component: {fileID: 2040555426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestSkyIslandPlatformSprites_JGuy_1.5.25_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2127,12 +2127,12 @@ PolygonCollider2D:
       - {x: 8.81875, y: 4.0356255}
       - {x: 8.85625, y: 4.2231255}
       - {x: 8.85625, y: 4.5043755}
-      - {x: 8.78125, y: 4.6918755}
-      - {x: 8.63125, y: 4.8606253}
-      - {x: 8.3875, y: 4.9356256}
-      - {x: 7.6375003, y: 4.9356256}
+      - {x: 8.821014, y: 4.5825224}
+      - {x: 8.63125, y: 4.7910376}
+      - {x: 8.397441, y: 4.895861}
+      - {x: 7.6474414, y: 4.8859196}
       - {x: -3.2749991, y: 4.9168754}
-      - {x: -3.293749, y: 4.9356256}
+      - {x: -3.3145685, y: 4.893987}
       - {x: -8.318748, y: 4.9356256}
       - {x: -8.468749, y: 4.9168754}
       - {x: -8.637499, y: 4.8231254}
