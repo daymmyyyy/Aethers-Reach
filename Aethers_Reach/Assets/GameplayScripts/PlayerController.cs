@@ -2,67 +2,66 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Ground Movement Settings")]
+    [Header("Movement Settings")]
     public float runSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 8f;
 
-    [Header("Glide & Wind Settings")]
-    public float glideSpeed = 4f;      
-    public float windLiftForce = 8f;
+    [Header("Glide Settings")]
+    public float glideSpeed = 4f;
+    public float windLiftForce = 6f;
     public float maxVerticalSpeed = 5f;
     public float gravityScale = 3f;
-    public float glideGravityScale = 0.8f;
-    private float takeoffMomentum = 0f;
-    public float momentumMultiplier = 1f;
+    public float glideGravityScale = 0.5f;
+    public float glideHoldTime = 3f;
 
+    [Header("Speed Increase Settings")]
+    public float speedIncreaseRate = 0.1f;
+    public float maxSpeed = 20f;
+    public float maxGlideSpeed = 8f;
 
-    [Header("Ground Check Settings")]
+    [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
-    [Header("Distance Tracking")]
+    [Header("Distance Display")]
     public Text distanceText;
     public float distanceMultiplier = 0.01f;
-    private Vector3 startPosition;
 
+    [Header("Relic Speed Boost Settings")]
+    public float boostDuration = 2f;
+    private float boostTimer = 0f;
+    private bool isBoosted = false;
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isHoldingUp;
-    private bool hasStartedGliding = false;
-
-
+    private bool isGlideHolding;
+    private float glideHoldTimer = 0f;
+    private float currentSpeed;
+    private float currentGlideSpeed;
+    private Vector3 startPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
         startPosition = transform.position;
+        currentSpeed = runSpeed;
+        currentGlideSpeed = glideSpeed;
     }
 
     void Update()
     {
-        // Check if player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isHoldingUp = Input.GetKey(KeyCode.UpArrow);
 
-        // Jump if grounded
         if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
             Jump();
-        }
-
-        // First-time gliding activation
-        if (!hasStartedGliding && !isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            hasStartedGliding = true;
-            takeoffMomentum = rb.velocity.magnitude; // momentum at the start of gliding
-
         }
 
         UpdateDistanceCounter();
@@ -74,26 +73,43 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            // Move forward when grounded
-            velocity.x = runSpeed;
+            velocity.x = currentSpeed;
+            rb.gravityScale = gravityScale;
+            isGlideHolding = false;
+
+            if (currentSpeed < maxSpeed)
+                currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+
+            if (currentGlideSpeed < maxGlideSpeed)
+                currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
         }
         else
         {
-            if (hasStartedGliding && isHoldingUp)
-            {
-                float adjustedLift = windLiftForce * Mathf.Clamp01(takeoffMomentum * momentumMultiplier);
+            velocity.x = currentGlideSpeed;
 
-                // apply wind lift and forward glide
-                velocity.x = glideSpeed;
-                velocity.y += adjustedLift * Time.fixedDeltaTime;
-                velocity.y = Mathf.Min(windLiftForce, maxVerticalSpeed);
-                rb.gravityScale = glideGravityScale;
+            if (isGlideHolding)
+            {
+                rb.gravityScale = 0f;
+                velocity.y = 0f;
+                glideHoldTimer -= Time.fixedDeltaTime;
+
+                if (glideHoldTimer <= 0f)
+                {
+                    isGlideHolding = false;
+                }
             }
             else
             {
-                // Fall normally, keep horizontal velocity
-                velocity.x = rb.velocity.x;
-                rb.gravityScale = gravityScale;
+                if (isHoldingUp)
+                {
+                    rb.gravityScale = glideGravityScale;
+                    velocity.y += windLiftForce * Time.fixedDeltaTime;
+                    velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, maxVerticalSpeed);
+                }
+                else
+                {
+                    rb.gravityScale = gravityScale;
+                }
             }
         }
 
@@ -103,8 +119,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        takeoffMomentum = rb.velocity.magnitude;
+        isGlideHolding = true;
+        glideHoldTimer = glideHoldTime;
     }
+
     private void UpdateDistanceCounter()
     {
         float distanceTravelled = Vector3.Distance(startPosition, transform.position);
@@ -119,13 +137,9 @@ public class PlayerController : MonoBehaviour
             Die();
         }
 
-        // Loop through all contact points
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            Vector2 normal = contact.normal;
-
-            // If hitting bottom or side
-            if (normal.y < 0.5f)
+            if (contact.normal.y < 0.5f)
             {
                 Die();
                 break;
@@ -136,10 +150,21 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player has died!");
-        // add death animation
         SceneManager.LoadScene("MainMenu");
         Destroy(gameObject);
     }
 
+    public void TriggerSpeedBoost()
+    {
+        if (!isBoosted)
+        {
+            isBoosted = true;
+            boostTimer = boostDuration;
 
+            currentSpeed *= 2f;
+            currentGlideSpeed *= 1.5f;
+
+            Debug.Log("Relic Speed Boost Activated!");
+        }
+    }
 }

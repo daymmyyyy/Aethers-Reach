@@ -11,7 +11,9 @@ public class RelicManager : MonoBehaviour
 
     [Header("UI")]
     public Text relicCounterText;
-    public GameObject fullRelicUI; //kiv
+    public GameObject fullRelicUI;
+
+    private PlayerController playerController; // reference to player
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class RelicManager : MonoBehaviour
 
         if (relicCounterText != null)
             relicCounterText.gameObject.SetActive(false);
+
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     public void CollectPiece()
@@ -59,7 +63,9 @@ public class RelicManager : MonoBehaviour
         if (fullRelicUI != null)
             fullRelicUI.SetActive(true);
 
-         //play potential combining animation?
-         //achievement UI
+        if (playerController != null)
+            playerController.TriggerSpeedBoost(); //tell player to boost
+
+        //play animation / achievement UI here
     }
 }
