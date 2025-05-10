@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
+        PlayerPrefs.DeleteKey("RelicsCollected");
         SceneManager.LoadScene("MainMenu");
     }
 

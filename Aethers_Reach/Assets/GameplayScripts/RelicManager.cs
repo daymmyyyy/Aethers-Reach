@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class RelicManager : MonoBehaviour
 {
@@ -60,12 +61,31 @@ public class RelicManager : MonoBehaviour
     void CompleteRelic()
     {
         Debug.Log("Relic fully assembled!");
+
+        // Store number of full relics
+        int relicsCollected = PlayerPrefs.GetInt("RelicsCollected", 0);
+        PlayerPrefs.SetInt("RelicsCollected", relicsCollected + 1);
+        PlayerPrefs.Save();
+
+        if (playerController != null)
+            playerController.TriggerSpeedBoost();
+
+        StartCoroutine(ShowFullRelicUI());
+    }
+
+
+    private IEnumerator ShowFullRelicUI()
+    {
         if (fullRelicUI != null)
             fullRelicUI.SetActive(true);
 
-        if (playerController != null)
-            playerController.TriggerSpeedBoost(); //tell player to boost
+        yield return new WaitForSeconds(2f);
 
-        //play animation / achievement UI here
+        if (fullRelicUI != null)
+            fullRelicUI.SetActive(false);
+
+        if (relicCounterText != null)
+            relicCounterText.gameObject.SetActive(false);
     }
+
 }
