@@ -149,8 +149,17 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Player has died!");
-        SceneManager.LoadScene("MainMenu");
+        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
+        float kilometers = distanceTravelled * distanceMultiplier;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveScore(kilometers);
+        }
+
+        Debug.Log("Player has died");
+
+        SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
     }
 
@@ -161,7 +170,7 @@ public class PlayerController : MonoBehaviour
             isBoosted = true;
             boostTimer = boostDuration;
 
-            currentSpeed *= 2f;
+            currentSpeed *= 1.5f;
             currentGlideSpeed *= 1.5f;
 
             Debug.Log("Relic Speed Boost Activated!");

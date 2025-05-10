@@ -7,4 +7,21 @@ public class MainMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Biome1");
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void HighScore()
+    {
+
+        SceneManager.LoadScene("HighScore");
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit button pressed");
+        Application.Quit();
+    }
 }
