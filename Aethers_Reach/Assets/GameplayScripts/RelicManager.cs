@@ -16,6 +16,11 @@ public class RelicManager : MonoBehaviour
 
     private PlayerController playerController; // reference to player
 
+    [Header("Relic Drop")]
+    public GameObject relicPrefab;
+    public float dropOffset = 2f; // how far in front of the player to drop them
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -93,5 +98,15 @@ public class RelicManager : MonoBehaviour
         currentPieces = Mathf.Max(0, currentPieces - amount);
         UpdateRelicUI();
     }
+
+    public void DropRelics(int amount, Transform playerTransform)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 dropPosition = playerTransform.position + new Vector3(dropOffset + i * 10f, 0, 0);
+            Instantiate(relicPrefab, dropPosition, Quaternion.identity);
+        }
+    }
+
 
 }

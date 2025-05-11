@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     [Header("Distance Display")]
     public Text distanceText;
     public float distanceMultiplier = 0.01f;
+    private float distanceOffset = 0f;
+
 
     [Header("Relic Speed Boost Settings")]
     public float boostDuration = 2f;
@@ -43,15 +45,36 @@ public class PlayerController : MonoBehaviour
     private float glideHoldTimer = 0f;
     private float currentSpeed;
     private float currentGlideSpeed;
-    private Vector3 startPosition;
+    public Vector3 startPosition;
+
+    private float originalSpeed;
+    private float originalGlideSpeed;
+    private float speedRecoveryDuration = 1.5f;
+    private float speedRecoveryTimer = 0f;
+    private bool recoveringSpeed = false;
+    private float boostedSpeedStart;
+    private float boostedGlideSpeedStart;
+
+
+
+
 
     void Start()
     {
+        if (GameManager.Instance != null)
+        {
+            distanceOffset = GameManager.Instance.totalDistanceTravelled;
+        }
+
+        startPosition = transform.position; 
+
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
-        startPosition = transform.position;
+
+
         currentSpeed = runSpeed;
         currentGlideSpeed = glideSpeed;
+
     }
 
     void Update()
@@ -71,17 +94,62 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 velocity = rb.velocity;
 
+        if (isKnockedBack)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnockedBack = false;
+            }
+            return;
+        }
+
+        // Handle recovery after knockback or boost
+        if (recoveringSpeed)
+        {
+            speedRecoveryTimer += Time.fixedDeltaTime;
+            float t = speedRecoveryTimer / speedRecoveryDuration;
+
+            currentSpeed = Mathf.Lerp(boostedSpeedStart, originalSpeed, t);
+            currentGlideSpeed = Mathf.Lerp(boostedGlideSpeedStart, originalGlideSpeed, t);
+
+            if (t >= 1f)
+            {
+                recoveringSpeed = false;
+            }
+        }
+
+        if (isBoosted)
+        {
+            boostTimer -= Time.fixedDeltaTime;
+            if (boostTimer <= 0f)
+            {
+                isBoosted = false;
+
+                originalSpeed = runSpeed;
+                originalGlideSpeed = glideSpeed;
+
+                speedRecoveryTimer = 0f;
+                recoveringSpeed = true;
+
+                boostedSpeedStart = currentSpeed;
+                boostedGlideSpeedStart = currentGlideSpeed;
+            }
+        }
+
+
+        // Movement and gravity logic
         if (isGrounded)
         {
             velocity.x = currentSpeed;
             rb.gravityScale = gravityScale;
             isGlideHolding = false;
 
-            if (currentSpeed < maxSpeed)
-                currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+                if (currentSpeed < maxSpeed)
+                    currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
 
-            if (currentGlideSpeed < maxGlideSpeed)
-                currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+                if (currentGlideSpeed < maxGlideSpeed)
+                    currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
         }
         else
         {
@@ -113,18 +181,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isKnockedBack)
-        {
-            knockbackTimer -= Time.fixedDeltaTime;
-            if (knockbackTimer <= 0f)
-            {
-                isKnockedBack = false;
-            }
-            return; // Skip normal movement while knocked back
-        }
-
         rb.velocity = velocity;
     }
+
 
     private void Jump()
     {
@@ -136,7 +195,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateDistanceCounter()
     {
         float distanceTravelled = Vector3.Distance(startPosition, transform.position);
-        float kilometers = distanceTravelled * distanceMultiplier;
+        float kilometers = (distanceTravelled * distanceMultiplier) + distanceOffset;
         distanceText.text = kilometers.ToString("F2") + " km";
     }
 
@@ -167,7 +226,7 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SaveScore(kilometers);
+            GameManager.Instance.SaveProgressBeforeSceneChange(kilometers);
         }
 
         Debug.Log("Player has died");
@@ -186,7 +245,7 @@ public class PlayerController : MonoBehaviour
             currentSpeed *= 1.5f;
             currentGlideSpeed *= 1.5f;
 
-            Debug.Log("Relic Speed Boost Activated!");
+            Debug.Log("relic speed boost activated!");
         }
     }
 
@@ -206,8 +265,29 @@ public class PlayerController : MonoBehaviour
             // knockback
             float knockbackSpeed = 15f;
             rb.velocity = new Vector2(direction.x < 0 ? -knockbackSpeed : knockbackSpeed, 0f);
+
+            originalSpeed = currentSpeed;
+            originalGlideSpeed = currentGlideSpeed;
+            currentSpeed = 0f;
+            currentGlideSpeed = 0f;
+            recoveringSpeed = true;
+            speedRecoveryTimer = 0f;
         }
     }
+    public void ActivateWindGustBoost(float multiplier, float duration)
+    {
+        if (!isBoosted)
+        {
+            isBoosted = true;
+            boostTimer = duration;
+
+            currentSpeed *= multiplier;
+            currentGlideSpeed *= multiplier;
+
+            Debug.Log("Wind Gust Boost Activated!");
+        }
+    }
+
 
 
 

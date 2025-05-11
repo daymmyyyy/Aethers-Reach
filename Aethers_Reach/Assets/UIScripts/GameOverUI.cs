@@ -12,12 +12,12 @@ public class GameOverUI : MonoBehaviour
     private IEnumerator Start()
     {
         // Wait until GameManager.Instance is available and valid
-        while (GameManager.Instance == null || GameManager.Instance.distanceTravelled == 0f)
+        while (GameManager.Instance == null || GameManager.Instance.totalDistanceTravelled == 0f)
         {
             yield return null;
         }
 
-        float finalDistance = GameManager.Instance.distanceTravelled;
+        float finalDistance = GameManager.Instance.totalDistanceTravelled;
         float highScore = GameManager.Instance.highScore;
 
         if (distanceText != null)

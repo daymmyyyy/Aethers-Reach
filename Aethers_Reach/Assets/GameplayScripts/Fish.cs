@@ -14,20 +14,26 @@ public class Fish : MonoBehaviour
 
     void Update()
     {
-        if (!shouldMove)
+        Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
+
+        if (!shouldMove && screenPoint.x >= 0f && screenPoint.x <= 1f)
         {
-            Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
-            if (screenPoint.x >= 0f && screenPoint.x <= 1f)
-            {
-                shouldMove = true;
-            }
+            shouldMove = true;
         }
 
         if (shouldMove)
         {
-            transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+            if (screenPoint.x < -0.1f)
+            {
+                shouldMove = false;
+            }
+            else
+            {
+                transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
+            }
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -46,6 +52,8 @@ public class Fish : MonoBehaviour
                 // Lose relics
                 if (RelicManager.Instance != null)
                     RelicManager.Instance.LoseRelics(2);
+                    RelicManager.Instance.DropRelics(2, transform);
+
             }
         }
     }

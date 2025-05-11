@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public float distanceTravelled;
+    public float totalDistanceTravelled;
     public float highScore;
 
     void Awake()
@@ -23,15 +24,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveScore(float distance)
+    public void SaveProgressBeforeSceneChange(float currentSessionDistance)
     {
-        distanceTravelled = distance;
+        totalDistanceTravelled += currentSessionDistance;
 
-        if (distance > highScore)
+        if (currentSessionDistance > highScore)
         {
-            highScore = distance;
+            highScore = currentSessionDistance;
             PlayerPrefs.SetFloat("HighScore", highScore);
             PlayerPrefs.Save();
         }
     }
+
+    public void ResetProgress()
+    {
+        totalDistanceTravelled = 0f;
+    }
+
 }

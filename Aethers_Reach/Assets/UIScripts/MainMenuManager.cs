@@ -5,6 +5,10 @@ public class MainMenuManager : MonoBehaviour
 {
     public void StartGame()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ResetProgress();
+        }
         SceneManager.LoadScene("Biome1");
     }
 
