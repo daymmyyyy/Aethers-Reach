@@ -11,13 +11,12 @@ public class GameOverUI : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // Wait until GameManager.Instance is available and valid
-        while (GameManager.Instance == null || GameManager.Instance.totalDistanceTravelled == 0f)
+        while (GameManager.Instance == null)
         {
             yield return null;
         }
 
-        float finalDistance = GameManager.Instance.totalDistanceTravelled;
+        float finalDistance = GameManager.Instance.lastRunDistance;
         float highScore = GameManager.Instance.highScore;
 
         if (distanceText != null)
@@ -27,6 +26,9 @@ public class GameOverUI : MonoBehaviour
             highScoreText.text = "High Score: " + highScore.ToString("F2") + " km";
 
         int relicsCollected = PlayerPrefs.GetInt("RelicsCollected", 0);
-        relicsText.text = $"Relics: {relicsCollected}";
+        if (relicsText != null)
+            relicsText.text = $"Relics: {relicsCollected}";
     }
+
+
 }

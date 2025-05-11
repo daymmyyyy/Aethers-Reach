@@ -27,7 +27,7 @@ public class Teleporter : MonoBehaviour
             if (playerController != null)
             {
                 float multiplier = playerController.distanceMultiplier;
-                Vector3 position = playerController.startPosition;
+                Vector3 position = playerController.lastPosition;
 
                 GameManager.Instance.SaveProgressBeforeSceneChange(
                     Vector3.Distance(position, other.transform.position) * multiplier

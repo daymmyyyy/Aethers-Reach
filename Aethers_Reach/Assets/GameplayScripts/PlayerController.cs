@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     private float glideHoldTimer = 0f;
     private float currentSpeed;
     private float currentGlideSpeed;
-    public Vector3 startPosition;
 
     private float originalSpeed;
     private float originalGlideSpeed;
@@ -54,19 +53,14 @@ public class PlayerController : MonoBehaviour
     private bool recoveringSpeed = false;
     private float boostedSpeedStart;
     private float boostedGlideSpeedStart;
-
-
-
-
+    private float sessionDistance = 0f;
+    public Vector3 lastPosition;
 
     void Start()
     {
-        if (GameManager.Instance != null)
-        {
-            distanceOffset = GameManager.Instance.totalDistanceTravelled;
-        }
+       sessionDistance = GameManager.Instance != null ? GameManager.Instance.sessionDistance : 0f;
 
-        startPosition = transform.position; 
+        lastPosition = transform.position; 
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
@@ -194,9 +188,16 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateDistanceCounter()
     {
-        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
-        float kilometers = (distanceTravelled * distanceMultiplier) + distanceOffset;
+        float step = Vector3.Distance(transform.position, lastPosition);
+        sessionDistance += step;
+        lastPosition = transform.position;
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.sessionDistance = sessionDistance;
+
+        float kilometers = (sessionDistance * distanceMultiplier) + distanceOffset;
         distanceText.text = kilometers.ToString("F2") + " km";
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -221,12 +222,10 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        float distanceTravelled = Vector3.Distance(startPosition, transform.position);
-        float kilometers = distanceTravelled * distanceMultiplier;
-
+        float kmTravelled = sessionDistance * distanceMultiplier;
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SaveProgressBeforeSceneChange(kilometers);
+            GameManager.Instance.SaveProgressBeforeSceneChange(kmTravelled);
         }
 
         Debug.Log("Player has died");
@@ -287,9 +286,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Wind Gust Boost Activated!");
         }
     }
-
-
-
-
 
 }

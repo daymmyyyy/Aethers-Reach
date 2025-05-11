@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     public float totalDistanceTravelled;
     public float highScore;
+    public float sessionDistance;
+
 
     void Awake()
     {
@@ -24,21 +26,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveProgressBeforeSceneChange(float currentSessionDistance)
-    {
-        totalDistanceTravelled += currentSessionDistance;
+    public float lastRunDistance;
 
-        if (currentSessionDistance > highScore)
+    public void SaveProgressBeforeSceneChange(float currentSessionDistanceInKm)
+    {
+        lastRunDistance = currentSessionDistanceInKm;
+        totalDistanceTravelled += currentSessionDistanceInKm;
+
+        if (currentSessionDistanceInKm > highScore)
         {
-            highScore = currentSessionDistance;
+            highScore = currentSessionDistanceInKm;
             PlayerPrefs.SetFloat("HighScore", highScore);
             PlayerPrefs.Save();
         }
     }
 
+
     public void ResetProgress()
     {
         totalDistanceTravelled = 0f;
+        sessionDistance = 0f;
     }
+
 
 }
