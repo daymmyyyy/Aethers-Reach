@@ -88,4 +88,10 @@ public class RelicManager : MonoBehaviour
             relicCounterText.gameObject.SetActive(false);
     }
 
+    public void LoseRelics(int amount)
+    {
+        currentPieces = Mathf.Max(0, currentPieces - amount);
+        UpdateRelicUI();
+    }
+
 }

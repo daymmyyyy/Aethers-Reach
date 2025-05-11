@@ -113,6 +113,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (isKnockedBack)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnockedBack = false;
+            }
+            return; // Skip normal movement while knocked back
+        }
+
         rb.velocity = velocity;
     }
 
@@ -137,12 +147,15 @@ public class PlayerController : MonoBehaviour
             Die();
         }
 
-        foreach (ContactPoint2D contact in collision.contacts)
+        if (collision.collider.CompareTag("Ground"))
         {
-            if (contact.normal.y < 0.5f)
+            foreach (ContactPoint2D contact in collision.contacts)
             {
-                Die();
-                break;
+                if (contact.normal.y < 0.5f)
+                {
+                    Die();
+                    break;
+                }
             }
         }
     }
@@ -176,4 +189,27 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Relic Speed Boost Activated!");
         }
     }
+
+    private bool isKnockedBack = false;
+    private float knockbackDuration = 1f;
+    private float knockbackTimer = 0f;
+
+    public void ApplyKnockback(Vector2 direction)
+    {
+        if (!isKnockedBack)
+        {
+            isKnockedBack = true;
+            knockbackTimer = knockbackDuration;
+
+            rb.velocity = Vector2.zero;
+
+            // knockback
+            float knockbackSpeed = 15f;
+            rb.velocity = new Vector2(direction.x < 0 ? -knockbackSpeed : knockbackSpeed, 0f);
+        }
+    }
+
+
+
+
 }
