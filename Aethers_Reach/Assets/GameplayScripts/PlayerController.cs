@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        isHoldingUp = Input.GetKey(KeyCode.UpArrow);
+        isHoldingUp = Input.GetMouseButton(0);
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
+        if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0)))
         {
             Jump();
         }
