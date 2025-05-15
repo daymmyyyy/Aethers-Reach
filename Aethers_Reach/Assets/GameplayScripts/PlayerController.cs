@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public float maxVerticalSpeed = 5f;
     public float gravityScale = 3f;
     public float glideGravityScale = 0.5f;
-    public float glideHoldTime = 3f;
 
     [Header("Speed Increase Settings")]
     public float speedIncreaseRate = 0.1f;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isHoldingUp;
     private bool isGlideHolding;
-    private float glideHoldTimer = 0f;
     private float currentSpeed;
     private float currentGlideSpeed;
 
@@ -120,9 +118,6 @@ public class PlayerController : MonoBehaviour
             {
                 isBoosted = false;
 
-                originalSpeed = runSpeed;
-                originalGlideSpeed = glideSpeed;
-
                 speedRecoveryTimer = 0f;
                 recoveringSpeed = true;
 
@@ -153,12 +148,6 @@ public class PlayerController : MonoBehaviour
             {
                 rb.gravityScale = 0f;
                 velocity.y = 0f;
-                glideHoldTimer -= Time.fixedDeltaTime;
-
-                if (glideHoldTimer <= 0f)
-                {
-                    isGlideHolding = false;
-                }
             }
             else
             {
@@ -176,6 +165,17 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = velocity;
+
+        if (isGrounded)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.3f, groundLayer);
+            if (hit.collider != null)
+            {
+                // Snap to slope
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(rb.velocity.y, -0.1f));
+            }
+        }
+
     }
 
 
@@ -183,7 +183,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         isGlideHolding = true;
-        glideHoldTimer = glideHoldTime;
     }
 
     private void UpdateDistanceCounter()
@@ -211,14 +210,19 @@ public class PlayerController : MonoBehaviour
         {
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal.y < 0.5f)
+                float angle = Vector2.Angle(contact.normal, Vector2.up);
+
+                // Kill the player only if hitting from sides or bottom
+                if (angle > 70f)
                 {
                     Die();
                     break;
                 }
             }
         }
+
     }
+
 
     private void Die()
     {
@@ -280,11 +284,16 @@ public class PlayerController : MonoBehaviour
             isBoosted = true;
             boostTimer = duration;
 
+            // Store the current speed before boosting
+            originalSpeed = currentSpeed;
+            originalGlideSpeed = currentGlideSpeed;
+
             currentSpeed *= multiplier;
             currentGlideSpeed *= multiplier;
 
             Debug.Log("Wind Gust Boost Activated!");
         }
     }
+
 
 }
