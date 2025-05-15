@@ -1549,7 +1549,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4.33, y: 2.02}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1599,7 +1599,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1640029087, guid: c07ae34e1057b254fad7db9afaccabed, type: 3}
   m_Color: {r: 0.692581, g: 0.90188676, b: 0.7116219, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1620,8 +1620,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -70.733955, y: -22.6, z: -0.688976}
-  m_LocalScale: {x: 31.82, y: 1.0030419, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 9.76, y: 9.76, z: 9.76}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 166547063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2970,7 +2970,7 @@ MonoBehaviour:
   totalPiecesRequired: 10
   relicCounterText: {fileID: 434816330}
   fullRelicUI: {fileID: 2051982965}
-  relicPrefab: {fileID: 0}
+  relicPrefab: {fileID: 2091641604930388957, guid: 0767f39a74facae43aa25e752016dccb, type: 3}
   dropOffset: 2
 --- !u!4 &1220852993
 Transform:
