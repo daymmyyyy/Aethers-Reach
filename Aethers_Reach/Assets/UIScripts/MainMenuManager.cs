@@ -9,12 +9,14 @@ public class MainMenuManager : MonoBehaviour
         {
             GameManager.Instance.ResetProgress();
         }
+        RelicCurrency.ResetRelics();
         SceneManager.LoadScene("Biome1");
     }
 
     public void MainMenu()
     {
         PlayerPrefs.DeleteKey("RelicsCollected");
+        RelicCurrency.ResetRelics();
         SceneManager.LoadScene("MainMenu");
     }
 
