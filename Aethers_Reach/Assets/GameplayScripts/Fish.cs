@@ -6,6 +6,7 @@ public class Fish : MonoBehaviour
     private bool shouldMove = false;
     private Camera mainCamera;
     private bool hasHitPlayer = false;
+    public float breakSpeedThreshold = 60f;
 
     void Start()
     {
@@ -41,22 +42,33 @@ public class Fish : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            hasHitPlayer = true;
-
             PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
+                float playerSpeed = player.GetComponent<Rigidbody2D>().velocity.x;
+
+                if (playerSpeed >= breakSpeedThreshold)
+                {
+                    Destroy(gameObject);
+                    Debug.Log("Fish destroyed due to high player speed!");
+                    return;
+                }
+
+                hasHitPlayer = true;
+
                 Vector2 direction = (player.transform.position - transform.position).normalized;
                 player.ApplyKnockback(direction);
 
                 // Lose relics
                 if (RelicManager.Instance != null)
+                {
                     RelicManager.Instance.LoseRelics(2);
                     RelicManager.Instance.DropRelics(2, transform);
-
+                }
             }
         }
     }
+
 
 
 }

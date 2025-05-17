@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
     public float distanceMultiplier = 0.01f;
     private float distanceOffset = 0f;
 
-
     [Header("Relic Speed Boost Settings")]
     public float boostDuration = 2f;
     private float boostTimer = 0f;
     private bool isBoosted = false;
+
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -82,21 +82,22 @@ public class PlayerController : MonoBehaviour
         UpdateDistanceCounter();
     }
 
+
     void FixedUpdate()
     {
         Vector2 velocity = rb.velocity;
 
+        // Handle knockback
         if (isKnockedBack)
         {
             knockbackTimer -= Time.fixedDeltaTime;
             if (knockbackTimer <= 0f)
-            {
                 isKnockedBack = false;
-            }
+
             return;
         }
 
-        // Handle recovery after knockback or boost
+        // Handle speed recovery after knockback or boost
         if (recoveringSpeed)
         {
             speedRecoveryTimer += Time.fixedDeltaTime;
@@ -106,76 +107,86 @@ public class PlayerController : MonoBehaviour
             currentGlideSpeed = Mathf.Lerp(boostedGlideSpeedStart, originalGlideSpeed, t);
 
             if (t >= 1f)
-            {
                 recoveringSpeed = false;
-            }
         }
 
+        // Handle boost duration
         if (isBoosted)
         {
             boostTimer -= Time.fixedDeltaTime;
             if (boostTimer <= 0f)
             {
                 isBoosted = false;
-
-                speedRecoveryTimer = 0f;
                 recoveringSpeed = true;
-
+                speedRecoveryTimer = 0f;
                 boostedSpeedStart = currentSpeed;
                 boostedGlideSpeedStart = currentGlideSpeed;
             }
         }
 
-
-        // Movement and gravity logic
+        // Apply running or gliding movement
         if (isGrounded)
         {
             velocity.x = currentSpeed;
             rb.gravityScale = gravityScale;
             isGlideHolding = false;
 
-                if (currentSpeed < maxSpeed)
-                    currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+            if (currentSpeed < maxSpeed)
+            {
+                currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+                Debug.Log("Current Speed: " + currentSpeed);
+            }
 
-                if (currentGlideSpeed < maxGlideSpeed)
-                    currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
+            if (currentGlideSpeed < maxGlideSpeed)
+                currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
         }
         else
         {
             velocity.x = currentGlideSpeed;
 
+            // Handle gliding behavior
             if (isGlideHolding)
             {
+                // Initial glide state after jump — float briefly
                 rb.gravityScale = 0f;
                 velocity.y = 0f;
             }
+            else if (isHoldingUp)
+            {
+                // Apply wind lift while holding
+                rb.gravityScale = glideGravityScale;
+
+                float speedFactor = GetSpeedFactor();
+                float dynamicWindLift = windLiftForce * (1f + speedFactor);
+                float dynamicMaxVerticalSpeed = maxVerticalSpeed * (1f + speedFactor);
+
+                velocity.y += dynamicWindLift * Time.fixedDeltaTime;
+                velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, dynamicMaxVerticalSpeed);
+            }
             else
             {
-                if (isHoldingUp)
-                {
-                    rb.gravityScale = glideGravityScale;
-                    velocity.y += windLiftForce * Time.fixedDeltaTime;
-                    velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, maxVerticalSpeed);
-                }
-                else
-                {
-                    rb.gravityScale = gravityScale;
-                }
+                // Not gliding — fall with full gravity
+                rb.gravityScale = gravityScale;
             }
         }
 
         rb.velocity = velocity;
 
+        // Extra ground check to prevent unwanted sticking or bouncing
         if (isGrounded)
         {
             RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.3f, groundLayer);
             if (hit.collider != null)
             {
-                // Snap to slope
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(rb.velocity.y, -0.1f));
             }
         }
+    }
 
+
+    private float GetSpeedFactor()
+    {
+        return Mathf.InverseLerp(runSpeed, maxSpeed, currentSpeed);
     }
 
 
@@ -293,6 +304,13 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Wind Gust Boost Activated!");
         }
+    }
+
+    public void ForceGrounded()
+    {
+        isGrounded = true;
+        isGlideHolding = false;
+        rb.gravityScale = gravityScale;
     }
 
 
