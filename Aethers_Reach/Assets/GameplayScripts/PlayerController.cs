@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
                 float angle = Vector2.Angle(contact.normal, Vector2.up);
 
                 // Kill the player only if hitting from sides or bottom
-                if (angle > 70f)
+                if (angle > 80f)
                 {
                     Die();
                     break;
