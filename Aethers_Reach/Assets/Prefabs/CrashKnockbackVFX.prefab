@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7010005874688138529}
   - component: {fileID: 5426680052260716069}
   m_Layer: 0
-  m_Name: Crash_KnockbackVFX
+  m_Name: CrashKnockbackVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4802,7 +4802,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2

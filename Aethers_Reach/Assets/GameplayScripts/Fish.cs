@@ -59,15 +59,25 @@ public class Fish : MonoBehaviour
                 Vector2 direction = (player.transform.position - transform.position).normalized;
                 player.ApplyKnockback(direction);
 
+                Transform vfxTransform = other.transform.Find("CrashKnockbackVFX");
+                if (vfxTransform != null)
+                {
+                    ParticleSystem knockbackVFX = vfxTransform.GetComponent<ParticleSystem>();
+                    if (knockbackVFX != null && knockbackVFX.gameObject.activeInHierarchy)
+                    {
+                        knockbackVFX.Play();
+                    }
+                }
+
                 // Lose relics
                 if (RelicManager.Instance != null)
                 {
                     RelicManager.Instance.LoseRelics(2);
-                    RelicManager.Instance.DropRelics(2, transform);
                 }
             }
         }
     }
+
 
 
 

@@ -5,10 +5,16 @@ public class RelicCurrency : MonoBehaviour
 {
     public static int totalRelics = 0;
     public int relicValue = 10;
-    public Text relicText;
+    private Text relicText;
 
     void Start()
     {
+        GameObject relicTextObj = GameObject.Find("RelicCurrencyCounter");
+        if (relicTextObj != null)
+        {
+            relicText = relicTextObj.GetComponent<Text>();
+        }
+
         UpdateRelicText();
     }
 
@@ -30,7 +36,7 @@ public class RelicCurrency : MonoBehaviour
     {
         totalRelics += relicValue;
         UpdateRelicText();
-        Destroy(gameObject);  // Destroy this relic object after collecting
+        Destroy(gameObject);
     }
 
     public static void ResetRelics()

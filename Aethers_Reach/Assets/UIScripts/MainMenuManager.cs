@@ -26,6 +26,18 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("HighScore");
     }
 
+    public void Shop()
+    {
+
+        SceneManager.LoadScene("Shop");
+    }
+
+    public void DiaryEntries()
+    {
+
+        SceneManager.LoadScene("DiaryEntries");
+    }
+
     public void Quit()
     {
         Debug.Log("Quit button pressed");

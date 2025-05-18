@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour
     private float boostedGlideSpeedStart;
     private float sessionDistance = 0f;
     public Vector3 lastPosition;
+    private ParticleSystem windTrailVFX;
+
+
 
     void Start()
     {
@@ -67,6 +70,10 @@ public class PlayerController : MonoBehaviour
         currentSpeed = runSpeed;
         currentGlideSpeed = glideSpeed;
 
+        windTrailVFX = transform.Find("WindTrailVFX")?.GetComponent<ParticleSystem>();
+
+
+
     }
 
     void Update()
@@ -79,8 +86,22 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        // Play WindTrailVFX only when holding input and in air
+        if (isHoldingUp || !isGrounded)
+        {
+            if (windTrailVFX != null && !windTrailVFX.isPlaying)
+                windTrailVFX.Play();
+        }
+        else
+        {
+            if (windTrailVFX != null && windTrailVFX.isPlaying)
+                windTrailVFX.Stop();
+        }
+
         UpdateDistanceCounter();
     }
+
+
 
 
     void FixedUpdate()

@@ -18,7 +18,6 @@ public class RelicManager : MonoBehaviour
 
     [Header("Relic Drop")]
     public GameObject relicPrefab;
-    public float dropOffset = 2f; // how far in front of the player to drop them
 
 
     private void Awake()
@@ -75,8 +74,16 @@ public class RelicManager : MonoBehaviour
         if (playerController != null)
             playerController.TriggerSpeedBoost();
 
+        // Disable all relic pieces in the scene
+        GameObject[] relicPieces = GameObject.FindGameObjectsWithTag("RelicPiece");
+        foreach (GameObject piece in relicPieces)
+        {
+            piece.SetActive(false);
+        }
+
         StartCoroutine(ShowFullRelicUI());
     }
+
 
 
     private IEnumerator ShowFullRelicUI()
@@ -107,16 +114,5 @@ public class RelicManager : MonoBehaviour
                 fullRelicUI.SetActive(false);
         }
     }
-
-
-    public void DropRelics(int amount, Transform playerTransform)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            Vector3 dropPosition = playerTransform.position + new Vector3(dropOffset + i * 10f, 0, 0);
-            Instantiate(relicPrefab, dropPosition, Quaternion.identity);
-        }
-    }
-
 
 }
