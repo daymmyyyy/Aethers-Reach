@@ -25,7 +25,7 @@ public class RelicCurrency : MonoBehaviour
     void UpdateCurrencyText()
     {
         if (currencyText != null)
-            currencyText.text = totalCurrency.ToString();
+            currencyText.text = currencyThisSession.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
