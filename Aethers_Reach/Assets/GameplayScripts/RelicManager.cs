@@ -5,6 +5,7 @@ using System.Collections;
 public class RelicManager : MonoBehaviour
 {
     public static RelicManager Instance;
+    private int fullRelicsThisSession = 0;
 
     [Header("Relic Settings")]
     public int totalPiecesRequired = 10;
@@ -66,15 +67,20 @@ public class RelicManager : MonoBehaviour
     {
         Debug.Log("Relic fully assembled!");
 
-        // Store number of full relics
-        int relicsCollected = PlayerPrefs.GetInt("RelicsCollected", 0);
-        PlayerPrefs.SetInt("RelicsCollected", relicsCollected + 1);
+        // Update total
+        int totalRelics = PlayerPrefs.GetInt("RelicsCollected", 0);
+        PlayerPrefs.SetInt("RelicsCollected", totalRelics + 1);
+        PlayerPrefs.Save();
+
+        // Track session-only relics
+        fullRelicsThisSession++;
+        PlayerPrefs.SetInt("RelicsThisSession", fullRelicsThisSession);
         PlayerPrefs.Save();
 
         if (playerController != null)
             playerController.TriggerSpeedBoost();
 
-        // Disable all relic pieces in the scene
+        // Disable all relic pieces
         GameObject[] relicPieces = GameObject.FindGameObjectsWithTag("RelicPiece");
         foreach (GameObject piece in relicPieces)
         {
@@ -83,6 +89,7 @@ public class RelicManager : MonoBehaviour
 
         StartCoroutine(ShowFullRelicUI());
     }
+
 
 
 
@@ -114,5 +121,20 @@ public class RelicManager : MonoBehaviour
                 fullRelicUI.SetActive(false);
         }
     }
+    public bool HasCompletedRelic()
+    {
+        return currentPieces >= totalPiecesRequired;
+    }
+
+    public int GetRelicsThisSession()
+    {
+        return fullRelicsThisSession;
+    }
+    public void ResetSessionRelics()
+    {
+        fullRelicsThisSession = 0;
+
+    }
+
 
 }

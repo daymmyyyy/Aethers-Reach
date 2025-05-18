@@ -41,7 +41,6 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
-
     public void SpawnNextChunk()
     {
         GameObject prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
@@ -58,7 +57,6 @@ public class ChunkManager : MonoBehaviour
 
         if (lastChunkEnd != null)
         {
-            // Force Y to always be 14, match X and Z
             Vector3 spawnPos = new Vector3(
                 lastChunkEnd.position.x,
                 14f,
@@ -68,14 +66,27 @@ public class ChunkManager : MonoBehaviour
         }
         else
         {
-            // For the very first chunk
             newChunk.transform.position = new Vector3(0, 14f, 0);
+        }
+
+        // Check if relic is completed and disable relics in the new chunk
+        if (RelicManager.Instance != null && RelicManager.Instance.HasCompletedRelic())
+        {
+            // Disable all relics (by tag or child name)
+            foreach (Transform child in newChunk.GetComponentsInChildren<Transform>())
+            {
+                if (child.CompareTag("RelicPiece"))
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
         }
 
         lastChunkEnd = newChunkEnd;
         spawnedChunks.Add(newChunk);
         CleanupOldChunks();
     }
+
 
 
 

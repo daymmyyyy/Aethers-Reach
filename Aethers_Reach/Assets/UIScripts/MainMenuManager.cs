@@ -9,16 +9,34 @@ public class MainMenuManager : MonoBehaviour
         {
             GameManager.Instance.ResetProgress();
         }
-        RelicCurrency.ResetRelics();
+
+        if (RelicManager.Instance != null)
+        {
+            RelicManager.Instance.ResetSessionRelics();
+        }
+
+        RelicCurrency.ResetCurrency();  // session-based
+
+        // Force reset PlayerPrefs
+        PlayerPrefs.SetInt("RelicsThisSession", 0);
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("Biome1");
     }
 
+
     public void MainMenu()
     {
-        PlayerPrefs.DeleteKey("RelicsCollected");
-        RelicCurrency.ResetRelics();
+        if (RelicManager.Instance != null)
+        {
+            RelicManager.Instance.ResetSessionRelics();
+
+        }
+
+        RelicCurrency.ResetCurrency();  //session-based
         SceneManager.LoadScene("MainMenu");
     }
+
 
     public void HighScore()
     {

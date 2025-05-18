@@ -272,6 +272,11 @@ MonoBehaviour:
   distanceText: {fileID: 0}
   distanceMultiplier: 0.001
   boostDuration: 1.5
+  runningLoopClip: {fileID: 8300000, guid: 96f46a7a33aefe244a8f06910b83946a, type: 3}
+  glidingWindClip: {fileID: 8300000, guid: 2231100f6e684c543ad34a4789859711, type: 3}
+  runningVolume: 0.6
+  glidingVolume: 0.15
+  fadeSpeed: 0.5
   lastPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &8231897606461455165
 Animator:

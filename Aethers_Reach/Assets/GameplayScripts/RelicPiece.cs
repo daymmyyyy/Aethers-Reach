@@ -2,20 +2,35 @@ using UnityEngine;
 
 public class RelicPiece : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            RelicManager.Instance.CollectPiece();
+    public AudioClip collectionClip;
+    [Range(0f, 1f)] public float collectionVolume = 0.5f;
 
-            //find and play the child particle system on the player
-            ParticleSystem collectVFX = other.transform.Find("ItemCollectVFX")?.GetComponent<ParticleSystem>();
-            if (collectVFX != null)
+    private bool collected = false;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (collected || !other.CompareTag("Player")) return;
+        collected = true;
+
+        RelicManager.Instance.CollectPiece();
+
+        ParticleSystem collectVFX = other.transform.Find("ItemCollectVFX")?.GetComponent<ParticleSystem>();
+        if (collectVFX != null)
+        {
+            collectVFX.Play();
+        }
+
+        if (collectionClip != null)
+        {
+            AudioSource playerAudio = other.GetComponent<AudioSource>();
+            if (playerAudio == null)
             {
-                collectVFX.Play();
+                playerAudio = other.gameObject.AddComponent<AudioSource>();
             }
 
-            Destroy(gameObject);
+            playerAudio.PlayOneShot(collectionClip, collectionVolume);
         }
+
+        Destroy(gameObject);
     }
 }

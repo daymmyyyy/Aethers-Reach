@@ -36,6 +36,19 @@ public class PlayerController : MonoBehaviour
     private float boostTimer = 0f;
     private bool isBoosted = false;
 
+    [Header("Audio Source")]
+    public AudioClip runningLoopClip;
+    public AudioClip glidingWindClip;
+
+    private AudioSource sfxSource;
+    private AudioSource runningSource;
+    private AudioSource glideSource;
+
+    [Header("Audio Volume Settings")]
+    [Range(0f, 1f)] public float runningVolume = 0.6f;
+    [Range(0f, 1f)] public float glidingVolume = 0.5f;
+    public float fadeSpeed = 2f; // audio fades in/out
+
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -59,7 +72,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-       sessionDistance = GameManager.Instance != null ? GameManager.Instance.sessionDistance : 0f;
+        sfxSource = gameObject.AddComponent<AudioSource>();
+        runningSource = gameObject.AddComponent<AudioSource>();
+        glideSource = gameObject.AddComponent<AudioSource>();
+        runningSource.volume = 0f;
+        glideSource.volume = 0f;
+
+        //looping audio sources
+        runningSource.loop = true;
+        runningSource.clip = runningLoopClip;
+
+        glideSource.loop = true;
+        glideSource.clip = glidingWindClip;
+
+        sessionDistance = GameManager.Instance != null ? GameManager.Instance.sessionDistance : 0f;
 
         lastPosition = transform.position; 
 
@@ -78,7 +104,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         isHoldingUp = Input.GetMouseButton(0);
 
         if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0)))
@@ -99,6 +124,7 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateDistanceCounter();
+        HandleAudio();
     }
 
 
@@ -106,6 +132,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+       // isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         Vector2 velocity = rb.velocity;
 
         // Handle knockback
@@ -231,8 +258,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private int groundContacts = 0;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            groundContacts++;
+            isGrounded = true;
+        }
+
         if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
         {
             Die();
@@ -255,6 +290,23 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            groundContacts = Mathf.Max(groundContacts - 1, 0);
+            if (groundContacts == 0)
+                isGrounded = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
 
     private void Die()
     {
@@ -333,6 +385,53 @@ public class PlayerController : MonoBehaviour
         isGlideHolding = false;
         rb.gravityScale = gravityScale;
     }
+
+    private void HandleAudio()
+    {
+        // Fade speed
+        float fade = fadeSpeed * Time.deltaTime;
+
+        if (isGrounded)
+        {
+            if (!runningSource.isPlaying)
+            {
+                runningSource.Play();
+            }
+
+            // Fade in running
+            runningSource.volume = Mathf.MoveTowards(runningSource.volume, runningVolume, fade);
+
+            // Fade out glide
+            glideSource.volume = Mathf.MoveTowards(glideSource.volume, 0f, fade);
+
+            // Stop gliding if fully faded out
+            if (glideSource.volume <= 0.01f && glideSource.isPlaying)
+            {
+                glideSource.Stop();
+            }
+        }
+        else
+        {
+            if (!glideSource.isPlaying)
+            {
+                glideSource.Play();
+            }
+
+            // Fade in gliding
+            glideSource.volume = Mathf.MoveTowards(glideSource.volume, glidingVolume, fade);
+
+            // Fade out running
+            runningSource.volume = Mathf.MoveTowards(runningSource.volume, 0f, fade);
+
+            // Stop running if fully faded out
+            if (runningSource.volume <= 0.01f && runningSource.isPlaying)
+            {
+                runningSource.Stop();
+            }
+        }
+    }
+
+
 
 
 }

@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2e9725c5b5d8e49aa50d7be7ec9290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectionClip: {fileID: 8300000, guid: c5c06b2c7c0c6854cae649399743efb6, type: 3}
+  collectionVolume: 0.17
 --- !u!68 &1818549296952366644
 EdgeCollider2D:
   m_ObjectHideFlags: 0

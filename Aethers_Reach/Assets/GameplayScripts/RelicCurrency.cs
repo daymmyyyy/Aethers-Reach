@@ -3,44 +3,63 @@ using UnityEngine.UI;
 
 public class RelicCurrency : MonoBehaviour
 {
-    public static int totalRelics = 0;
-    public int relicValue = 10;
-    private Text relicText;
+    public static int totalCurrency = 0;
+    public static int currencyThisSession = 0;
+
+    public int currencyValue = 10;
+    private Text currencyText;
 
     void Start()
     {
-        GameObject relicTextObj = GameObject.Find("RelicCurrencyCounter");
-        if (relicTextObj != null)
+        GameObject currencyTextObj = GameObject.Find("RelicCurrencyCounter");
+        if (currencyTextObj != null)
         {
-            relicText = relicTextObj.GetComponent<Text>();
+            currencyText = currencyTextObj.GetComponent<Text>();
         }
 
-        UpdateRelicText();
+        // Load total relics from PlayerPrefs
+        totalCurrency = PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
+        UpdateCurrencyText();
     }
 
-    void UpdateRelicText()
+    void UpdateCurrencyText()
     {
-        if (relicText != null)
-            relicText.text = totalRelics.ToString();
+        if (currencyText != null)
+            currencyText.text = totalCurrency.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            CollectRelic();
+            CollectCurrency();
         }
     }
 
-    private void CollectRelic()
+    private void CollectCurrency()
     {
-        totalRelics += relicValue;
-        UpdateRelicText();
+        totalCurrency += currencyValue;
+        currencyThisSession += currencyValue;
+
+        PlayerPrefs.SetInt("TotalCurrencyCollected", totalCurrency);
+        PlayerPrefs.Save();
+
+        UpdateCurrencyText();
         Destroy(gameObject);
     }
 
-    public static void ResetRelics()
+    public static void ResetCurrency()
     {
-        totalRelics = 0;
+        currencyThisSession = 0;
+    }
+
+    public static int GetSessionCurrency()
+    {
+        return currencyThisSession;
+    }
+
+    public static int GetTotalCurrency()
+    {
+        return PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
     }
 }

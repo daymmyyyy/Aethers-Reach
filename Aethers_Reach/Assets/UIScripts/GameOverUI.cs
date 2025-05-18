@@ -7,6 +7,7 @@ public class GameOverUI : MonoBehaviour
     public Text distanceText;
     public Text highScoreText;
     public Text relicsText;
+    public Text currencyText;
 
 
     private IEnumerator Start()
@@ -25,9 +26,14 @@ public class GameOverUI : MonoBehaviour
         if (highScoreText != null)
             highScoreText.text = "High Score: " + highScore.ToString("F2") + " km";
 
-        int relicsCollected = PlayerPrefs.GetInt("RelicsCollected", 0);
+        int relicsCollected = PlayerPrefs.GetInt("RelicsThisSession", 0);
         if (relicsText != null)
             relicsText.text = $"Relics: {relicsCollected}";
+
+        int currencyCollected = RelicCurrency.GetSessionCurrency();
+        if (currencyText != null)
+            currencyText.text = $"Relic Currency: {currencyCollected}";
+
     }
 
 
