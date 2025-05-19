@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 lastPosition;
     private ParticleSystem windTrailVFX;
 
-
+    private Animator animator;
 
     void Start()
     {
@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
         glideSource = gameObject.AddComponent<AudioSource>();
         runningSource.volume = 0f;
         glideSource.volume = 0f;
+
+        animator = GetComponent<Animator>();
 
         //looping audio sources
         runningSource.loop = true;
@@ -111,11 +113,18 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+     
+       
+
         // Play WindTrailVFX only when holding input and in air
         if (isHoldingUp || !isGrounded)
         {
+            animator.SetBool("running", false);
+            animator.SetBool("gliding", true);
+
             if (windTrailVFX != null && !windTrailVFX.isPlaying)
                 windTrailVFX.Play();
+
         }
         else
         {
@@ -266,15 +275,9 @@ public class PlayerController : MonoBehaviour
         {
             groundContacts++;
             isGrounded = true;
-        }
+            animator.SetBool("running", true);
+            animator.SetBool("gliding", false);
 
-        if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
-        {
-            Die();
-        }
-
-        if (collision.collider.CompareTag("Ground"))
-        {
             foreach (ContactPoint2D contact in collision.contacts)
             {
                 float angle = Vector2.Angle(contact.normal, Vector2.up);
@@ -286,6 +289,11 @@ public class PlayerController : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
+        {
+            Die();
         }
 
     }
