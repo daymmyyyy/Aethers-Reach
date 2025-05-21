@@ -2097,6 +2097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkyIslandsChunk1
       objectReference: {fileID: 0}
+    - target: {fileID: 8909493473180143072, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 165.1
+      objectReference: {fileID: 0}
     - target: {fileID: 9020962713930168315, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
       propertyPath: m_LocalPosition.y
       value: 14
@@ -2183,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: runSpeed
-      value: 72
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: fadeSpeed
@@ -2195,7 +2199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: glideSpeed
-      value: 70
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: distanceText
