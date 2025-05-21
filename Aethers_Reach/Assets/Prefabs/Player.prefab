@@ -420,7 +420,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2197339736988981962, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
       propertyPath: m_MaxParticleSize
-      value: 0.017
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4191789064164297711, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -477,6 +477,18 @@ PrefabInstance:
     - target: {fileID: 5164008368494796337, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
       propertyPath: simulationSpeed
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008368494796337, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008368494796337, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008368494796337, guid: 1b27b9dc55161044ca2821d6aa9dca5c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -580,7 +592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5426680052260716069, guid: 179b6adaa894bf641886465fa06649a4, type: 3}
       propertyPath: m_MaxParticleSize
-      value: 0.015
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: 6966832465344342404, guid: 179b6adaa894bf641886465fa06649a4, type: 3}
       propertyPath: m_LocalPosition.x
