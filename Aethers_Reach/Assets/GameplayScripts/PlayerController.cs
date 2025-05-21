@@ -274,9 +274,9 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             groundContacts++;
-            isGrounded = true;
             animator.SetBool("running", true);
             animator.SetBool("gliding", false);
+            isGrounded = true;
 
             foreach (ContactPoint2D contact in collision.contacts)
             {

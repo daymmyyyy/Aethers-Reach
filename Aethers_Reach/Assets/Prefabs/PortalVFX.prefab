@@ -4926,6 +4926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7765982669349231740}
   - component: {fileID: 5485615085791355229}
+  - component: {fileID: 3139146096760123197}
   m_Layer: 0
   m_Name: PortalSprite
   m_TagString: Untagged
@@ -5001,3 +5002,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3139146096760123197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144298619690256474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1da5672a6792c4391d4e66eb1ba4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: Biome2
