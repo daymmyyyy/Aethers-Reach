@@ -14,6 +14,16 @@ public class ChunkManager : MonoBehaviour
 
     private List<GameObject> spawnedChunks = new List<GameObject>();
     private Transform lastChunkEnd;
+    private int chunksSinceRelicComplete = 0;
+    private bool relicWasCompletedLastCheck = false;
+    private bool spawnedInitialPortal = false;
+
+
+
+    [Header("Portal Settings")]
+    public GameObject portalChunkPrefab;
+    private bool portalSpawned = false;
+
 
     private void Awake()
     {
@@ -43,7 +53,51 @@ public class ChunkManager : MonoBehaviour
 
     public void SpawnNextChunk()
     {
-        GameObject prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
+        GameObject prefab;
+        bool relicComplete = RelicManager.Instance != null && RelicManager.Instance.HasCompletedRelic();
+
+        if (relicComplete)
+        {
+            if (!relicWasCompletedLastCheck)
+            {
+                // First detection of full relic collected
+                chunksSinceRelicComplete = 0;
+                spawnedInitialPortal = false;
+                relicWasCompletedLastCheck = true;
+            }
+
+            if (!spawnedInitialPortal)
+            {
+                // Immediately spawn portal chunk after relic is complete
+                prefab = portalChunkPrefab;
+                spawnedInitialPortal = true;
+                Debug.Log("Spawning initial portal chunk!");
+            }
+            else
+            {
+                chunksSinceRelicComplete++;
+
+                if (chunksSinceRelicComplete >= 3)
+                {
+                    prefab = portalChunkPrefab;
+                    chunksSinceRelicComplete = 0;
+                    Debug.Log("Spawning recurring portal chunk!");
+                }
+                else
+                {
+                    prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
+                }
+            }
+        }
+        else
+        {
+            // Normal spawning before relic completion
+            prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
+            relicWasCompletedLastCheck = false;
+            spawnedInitialPortal = false;
+            chunksSinceRelicComplete = 0;
+        }
+
         GameObject newChunk = Instantiate(prefab);
 
         Transform newChunkStart = newChunk.transform.Find("ChunkStart");
@@ -69,16 +123,13 @@ public class ChunkManager : MonoBehaviour
             newChunk.transform.position = new Vector3(0, 14f, 0);
         }
 
-        // Check if relic is completed and disable relics in the new chunk
-        if (RelicManager.Instance != null && RelicManager.Instance.HasCompletedRelic())
+        // Disable relic pieces if relic is already complete
+        if (relicComplete)
         {
-            // Disable all relics (by tag or child name)
             foreach (Transform child in newChunk.GetComponentsInChildren<Transform>())
             {
                 if (child.CompareTag("RelicPiece"))
-                {
                     child.gameObject.SetActive(false);
-                }
             }
         }
 
@@ -86,7 +137,6 @@ public class ChunkManager : MonoBehaviour
         spawnedChunks.Add(newChunk);
         CleanupOldChunks();
     }
-
 
 
 
