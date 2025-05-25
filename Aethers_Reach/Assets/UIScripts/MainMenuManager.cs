@@ -22,6 +22,7 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.Save();
 
         SceneManager.LoadScene("Biome1");
+        Time.timeScale = 1f;
     }
 
 
