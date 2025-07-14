@@ -1,0 +1,868 @@
+fileFormatVersion: 2
+guid: 4f9e4174d04b98a43b6eba3f6ba72e35
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Waves_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 2159
+        width: 3495
+        height: 699
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e037d30ced6474fb385cbd28846110
+      internalID: -1304731099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf1_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 1540
+        width: 482
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6499558b0ae9f104baca4426b7e12308
+      internalID: -269924318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf2_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 2255
+        y: 1677
+        width: 491
+        height: 171
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665890cc9a987b148a231d2ca3b6a3d0
+      internalID: -1038673171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf3_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 3063
+        y: 1666
+        width: 519
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6924b6c26398c0d43ba245052aa6213a
+      internalID: -2099909923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coconut1_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1375
+        width: 131
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb2648649f8739408a37f079aab278a
+      internalID: -328597882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coconut2_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 1350
+        width: 147
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a45667acb766e46867f1fbb26b3e53
+      internalID: -553191535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coconut3_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 1347
+        width: 165
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db5f02b9e41f5ae4fb8699af6d6679a1
+      internalID: 924250514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf4_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1225
+        width: 353
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94d1570bcf750541be93528e4f91b0c
+      internalID: -386073093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf5_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 2378
+        y: 1216
+        width: 372
+        height: 345
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36850ad1cca5205448ffb28976e6aac1
+      internalID: -1729353560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf6_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1193
+        width: 450
+        height: 390
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110dcbe6ede8d584e983cf071f0a59ff
+      internalID: -240207596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarGreen_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1073
+        width: 130
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83fd374fe0bd1d54eb837ad20b11c81a
+      internalID: -1259090864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwirlShellBlue_JGuy_25.6.25
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 1073
+        width: 101
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be87c03a8b41cd48a476160e39a7316
+      internalID: -2066334635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundShellOrange_JGuy_25.6.25_12
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 1068
+        width: 123
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29a108554500f84aa5fd39a6a900d7d
+      internalID: 854562456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UrchinBlue_JGuy_25.6.25_13
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 1043
+        width: 140
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8800ca2f2f438e747ae16e70ebd80fd3
+      internalID: -287494577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeTrunk1_JGuy_25.6.25_14
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 269
+        width: 206
+        height: 842
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 180bc2de07869d24e99bf725844d8509
+      internalID: -1097276845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarOrange_JGuy_25.6.25_15
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 863
+        width: 130
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332de909ae2211e49974459a003e88f2
+      internalID: 1621486272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwirlShellPurple_JGuy_25.6.25_16
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 863
+        width: 103
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975b2349ac33d98408a9b3313d697303
+      internalID: -956298476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundShellBlue_JGuy_25.6.25_17
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 858
+        width: 122
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347633ad9b476954ba1bd6a79dc5854a
+      internalID: -1757596720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UrchinOrange_JGuy_25.6.25_18
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 833
+        width: 142
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 926b7959363db7647804c87fcd892563
+      internalID: -984522247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeTrunk2_JGuy_25.6.25_19
+      rect:
+        serializedVersion: 2
+        x: 2150
+        y: 275
+        width: 161
+        height: 707
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f01754398662c4a48b6244d5464bf640
+      internalID: 113897935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeTrunk3_JGuy_25.6.25_20
+      rect:
+        serializedVersion: 2
+        x: 2588
+        y: 265
+        width: 158
+        height: 690
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1740c5edb75ab4a85352cc779399c6
+      internalID: 777239984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeTrunk4_JGuy_25.6.25_21
+      rect:
+        serializedVersion: 2
+        x: 2988
+        y: 260
+        width: 410
+        height: 699
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ea67126f8d2be4da92b50be5a3cfef
+      internalID: -300250148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarPurple_JGuy_25.6.25_22
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 642
+        width: 129
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f8617661bef634caaeed2096c1e0c5
+      internalID: -216320065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwirlShellPink_JGuy_25.6.25_23
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 642
+        width: 103
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb173e490732d4648917eb5d25d07919
+      internalID: -1193269939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundShellPurple_JGuy_25.6.25_24
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 637
+        width: 120
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d049ed2d2770cdc428b31f626e01d73b
+      internalID: 1769783967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UrchinMaroon_JGuy_25.6.25_25
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 612
+        width: 141
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5122719b39d8f4344addabd5b3940259
+      internalID: 1810658461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StarPink_JGuy_25.6.25_26
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 421
+        width: 130
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb30df5f064f40c4d967b86568351008
+      internalID: 17032612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwirlShellOrange_JGuy_25.6.25_27
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 423
+        width: 103
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf2de384c2eeeef40be741766f6ecbf6
+      internalID: 274985830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundShellPink_JGuy_25.6.25_28
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 415
+        width: 122
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a234cb338e3e7b246a2dda84af5262aa
+      internalID: 951015022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UrchinPurple_JGuy_25.6.25_29
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 393
+        width: 141
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd41585b49217534fa129e5ca1d6a465
+      internalID: 1881852478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pebbles2_JGuy_25.6.25_32
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 442
+        width: 62
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5614f86f9335ef74dad0774e10c2dd23
+      internalID: 1276681360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pebbles3_JGuy_25.6.25_33
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 423
+        width: 65
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d482fde60b9e18740ad697713dad2dbb
+      internalID: 1272560306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pebbles1_JGuy_25.6.25_34
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 423
+        width: 108
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04cc7b1e4d825234cbd90af34cc923ef
+      internalID: 665412380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BeachSmallSprites_JGuy_25.6.25_30: 1142342811
+      BeachSmallSprites_JGuy_25.6.25_31: -1310430663
+      Coconut1_JGuy_25.6.25: -328597882
+      Coconut2_JGuy_25.6.25: -553191535
+      Coconut3_JGuy_25.6.25: 924250514
+      Leaf1_JGuy_25.6.25: -269924318
+      Leaf2_JGuy_25.6.25: -1038673171
+      Leaf3_JGuy_25.6.25: -2099909923
+      Leaf4_JGuy_25.6.25: -386073093
+      Leaf5_JGuy_25.6.25: -1729353560
+      Leaf6_JGuy_25.6.25: -240207596
+      Pebbles1_JGuy_25.6.25_34: 665412380
+      Pebbles2_JGuy_25.6.25_32: 1276681360
+      Pebbles3_JGuy_25.6.25_33: 1272560306
+      RoundShellBlue_JGuy_25.6.25_17: -1757596720
+      RoundShellOrange_JGuy_25.6.25_12: 854562456
+      RoundShellPink_JGuy_25.6.25_28: 951015022
+      RoundShellPurple_JGuy_25.6.25_24: 1769783967
+      StarGreen_JGuy_25.6.25: -1259090864
+      StarOrange_JGuy_25.6.25_15: 1621486272
+      StarPink_JGuy_25.6.25_26: 17032612
+      StarPurple_JGuy_25.6.25_22: -216320065
+      SwirlShellBlue_JGuy_25.6.25: -2066334635
+      SwirlShellOrange_JGuy_25.6.25_27: 274985830
+      SwirlShellPink_JGuy_25.6.25_23: -1193269939
+      SwirlShellPurple_JGuy_25.6.25_16: -956298476
+      TreeTrunk1_JGuy_25.6.25_14: -1097276845
+      TreeTrunk2_JGuy_25.6.25_19: 113897935
+      TreeTrunk3_JGuy_25.6.25_20: 777239984
+      TreeTrunk4_JGuy_25.6.25_21: -300250148
+      UrchinBlue_JGuy_25.6.25_13: -287494577
+      UrchinMaroon_JGuy_25.6.25_25: 1810658461
+      UrchinOrange_JGuy_25.6.25_18: -984522247
+      UrchinPurple_JGuy_25.6.25_29: 1881852478
+      Waves_JGuy_25.6.25: -1304731099
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
