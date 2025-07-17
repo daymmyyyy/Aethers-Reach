@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HouseSprites_JGuy_21.5.25_8
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 580
+        width: 930
+        height: 692
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c585b3d5941c21438d443026ca639fc
+      internalID: -671835021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSprites_JGuy_21.5.25_9
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 1214
+        width: 677
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92da3b1af67b6ec4cb4ec5af2d984c59
+      internalID: -1982253468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSprites_JGuy_21.5.25_10
+      rect:
+        serializedVersion: 2
+        x: 3088
+        y: 777
+        width: 573
+        height: 975
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0c07af1bcfec2443aa5baebf977d3bd
+      internalID: -60423763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSprites_JGuy_21.5.25_11
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 190
+        width: 1276
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77a83358d6604d14d9cdd495f5575281
+      internalID: 186515016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HouseSprites_JGuy_21.5.25_12
+      rect:
+        serializedVersion: 2
+        x: 3065
+        y: 20
+        width: 673
+        height: 684
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f9a8968a63c6c944a68e254c82f3a5a
+      internalID: 1149624377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +237,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HouseSprites_JGuy_21.5.25_0: -1216205734
+      HouseSprites_JGuy_21.5.25_1: -1679396466
+      HouseSprites_JGuy_21.5.25_10: -60423763
+      HouseSprites_JGuy_21.5.25_11: 186515016
+      HouseSprites_JGuy_21.5.25_12: 1149624377
+      HouseSprites_JGuy_21.5.25_13: -329839884
+      HouseSprites_JGuy_21.5.25_2: -1090020405
+      HouseSprites_JGuy_21.5.25_3: 545790182
+      HouseSprites_JGuy_21.5.25_4: -1958197019
+      HouseSprites_JGuy_21.5.25_5: 1182813032
+      HouseSprites_JGuy_21.5.25_6: -1336428193
+      HouseSprites_JGuy_21.5.25_7: -1483646351
+      HouseSprites_JGuy_21.5.25_8: -671835021
+      HouseSprites_JGuy_21.5.25_9: -1982253468
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
