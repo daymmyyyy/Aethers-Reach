@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
+    private bool controlsEnabled = false;
+
     void Start()
     {
         sfxSource = gameObject.AddComponent<AudioSource>();
@@ -106,6 +108,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!controlsEnabled) return;
+
         isHoldingUp = Input.GetMouseButton(0);
 
         if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0)))
@@ -141,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-       // isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (!controlsEnabled) return;
         Vector2 velocity = rb.velocity;
 
         // Handle knockback
@@ -439,7 +443,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EnableControls()
+    {
+        controlsEnabled = true;
+    }
 
-
+    public void DisableControls()
+    {
+        controlsEnabled = false;
+    }
 
 }
