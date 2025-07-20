@@ -70,7 +70,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    private bool controlsEnabled = false;
+    public bool controlsEnabled = false;
+
 
     void Start()
     {
