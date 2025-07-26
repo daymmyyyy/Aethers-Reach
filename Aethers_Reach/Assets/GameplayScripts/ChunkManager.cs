@@ -22,7 +22,7 @@ public class ChunkManager : MonoBehaviour
 
     [Header("Portal Settings")]
     public GameObject portalChunkPrefab;
-    private bool portalSpawned = false;
+    //private bool portalSpawned = false;
 
 
     private void Awake()
@@ -100,14 +100,7 @@ public class ChunkManager : MonoBehaviour
 
         GameObject newChunk = Instantiate(prefab);
 
-        Transform newChunkStart = newChunk.transform.Find("ChunkStart");
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
-
-        if (newChunkStart == null || newChunkEnd == null)
-        {
-            Debug.LogError("Chunk missing 'ChunkStart' or 'ChunkEnd'");
-            return;
-        }
 
         if (lastChunkEnd != null)
         {
