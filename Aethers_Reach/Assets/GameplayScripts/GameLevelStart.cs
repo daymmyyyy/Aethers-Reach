@@ -1,14 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLevelStart : MonoBehaviour
 {
+    [Header("References")]
     public GameObject topLimit;
-    public GameObject instructionsUI;
-    private float fadeDuration = 1.5f;
+    public GameObject UI;
 
-    private bool alreadyTriggered = false;
+    [Header("Timing")]
+    public float delayBeforeFade = 3f;
+    public float fadeDuration = 1.5f;
 
     private void Awake()
     {
@@ -17,48 +18,29 @@ public class GameLevelStart : MonoBehaviour
             GameObject found = GameObject.Find("TopLimit");
             if (found != null) topLimit = found;
         }
-
-        if (instructionsUI == null)
-        {
-            GameObject found = GameObject.Find("Instructions");
-            if (found != null) instructionsUI = found;
-        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Start()
     {
-        if (alreadyTriggered) return;
-        if (!collision.collider.CompareTag("Player")) return;
-        PlayerController player = collision.collider.GetComponent<PlayerController>();
-        
-        if (player == null)
-            player = collision.collider.GetComponentInParent<PlayerController>();
+        StartCoroutine(StartSequence());
+    }
 
-        if (player != null)
-        {
-            player.EnableControls();
-        }
+    private IEnumerator StartSequence()
+    {
+        yield return new WaitForSeconds(delayBeforeFade);
+
+        if (UI != null)
+            yield return StartCoroutine(FadeOutAndDisable());
 
         if (topLimit != null)
-        {
             topLimit.SetActive(true);
-            alreadyTriggered = true;
-        }
-
-        if (instructionsUI != null)
-        {
-            StartCoroutine(FadeOutAndDisable());
-            alreadyTriggered = true;
-        }
     }
 
     private IEnumerator FadeOutAndDisable()
     {
-        CanvasGroup canvasGroup = instructionsUI.GetComponent<CanvasGroup>();
+        CanvasGroup canvasGroup = UI.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
-        {
-            canvasGroup = instructionsUI.AddComponent<CanvasGroup>();
-        }
+            canvasGroup = UI.AddComponent<CanvasGroup>();
 
         float startAlpha = canvasGroup.alpha;
         float elapsed = 0f;
@@ -72,6 +54,6 @@ public class GameLevelStart : MonoBehaviour
         }
 
         canvasGroup.alpha = 0f;
-        instructionsUI.SetActive(false);
+        UI.SetActive(false);
     }
 }

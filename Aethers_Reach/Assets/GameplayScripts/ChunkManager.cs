@@ -12,40 +12,34 @@ public class ChunkManager : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     public int maxChunksOnScreen = 5;
 
-    private List<GameObject> spawnedChunks = new List<GameObject>();
+    [Header("Portal Settings")]
+    public GameObject portalChunkPrefab;
+
+    private readonly List<GameObject> spawnedChunks = new();
     private Transform lastChunkEnd;
+
     private int chunksSinceRelicComplete = 0;
     private bool relicWasCompletedLastCheck = false;
     private bool spawnedInitialPortal = false;
 
-
-
-    [Header("Portal Settings")]
-    public GameObject portalChunkPrefab;
-    //private bool portalSpawned = false;
-
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-  void Start()
-  {
+    private void Start()
+    {
         SpawnNextChunk();
-  }
+    }
 
-    void Update()
+    private void Update()
     {
         if (lastChunkEnd == null || virtualCamera == null) return;
 
-        // Get the viewport position of the ChunkEnd (0 = left edge of screen, 1 = right edge)
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(lastChunkEnd.position);
 
-        if (viewportPos.x < 1.1f && viewportPos.x > 1f)
+        if (viewportPos.x <1.1f && viewportPos.x >1f)
         {
             SpawnNextChunk();
         }
@@ -60,7 +54,6 @@ public class ChunkManager : MonoBehaviour
         {
             if (!relicWasCompletedLastCheck)
             {
-                // First detection of full relic collected
                 chunksSinceRelicComplete = 0;
                 spawnedInitialPortal = false;
                 relicWasCompletedLastCheck = true;
@@ -68,7 +61,6 @@ public class ChunkManager : MonoBehaviour
 
             if (!spawnedInitialPortal)
             {
-                // Immediately spawn portal chunk after relic is complete
                 prefab = portalChunkPrefab;
                 spawnedInitialPortal = true;
                 Debug.Log("Spawning initial portal chunk!");
@@ -76,7 +68,6 @@ public class ChunkManager : MonoBehaviour
             else
             {
                 chunksSinceRelicComplete++;
-
                 if (chunksSinceRelicComplete >= 3)
                 {
                     prefab = portalChunkPrefab;
@@ -91,7 +82,6 @@ public class ChunkManager : MonoBehaviour
         }
         else
         {
-            // Normal spawning before relic completion
             prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
             relicWasCompletedLastCheck = false;
             spawnedInitialPortal = false;
@@ -99,26 +89,14 @@ public class ChunkManager : MonoBehaviour
         }
 
         GameObject newChunk = Instantiate(prefab);
-
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
-        Transform newChunkStart = newChunk.transform.Find("ChunkStart");
 
+        Vector3 spawnPosition = lastChunkEnd != null
+            ? new Vector3(lastChunkEnd.position.x, 14f, lastChunkEnd.position.z)
+            : new Vector3(0, 14f, 0);
 
-        if (lastChunkEnd != null)
-        {
-            Vector3 spawnPos = new Vector3(
-                lastChunkEnd.position.x,
-                14f,
-                lastChunkEnd.position.z
-            );
-            newChunk.transform.position = spawnPos;
-        }
-        else
-        {
-            newChunk.transform.position = new Vector3(0, 14f, 0);
-        }
+        newChunk.transform.position = spawnPosition;
 
-        // Disable relic pieces if relic is already complete
         if (relicComplete)
         {
             foreach (Transform child in newChunk.GetComponentsInChildren<Transform>())
@@ -133,26 +111,12 @@ public class ChunkManager : MonoBehaviour
         CleanupOldChunks();
     }
 
-
-
-    void CleanupOldChunks()
+    private void CleanupOldChunks()
     {
-        if (spawnedChunks.Count > maxChunksOnScreen)
+        while (spawnedChunks.Count > maxChunksOnScreen)
         {
-            GameObject oldChunk = spawnedChunks[0];
+            Destroy(spawnedChunks[0]);
             spawnedChunks.RemoveAt(0);
-            Destroy(oldChunk);
         }
     }
-
-    private Transform GetChildWithTag(Transform parent, string tag)
-    {
-        foreach (Transform child in parent.GetComponentsInChildren<Transform>())
-        {
-            if (child.CompareTag(tag))
-                return child;
-        }
-        return null;
-    }
-
 }

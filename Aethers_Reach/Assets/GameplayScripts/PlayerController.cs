@@ -70,8 +70,6 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    public bool controlsEnabled = false;
-
 
     void Start()
     {
@@ -109,8 +107,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!controlsEnabled) return;
-
         isHoldingUp = Input.GetMouseButton(0);
 
         if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0)))
@@ -146,7 +142,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!controlsEnabled) return;
         Vector2 velocity = rb.velocity;
 
         // Handle knockback
@@ -288,7 +283,7 @@ public class PlayerController : MonoBehaviour
                 float angle = Vector2.Angle(contact.normal, Vector2.up);
 
                 // Kill the player only if hitting from sides or bottom
-                if (angle > 80f)
+                if (angle > 100f)
                 {
                     Die();
                     break;
@@ -442,16 +437,6 @@ public class PlayerController : MonoBehaviour
                 runningSource.Stop();
             }
         }
-    }
-
-    public void EnableControls()
-    {
-        controlsEnabled = true;
-    }
-
-    public void DisableControls()
-    {
-        controlsEnabled = false;
     }
 
 }
