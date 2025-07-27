@@ -101,6 +101,8 @@ public class ChunkManager : MonoBehaviour
         GameObject newChunk = Instantiate(prefab);
 
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
+        Transform newChunkStart = newChunk.transform.Find("ChunkStart");
+
 
         if (lastChunkEnd != null)
         {
