@@ -125,6 +125,17 @@ public class PlayerController : MonoBehaviour
                 windTrailVFX.Play();
 
         }
+       
+        if (!isHoldingUp && !isGrounded)
+        {
+            animator.SetBool("running", false);
+            animator.SetBool("descending", true);
+            animator.SetBool("gliding", false);
+            isGrounded = false;
+
+            if (windTrailVFX != null && !windTrailVFX.isPlaying)
+                windTrailVFX.Play();
+        }
 
         else
         {
@@ -235,17 +246,6 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(rb.velocity.y, -0.1f));
             }
-        }
-
-        if (!isHoldingUp || !isGrounded)
-        {
-            animator.SetBool("running", false);
-            animator.SetBool("descending", true);
-            animator.SetBool("gliding", false);
-            isGrounded = false;
-
-            if (windTrailVFX != null && !windTrailVFX.isPlaying)
-                windTrailVFX.Play();
         }
     }
 
