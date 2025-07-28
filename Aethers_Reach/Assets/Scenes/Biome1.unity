@@ -1097,7 +1097,7 @@ Transform:
   m_GameObject: {fileID: 681162080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -731.1081, y: 37, z: -10}
+  m_LocalPosition: {x: -728.75543, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2601,7 +2601,7 @@ Transform:
   m_GameObject: {fileID: 1518366662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -731.1081, y: 37, z: -10}
+  m_LocalPosition: {x: -728.75543, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2706,6 +2706,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9145911134944283537, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
   m_PrefabInstance: {fileID: 7365877356425901714}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1779359036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7376563243177813322, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
+  m_PrefabInstance: {fileID: 4880732125823164898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1779359038
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779359036}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac81fe0f4299a0846ab1e38b3d4bb3bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1795980945
 GameObject:
   m_ObjectHideFlags: 0
@@ -3614,7 +3640,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3065324355827225856, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
       insertIndex: 19
       addedObject: {fileID: 1830421037}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7376563243177813322, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779359038}
   m_SourcePrefab: {fileID: 100100000, guid: 18e278f8eb7c36b4185d9a7e83423a92, type: 3}
 --- !u!222 &6949732982642550021
 CanvasRenderer:

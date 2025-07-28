@@ -109,24 +109,23 @@ public class PlayerController : MonoBehaviour
     {
         isHoldingUp = Input.GetMouseButton(0);
 
-        if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetMouseButtonDown(0)))
+        if (isGrounded && (Input.GetMouseButtonDown(0)))
         {
             Jump();
         }
-
-     
-       
 
         // Play WindTrailVFX only when holding input and in air
         if (isHoldingUp || !isGrounded)
         {
             animator.SetBool("running", false);
+            animator.SetBool("descending", false);
             animator.SetBool("gliding", true);
 
             if (windTrailVFX != null && !windTrailVFX.isPlaying)
                 windTrailVFX.Play();
 
         }
+
         else
         {
             if (windTrailVFX != null && windTrailVFX.isPlaying)
@@ -229,7 +228,6 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = velocity;
 
-        // Extra ground check to prevent unwanted sticking or bouncing
         if (isGrounded)
         {
             RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.3f, groundLayer);
@@ -237,6 +235,17 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(rb.velocity.y, -0.1f));
             }
+        }
+
+        if (!isHoldingUp || !isGrounded)
+        {
+            animator.SetBool("running", false);
+            animator.SetBool("descending", true);
+            animator.SetBool("gliding", false);
+            isGrounded = false;
+
+            if (windTrailVFX != null && !windTrailVFX.isPlaying)
+                windTrailVFX.Play();
         }
     }
 
@@ -275,6 +284,7 @@ public class PlayerController : MonoBehaviour
         {
             groundContacts++;
             animator.SetBool("running", true);
+            animator.SetBool("descending", false);
             animator.SetBool("gliding", false);
             isGrounded = true;
 
