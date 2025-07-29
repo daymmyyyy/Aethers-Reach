@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2407100826204725484}
   - component: {fileID: 186905417297218759}
+  - component: {fileID: 6525778613008111694}
   m_Layer: 0
   m_Name: FinCollider
   m_TagString: Untagged
@@ -90,6 +91,19 @@ PolygonCollider2D:
       - {x: 0.52562106, y: 0.22694802}
       - {x: 3.8931952, y: 0.22614282}
   m_UseDelaunayMesh: 0
+--- !u!114 &6525778613008111694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878976201080178449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c689649db2897bd4aaa358fb00c286c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &6811703820684746300
 GameObject:
   m_ObjectHideFlags: 0
