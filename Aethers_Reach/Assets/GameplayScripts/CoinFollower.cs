@@ -2,37 +2,26 @@ using UnityEngine;
 
 public class CoinFollower : MonoBehaviour
 {
-    public float followSpeed = 5f;
-    private Transform playerTarget;
+    private Transform player;
+    private float attractionRadius = 0f;
     private bool isFollowing = false;
 
-    public void StartFollowing(Transform player)
+    public void StartFollowing(Transform playerTransform, float radius)
     {
-        if (!isFollowing)
-        {
-            playerTarget = player;
-            isFollowing = true;
-        }
+        player = playerTransform;
+        attractionRadius = radius;
+        isFollowing = true;
     }
 
-    private void Update()
+    void Update()
     {
-        if (isFollowing && playerTarget != null)
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                playerTarget.position,
-                followSpeed * Time.deltaTime
-            );
-        }
-    }
+        if (!isFollowing || player == null) return;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (isFollowing && other.CompareTag("Player"))
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance <= attractionRadius)
         {
-            // Reached player — collect coin
-            Destroy(gameObject);
+            float speed = 45f;
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
 }

@@ -1,9 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class MagnetPowerUp : MonoBehaviour
 {
     public float magnetDuration = 5f;
+    public float attractionRadius = 5f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,7 +29,7 @@ public class MagnetPowerUp : MonoBehaviour
                 CoinFollower follower = coin.GetComponent<CoinFollower>();
                 if (follower != null)
                 {
-                    follower.StartFollowing(player); // Will only start once
+                    follower.StartFollowing(player, attractionRadius);
                 }
             }
 
