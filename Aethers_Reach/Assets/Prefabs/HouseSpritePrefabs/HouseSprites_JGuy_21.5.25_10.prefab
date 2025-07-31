@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6361494688468040429}
   - component: {fileID: 7261263613436962661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HouseSprites_JGuy_21.5.25_10
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,10 @@ PrefabInstance:
     - target: {fileID: 5177707387382998647, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177707387382998647, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5941785176898210700, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
       propertyPath: m_LocalScale.x

@@ -262,6 +262,38 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Rotation.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.a
+      value: 0.2901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 25212
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime2
+      value: 40169
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 31226
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428952061520027571, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumAlphaKeys
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7757411536687889056, guid: 209d0fb365743da40a9c6da9e38023e2, type: 3}
       propertyPath: m_Name
       value: WindGust
