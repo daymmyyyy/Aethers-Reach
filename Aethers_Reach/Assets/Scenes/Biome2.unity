@@ -2071,6 +2071,8 @@ MonoBehaviour:
   - {fileID: 8178331231333502284, guid: e6e963c76dcc1524ea69abc98169ec64, type: 3}
   - {fileID: 901517249020337294, guid: d660943006d60c24bb2eef20ac9662ac, type: 3}
   - {fileID: 4184811321021357500, guid: 5f99334e7a433d74e81f29af796cd6df, type: 3}
+  - {fileID: 4184811321021357500, guid: 8b8b48b6f9e69234782c8ec2993cfbda, type: 3}
+  - {fileID: 4184811321021357500, guid: 217d391ce34de11468a4215f56fddbd8, type: 3}
   player: {fileID: 1080825348}
   virtualCamera: {fileID: 1473859786}
   maxChunksOnScreen: 2
@@ -2721,7 +2723,7 @@ Transform:
   m_GameObject: {fileID: 1473859785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -215.58359, y: 33.6, z: -10}
+  m_LocalPosition: {x: -223.15555, y: 33.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2933,7 +2935,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.259
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.04
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -3332,7 +3334,7 @@ Transform:
   m_GameObject: {fileID: 1956133952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -215.58359, y: 33.6, z: -10}
+  m_LocalPosition: {x: -223.15555, y: 33.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
