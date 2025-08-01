@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: d1081b4082ef47247952528c18f61504, type: 2}
 --- !u!4 &1499185507
 Transform:
@@ -2763,6 +2763,10 @@ PrefabInstance:
     - target: {fileID: 6556816728805957300, guid: 680a55915da625a4a9203d69f3e7c364, type: 3}
       propertyPath: m_Name
       value: StarryNightVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556816728805957300, guid: 680a55915da625a4a9203d69f3e7c364, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

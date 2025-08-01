@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SeaweedSprites_Tegan_31.7.25_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1073
+        width: 789
+        height: 1025
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0524df31eff14499a469d187bedbac
+      internalID: -559670658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaweedSprites_Tegan_31.7.25_2
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 1191
+        width: 1083
+        height: 957
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86257d0e60572c247a1b6241a499af1a
+      internalID: 754874839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaweedSprites_Tegan_31.7.25_10
+      rect:
+        serializedVersion: 2
+        x: 3978
+        y: 1093
+        width: 670
+        height: 1063
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b8ba7d56942114da5966d5a8b35b2a
+      internalID: -1472644375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaweedSprites_Tegan_31.7.25_12
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 127
+        width: 992
+        height: 940
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2732d095e21cef40af14d872b969ac1
+      internalID: -734822328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeaweedSprites_Tegan_31.7.25_18
+      rect:
+        serializedVersion: 2
+        x: 3048
+        y: 102
+        width: 837
+        height: 1100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c45c4b5c93773be418a4c107462d8890
+      internalID: -809420732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +237,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SeaweedSprites_Tegan_31.7.25_0: -68275386
+      SeaweedSprites_Tegan_31.7.25_1: -559670658
+      SeaweedSprites_Tegan_31.7.25_10: -1472644375
+      SeaweedSprites_Tegan_31.7.25_11: 563692616
+      SeaweedSprites_Tegan_31.7.25_12: -734822328
+      SeaweedSprites_Tegan_31.7.25_13: 1287059918
+      SeaweedSprites_Tegan_31.7.25_14: -1092822947
+      SeaweedSprites_Tegan_31.7.25_15: 1362647602
+      SeaweedSprites_Tegan_31.7.25_16: -1275412422
+      SeaweedSprites_Tegan_31.7.25_17: 760865979
+      SeaweedSprites_Tegan_31.7.25_18: -809420732
+      SeaweedSprites_Tegan_31.7.25_19: 415204716
+      SeaweedSprites_Tegan_31.7.25_2: 754874839
+      SeaweedSprites_Tegan_31.7.25_20: -473898008
+      SeaweedSprites_Tegan_31.7.25_21: -1512492547
+      SeaweedSprites_Tegan_31.7.25_3: 308219495
+      SeaweedSprites_Tegan_31.7.25_4: 1653087935
+      SeaweedSprites_Tegan_31.7.25_5: 1781648824
+      SeaweedSprites_Tegan_31.7.25_6: 1821738522
+      SeaweedSprites_Tegan_31.7.25_7: 1275172259
+      SeaweedSprites_Tegan_31.7.25_8: 1560410465
+      SeaweedSprites_Tegan_31.7.25_9: -1682176068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

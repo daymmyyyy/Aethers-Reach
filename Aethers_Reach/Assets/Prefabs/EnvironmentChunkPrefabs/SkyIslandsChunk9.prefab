@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_12
       objectReference: {fileID: 0}
+    - target: {fileID: 5177707387382998647, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177707387382998647, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5941785176898210700, guid: 361eed5c11e1f3d4993f21582e9cead8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 74.17816
@@ -234,7 +242,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7376320556952082864}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 3d515ba1e09090943a804bcfcbdba21c, type: 2}
   m_IncludeLayers:
@@ -535,6 +543,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_10
       objectReference: {fileID: 0}
+    - target: {fileID: 8799628810184997029, guid: e737effd60d97554092bcc9a8c4ff07d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799628810184997029, guid: e737effd60d97554092bcc9a8c4ff07d, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -560,7 +576,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3910289560934513453}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 3d515ba1e09090943a804bcfcbdba21c, type: 2}
   m_IncludeLayers:
