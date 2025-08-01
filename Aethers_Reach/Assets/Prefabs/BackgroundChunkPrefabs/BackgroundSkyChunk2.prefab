@@ -93,6 +93,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_11
       objectReference: {fileID: 0}
+    - target: {fileID: 4611426398080815477, guid: 569b32339bc648c4aaa150f6b00ebb59, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611426398080815477, guid: 569b32339bc648c4aaa150f6b00ebb59, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5825401071551177983, guid: 569b32339bc648c4aaa150f6b00ebb59, type: 3}
       propertyPath: m_Color.a
       value: 0.4
@@ -223,9 +231,21 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3923968322590710417, guid: 342071fa287e22347be2c1d39b513396, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8994462309609952374, guid: 342071fa287e22347be2c1d39b513396, type: 3}
       propertyPath: m_Name
       value: Ground3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994462309609952374, guid: 342071fa287e22347be2c1d39b513396, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8994462309609952374, guid: 342071fa287e22347be2c1d39b513396, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -252,6 +272,14 @@ PrefabInstance:
     - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5728000017059787313, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
       propertyPath: m_LocalScale.x
@@ -375,6 +403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5228096440658708732, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8332017971725658606, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
       propertyPath: m_Color.a
       value: 0.4
@@ -382,6 +414,14 @@ PrefabInstance:
     - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
       propertyPath: m_Name
       value: Ground2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -456,6 +496,18 @@ PrefabInstance:
     - target: {fileID: 5961370500411549474, guid: 412af3ec7ee4a5b4b8155be42635f2bd, type: 3}
       propertyPath: m_Name
       value: Ground5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961370500411549474, guid: 412af3ec7ee4a5b4b8155be42635f2bd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961370500411549474, guid: 412af3ec7ee4a5b4b8155be42635f2bd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676135666363729575, guid: 412af3ec7ee4a5b4b8155be42635f2bd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8126750713577492859, guid: 412af3ec7ee4a5b4b8155be42635f2bd, type: 3}
       propertyPath: m_Color.a

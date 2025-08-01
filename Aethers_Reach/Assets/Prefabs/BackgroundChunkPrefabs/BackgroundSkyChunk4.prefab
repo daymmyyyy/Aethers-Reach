@@ -88,6 +88,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378468949496823898}
     m_Modifications:
+    - target: {fileID: 3193788216031212119, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3320848439473344980, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
       propertyPath: m_Color.a
       value: 0.4
@@ -95,6 +99,14 @@ PrefabInstance:
     - target: {fileID: 3645805673057247672, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
       propertyPath: m_Name
       value: Ground7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645805673057247672, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645805673057247672, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5622811928020622073, guid: 4581d23ae767e8b41ac4d427bb2b3d64, type: 3}
       propertyPath: m_LocalScale.x
@@ -173,6 +185,14 @@ PrefabInstance:
     - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5728000017059787313, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
       propertyPath: m_LocalScale.x
@@ -296,6 +316,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5228096440658708732, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8332017971725658606, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
       propertyPath: m_Color.a
       value: 0.4
@@ -303,6 +327,14 @@ PrefabInstance:
     - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
       propertyPath: m_Name
       value: Ground2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857791232499730912, guid: 0ba6d3d3571fafc43bda98ac93189ed8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -322,9 +354,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378468949496823898}
     m_Modifications:
+    - target: {fileID: -4983242157090271587, guid: 16d39d319bc21274f86bbf6084100d3b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3525004904124736214, guid: 16d39d319bc21274f86bbf6084100d3b, type: 3}
       propertyPath: m_Name
       value: Ground4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525004904124736214, guid: 16d39d319bc21274f86bbf6084100d3b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525004904124736214, guid: 16d39d319bc21274f86bbf6084100d3b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6255605852284482495, guid: 16d39d319bc21274f86bbf6084100d3b, type: 3}
       propertyPath: m_Color.a
