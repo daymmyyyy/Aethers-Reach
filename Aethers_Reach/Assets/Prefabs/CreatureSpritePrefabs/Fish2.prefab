@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 404175517479248041}
   - component: {fileID: 6559236720336798658}
   - component: {fileID: 4762305857806219233}
+  - component: {fileID: 7289052211827223817}
   m_Layer: 0
   m_Name: Fish2
   m_TagString: Obstacle
@@ -530,3 +531,24 @@ PolygonCollider2D:
       - {x: -1.5787597, y: -3.957495}
       - {x: -1.4939941, y: -3.9363036}
   m_UseDelaunayMesh: 0
+--- !u!95 &7289052211827223817
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454481966390800825}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7519162593cbde42b986c254866eb3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
