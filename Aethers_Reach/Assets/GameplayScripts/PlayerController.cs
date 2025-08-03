@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     private bool isBoosted;
     private bool recoveringSpeed;
     private bool isKnockedBack;
+    private bool wasGroundedLastFrame;
+    private bool wasHoldingUpLastFrame;
 
     private float currentSpeed;
     private float currentGlideSpeed;
@@ -200,24 +202,33 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimationAndVFX()
     {
+        animator.SetBool("running", isGrounded && !isHoldingUp);
+        animator.SetBool("gliding", !isGrounded && isHoldingUp);
+        animator.SetBool("descending", !isGrounded && !isHoldingUp);
+
+        // Triggers for transitions
+        if (wasGroundedLastFrame && !isGrounded && isHoldingUp)
+            animator.SetTrigger("run2glide");
+        else if (!wasHoldingUpLastFrame && isHoldingUp && !isGrounded)
+            animator.SetTrigger("descent2glide");
+        else if (wasHoldingUpLastFrame && !isHoldingUp && !isGrounded)
+            animator.SetTrigger("glide2descent");
+
+        wasGroundedLastFrame = isGrounded;
+        wasHoldingUpLastFrame = isHoldingUp;
+
+        // VFX
         if (!isGrounded)
         {
-            animator.SetBool("running", false);
-            animator.SetBool("descending", !isHoldingUp);
-            animator.SetBool("gliding", isHoldingUp);
-
             if (windTrailVFX != null && !windTrailVFX.isPlaying)
                 windTrailVFX.Play();
         }
         else
         {
-            animator.SetBool("running", true);
-            animator.SetBool("descending", false);
-            animator.SetBool("gliding", false);
-
             if (windTrailVFX != null && windTrailVFX.isPlaying)
                 windTrailVFX.Stop();
         }
+
     }
 
     private void Jump()
