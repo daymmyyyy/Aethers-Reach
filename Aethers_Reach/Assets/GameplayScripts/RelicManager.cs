@@ -77,8 +77,8 @@ public class RelicManager : MonoBehaviour
         PlayerPrefs.SetInt("RelicsThisSession", fullRelicsThisSession);
         PlayerPrefs.Save();
 
-        if (playerController != null)
-            playerController.TriggerSpeedBoost();
+      //  if (playerController != null)
+          //  playerController.TriggerSpeedBoost();
 
         // Disable all relic pieces
         GameObject[] relicPieces = GameObject.FindGameObjectsWithTag("RelicPiece");

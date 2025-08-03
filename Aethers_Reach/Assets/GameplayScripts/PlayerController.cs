@@ -30,9 +30,6 @@ public class PlayerController : MonoBehaviour
     public Text distanceText;
     public float distanceMultiplier = 0.01f;
 
-    [Header("Relic Speed Boost Settings")]
-    public float boostDuration = 2f;
-
     [Header("Audio Clips")]
     public AudioClip runningLoopClip;
     public AudioClip glidingWindClip;
@@ -100,6 +97,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckGrounded();
+
         if (isKnockedBack)
         {
             knockbackTimer -= Time.fixedDeltaTime;
@@ -109,13 +108,6 @@ public class PlayerController : MonoBehaviour
 
         HandleBoostAndRecovery();
         MovePlayer();
-
-        if (isGrounded)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.3f, groundLayer);
-            if (hit.collider != null)
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Min(rb.velocity.y, -0.1f));
-        }
     }
 
     private void SetupAudio()
@@ -258,17 +250,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TriggerSpeedBoost()
-    {
-        if (!isBoosted)
-        {
-            isBoosted = true;
-            boostTimer = boostDuration;
-            currentSpeed *= 1.5f;
-            currentGlideSpeed *= 1.5f;
-        }
-    }
-
     public void ApplyKnockback(Vector2 direction)
     {
         if (!isKnockedBack)
@@ -298,6 +279,10 @@ public class PlayerController : MonoBehaviour
             currentSpeed *= multiplier;
             currentGlideSpeed *= multiplier;
         }
+    }
+    void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
     public void ForceGrounded()
@@ -360,3 +345,4 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
