@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1546470935296246794, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.3019608
+      objectReference: {fileID: 0}
     - target: {fileID: 3197077092941404106, guid: f8c4f7968f780474294513d6e35ad365, type: 3}
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_9

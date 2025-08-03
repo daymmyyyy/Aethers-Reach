@@ -93,6 +93,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 378468949496823898}
     m_Modifications:
+    - target: {fileID: 291145885816098262, guid: ff5ad13136cda704f96a40a996541267, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.2784314
+      objectReference: {fileID: 0}
     - target: {fileID: 492961071959001556, guid: ff5ad13136cda704f96a40a996541267, type: 3}
       propertyPath: m_Name
       value: HouseSprites_JGuy_21.5.25_8

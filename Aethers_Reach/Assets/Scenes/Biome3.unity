@@ -395,6 +395,10 @@ PrefabInstance:
       propertyPath: m_MaxParticleSize
       value: 0.012
       objectReference: {fileID: 0}
+    - target: {fileID: 1210350510573859597, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2950185847799317673, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: m_Mass
       value: 1
