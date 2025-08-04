@@ -72,7 +72,7 @@ public class Fish : MonoBehaviour
                 // Lose relics
                 if (RelicManager.Instance != null)
                 {
-                    RelicManager.Instance.LoseRelics(2);
+                    RelicManager.Instance.LoseRelics(1);
                 }
             }
         }

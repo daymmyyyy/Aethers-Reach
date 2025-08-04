@@ -32,7 +32,7 @@ public class BackgroundChunkManager : MonoBehaviour
 
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(lastChunkEnd.position);
 
-        if (viewportPos.x < 1.1f && viewportPos.x > 1f)
+        if (viewportPos.x < 1f && viewportPos.x > 1f)
         {
             SpawnNextChunk();
         }
