@@ -46,8 +46,8 @@ public class BackgroundChunkManager : MonoBehaviour
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
 
         Vector3 spawnPosition = lastChunkEnd != null
-            ? new Vector3(lastChunkEnd.position.x, 14f, lastChunkEnd.position.z)
-            : new Vector3(0, 14f, 0);
+            ? new Vector3(lastChunkEnd.position.x, 14f, 70f)
+            : new Vector3(0, 14f, 70f);
 
         newChunk.transform.position = spawnPosition;
         lastChunkEnd = newChunkEnd;
