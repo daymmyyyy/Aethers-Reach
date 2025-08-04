@@ -207,11 +207,11 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("descending", !isGrounded && !isHoldingUp);
 
         // Triggers for transitions
-        if (wasGroundedLastFrame && !isGrounded && isHoldingUp)
+        if ( isGrounded && isHoldingUp)
             animator.SetTrigger("run2glide");
-        else if (!wasHoldingUpLastFrame && isHoldingUp && !isGrounded)
+        else if ( isHoldingUp && !isGrounded)
             animator.SetTrigger("descent2glide");
-        else if (wasHoldingUpLastFrame && !isHoldingUp && !isGrounded)
+        else if (!isHoldingUp && !isGrounded)
             animator.SetTrigger("glide2descent");
 
         wasGroundedLastFrame = isGrounded;
@@ -315,10 +315,13 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 normal = contact.normal.normalized;
 
-                // Only die if the player hits the platform from the side or bottom
                 if (Vector2.Dot(normal, Vector2.up) < 0.4f)
                 {
-                    Die();
+                    if (!isKnockedBack)
+                    {
+                        Vector2 direction = transform.position.normalized;
+                        ApplyKnockback(direction);
+                    }
                     break;
                 }
             }
