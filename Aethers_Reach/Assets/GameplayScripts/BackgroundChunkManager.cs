@@ -13,6 +13,7 @@ public class BackgroundChunkManager : MonoBehaviour
     public int maxChunksOnScreen = 5;
 
     private readonly List<GameObject> spawnedChunks = new();
+    [SerializeField] private Transform firstManualChunk;
     private Transform lastChunkEnd;
 
     private void Awake()
@@ -23,7 +24,20 @@ public class BackgroundChunkManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnNextChunk();
+        if (firstManualChunk != null)
+        {
+            Transform manualChunkEnd = firstManualChunk.Find("ChunkEnd");
+            if (manualChunkEnd != null)
+            {
+                lastChunkEnd = manualChunkEnd;
+                spawnedChunks.Add(firstManualChunk.gameObject);
+            }
+        }
+        else
+        {
+            // if no manual chunk, just spawn the first one
+            SpawnNextChunk();
+        }
     }
 
     private void Update()
@@ -32,7 +46,7 @@ public class BackgroundChunkManager : MonoBehaviour
 
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(lastChunkEnd.position);
 
-        if (viewportPos.x < 1f && viewportPos.x > 1f)
+        if (viewportPos.x < 1f)
         {
             SpawnNextChunk();
         }
@@ -41,13 +55,24 @@ public class BackgroundChunkManager : MonoBehaviour
     public void SpawnNextChunk()
     {
         GameObject prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
-
         GameObject newChunk = Instantiate(prefab);
+
+        Transform newChunkStart = newChunk.transform.Find("ChunkStart");
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
 
-        Vector3 spawnPosition = lastChunkEnd != null
-            ? new Vector3(lastChunkEnd.position.x, 14f, 70f)
-            : new Vector3(0, 14f, 70f);
+        Vector3 spawnPosition;
+
+        if (lastChunkEnd != null && newChunkStart != null)
+        {
+            Vector3 offset = newChunk.transform.position - newChunkStart.position;
+            spawnPosition = lastChunkEnd.position + offset;
+        }
+        else
+        {
+            spawnPosition = Vector3.zero; // fallback
+        }
+
+        spawnPosition.y = 10f;
 
         newChunk.transform.position = spawnPosition;
         lastChunkEnd = newChunkEnd;
@@ -55,6 +80,7 @@ public class BackgroundChunkManager : MonoBehaviour
         spawnedChunks.Add(newChunk);
         CleanupOldChunks();
     }
+
 
     private void CleanupOldChunks()
     {
