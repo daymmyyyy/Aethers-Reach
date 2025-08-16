@@ -170,12 +170,7 @@ public class PlayerController : MonoBehaviour
             velocity.x = currentGlideSpeed;
             rb.gravityScale = isHoldingUp ? glideGravityScale : gravityScale;
 
-            if (isGlideHolding)
-            {
-                rb.gravityScale = 0f;
-                velocity.y = 0f;
-            }
-            else if (isHoldingUp)
+            if (isHoldingUp)
             {
                 float speedFactor = Mathf.InverseLerp(runSpeed, maxSpeed, currentSpeed);
                 float lift = windLiftForce * (1f + speedFactor);
@@ -236,8 +231,6 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.velocity;
         velocity.y = jumpForce;
         rb.velocity = velocity;
-
-        isGlideHolding = true;
     }
 
 
