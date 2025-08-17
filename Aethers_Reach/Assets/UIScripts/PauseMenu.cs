@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    public bool isPaused = false; 
+    public bool isPaused = false;
 
     public void ResumeGame()
     {
@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        AudioManager.Instance.musicSource.Stop(); 
+
         // Show the pause menu
         pauseMenuUI.SetActive(true);
 

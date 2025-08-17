@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1426142405}
   isPaused: 0
+  menuBGM: {fileID: 8300000, guid: dea55ce8c25321345b0a05e084b76f8d, type: 3}
 --- !u!4 &228728570
 Transform:
   m_ObjectHideFlags: 0
@@ -3578,8 +3579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6cce7d2d2ecf44da175ed56d30bb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  deityButton: {fileID: 0}
+  menuBGM: {fileID: 0}
 --- !u!114 &1948446230
 MonoBehaviour:
   m_ObjectHideFlags: 0

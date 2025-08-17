@@ -20,17 +20,13 @@ public class RelicPiece : MonoBehaviour
             collectVFX.Play();
         }
 
-        if (collectionClip != null)
+        if (collectionClip != null && AudioManager.Instance != null)
         {
-            AudioSource playerAudio = other.GetComponent<AudioSource>();
-            if (playerAudio == null)
-            {
-                playerAudio = other.gameObject.AddComponent<AudioSource>();
-            }
+            AudioManager.Instance.sfxSource.volume = collectionVolume;
+            AudioManager.Instance.PlaySFX(collectionClip);
 
-            playerAudio.PlayOneShot(collectionClip, collectionVolume);
+            AudioManager.Instance.sfxSource.volume = 0.3f;
         }
-
         Destroy(gameObject);
     }
 }

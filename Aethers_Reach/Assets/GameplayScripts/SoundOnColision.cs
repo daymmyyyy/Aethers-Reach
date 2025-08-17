@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class SoundOnCollision : MonoBehaviour
 {
     [Header("Audio Settings")]
@@ -9,12 +8,15 @@ public class SoundOnCollision : MonoBehaviour
     public bool playOnce = true;
 
     private bool hasPlayed = false;
-    private AudioSource audioSource;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.playOnAwake = false;
+        // If this sound is intended as background music
+        if (soundToPlay != null && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.musicSource.volume = volume;
+            AudioManager.Instance.PlayMusic(soundToPlay);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -37,11 +39,14 @@ public class SoundOnCollision : MonoBehaviour
 
     private void PlaySound()
     {
-        if (soundToPlay != null)
+        if (soundToPlay != null && AudioManager.Instance != null)
         {
-            audioSource.clip = soundToPlay;
-            audioSource.volume = volume;
-            audioSource.Play();
+            // Temporarily set the volume
+            AudioManager.Instance.sfxSource.volume = volume;
+            AudioManager.Instance.PlaySFX(soundToPlay);
+
+            // Restore
+            AudioManager.Instance.sfxSource.volume = 0.3f;
         }
     }
 }

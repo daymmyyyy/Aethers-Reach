@@ -3,13 +3,16 @@ using UnityEngine.SceneManagement;  // important!
 
 public class MainMenuManager : MonoBehaviour
 {
+    public AudioClip menuBGM;
 
-    [Header("UI References")]
-    public GameObject startButton;
-    public GameObject deityButton;
-
+    private void Start()
+    {
+        AudioManager.Instance.PlayMusic(menuBGM);
+    }
     public void StartGame()
     {
+        AudioManager.Instance.musicSource.Stop(); // stop Main Menu BGM
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.ResetProgress();
@@ -33,14 +36,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioManager.Instance.PlayMusic(menuBGM);
+
         if (RelicManager.Instance != null)
         {
             RelicManager.Instance.ResetSessionRelics();
 
         }
-
-        if (startButton != null) startButton.SetActive(true);
-        if (deityButton != null) deityButton.SetActive(true);
 
         RelicCurrency.ResetCurrency();  //session-based
         SceneManager.LoadScene("MainMenu");
@@ -51,12 +53,6 @@ public class MainMenuManager : MonoBehaviour
     {
 
         SceneManager.LoadScene("HighScore");
-    }
-
-    public void DiaryEntries()
-    {
-
-        SceneManager.LoadScene("DiaryEntries");
     }
 
     public void Quit()

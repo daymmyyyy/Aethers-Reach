@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip glidingWindClip;
 
     [Header("Audio Volume Settings")]
-    [Range(0f, 1f)] public float runningVolume = 0.6f;
-    [Range(0f, 1f)] public float glidingVolume = 0.5f;
-    public float fadeSpeed = 2f;
+    [Range(0f, 1f)] public float runningVolume = 0.6f; 
+    [Range(0f, 1f)] public float glidingVolume = 0.5f; 
+    public float fadeSpeed = 3f;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
     private bool isKnockedBack;
     private bool wasGroundedLastFrame;
     private bool wasHoldingUpLastFrame;
-    private bool isGlideHolding;
 
     private float currentSpeed;
     private float currentGlideSpeed;
@@ -60,14 +59,13 @@ public class PlayerController : MonoBehaviour
     private float speedRecoveryTimer;
     private float boostTimer;
     private float knockbackTimer;
-
     private float sessionDistance;
+
     public Vector3 lastPosition;
 
     private int groundContacts = 0;
 
     private ParticleSystem windTrailVFX;
-    private AudioSource sfxSource, runningSource, glideSource;
 
     void Start()
     {
@@ -116,17 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetupAudio()
     {
-        sfxSource = gameObject.AddComponent<AudioSource>();
-        runningSource = gameObject.AddComponent<AudioSource>();
-        glideSource = gameObject.AddComponent<AudioSource>();
 
-        runningSource.loop = true;
-        runningSource.clip = runningLoopClip;
-        runningSource.volume = 0f;
-
-        glideSource.loop = true;
-        glideSource.clip = glidingWindClip;
-        glideSource.volume = 0f;
     }
 
     private void HandleBoostAndRecovery()
@@ -162,7 +150,6 @@ public class PlayerController : MonoBehaviour
         {
             velocity.x = currentSpeed;
             rb.gravityScale = gravityScale;
-            isGlideHolding = false;
 
             if (currentSpeed < maxSpeed) currentSpeed += speedIncreaseRate * Time.fixedDeltaTime;
             if (currentGlideSpeed < maxGlideSpeed) currentGlideSpeed += speedIncreaseRate * Time.fixedDeltaTime;
@@ -235,26 +222,35 @@ public class PlayerController : MonoBehaviour
         rb.velocity = velocity;
     }
 
-
     private void HandleAudio()
     {
-        float fade = fadeSpeed * Time.deltaTime;
+        if (AudioManager.Instance == null) return;
 
-        if (isGrounded)
+        AudioClip targetClip = isGrounded ? runningLoopClip : (!isGrounded ? glidingWindClip : null);
+        float targetVolume = isGrounded ? runningVolume : (!isGrounded ? glidingVolume : 0f);
+
+        if (targetClip == null)
         {
-            if (!runningSource.isPlaying) runningSource.Play();
-            runningSource.volume = Mathf.MoveTowards(runningSource.volume, runningVolume, fade);
-            glideSource.volume = Mathf.MoveTowards(glideSource.volume, 0f, fade);
-            if (glideSource.volume <= 0.01f && glideSource.isPlaying) glideSource.Stop();
+            // Fade out if no clip
+            AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(AudioManager.Instance.sfxSource.volume, 0f, fadeSpeed * Time.deltaTime);
+            if (AudioManager.Instance.sfxSource.volume <= 0.01f && AudioManager.Instance.sfxSource.isPlaying)
+                AudioManager.Instance.sfxSource.Stop();
+            return;
         }
-        else
+
+        // Switch clip if different
+        if (AudioManager.Instance.sfxSource.clip != targetClip)
         {
-            if (!glideSource.isPlaying) glideSource.Play();
-            glideSource.volume = Mathf.MoveTowards(glideSource.volume, glidingVolume, fade);
-            runningSource.volume = Mathf.MoveTowards(runningSource.volume, 0f, fade);
-            if (runningSource.volume <= 0.01f && runningSource.isPlaying) runningSource.Stop();
+            AudioManager.Instance.sfxSource.clip = targetClip;
+            AudioManager.Instance.sfxSource.loop = true;
+            AudioManager.Instance.sfxSource.Play();
         }
+
+        // Smoothly fade to target volume
+        AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(AudioManager.Instance.sfxSource.volume, targetVolume, fadeSpeed * Time.deltaTime);
     }
+
+
 
     public void ApplyKnockback(Vector2 direction)
     {
@@ -301,7 +297,6 @@ public class PlayerController : MonoBehaviour
     public void ForceGrounded()
     {
         isGrounded = true;
-        isGlideHolding = false;
         rb.gravityScale = gravityScale;
     }
 
@@ -332,6 +327,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
         {
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.sfxSource.Stop();
             Die();
         }
     }
