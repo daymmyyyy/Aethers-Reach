@@ -44,12 +44,12 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded;
     private bool isHoldingUp;
-    private bool isGlideHolding;
     private bool isBoosted;
     private bool recoveringSpeed;
     private bool isKnockedBack;
     private bool wasGroundedLastFrame;
     private bool wasHoldingUpLastFrame;
+    private bool isGlideHolding;
 
     private float currentSpeed;
     private float currentGlideSpeed;
@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
         UpdateAnimationAndVFX();
         UpdateDistanceCounter();
         HandleAudio();
+
     }
 
     void FixedUpdate()
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
         if (isKnockedBack)
         {
             knockbackTimer -= Time.fixedDeltaTime;
+            HandleBoostAndRecovery();
             if (knockbackTimer <= 0f) isKnockedBack = false;
             return;
         }
@@ -265,10 +267,17 @@ public class PlayerController : MonoBehaviour
 
             originalSpeed = currentSpeed;
             originalGlideSpeed = currentGlideSpeed;
-            currentSpeed = 0f;
-            currentGlideSpeed = 0f;
+
+            boostedSpeedStart = currentSpeed;   
+            boostedGlideSpeedStart = currentGlideSpeed;
+
+            currentSpeed *= 0.3f; 
+            currentGlideSpeed *= 0.3f;
+
             recoveringSpeed = true;
             speedRecoveryTimer = 0f;
+
+            Handheld.Vibrate();
         }
     }
 

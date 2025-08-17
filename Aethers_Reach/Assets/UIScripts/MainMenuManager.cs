@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;  // important!
 
 public class MainMenuManager : MonoBehaviour
 {
+
+    [Header("UI References")]
+    public GameObject startButton;
+    public GameObject deityButton;
+
     public void StartGame()
     {
         if (GameManager.Instance != null)
@@ -33,6 +38,9 @@ public class MainMenuManager : MonoBehaviour
             RelicManager.Instance.ResetSessionRelics();
 
         }
+
+        if (startButton != null) startButton.SetActive(true);
+        if (deityButton != null) deityButton.SetActive(true);
 
         RelicCurrency.ResetCurrency();  //session-based
         SceneManager.LoadScene("MainMenu");

@@ -26,4 +26,15 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
     }
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+
+        if (RelicManager.Instance != null)
+            RelicManager.Instance.ResetSessionRelics();
+
+        RelicCurrency.ResetCurrency();
+
+        SceneManager.LoadScene("MainMenu");
+    }
 }
