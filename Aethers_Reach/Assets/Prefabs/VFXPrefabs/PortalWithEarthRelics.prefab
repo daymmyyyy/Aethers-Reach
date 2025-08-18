@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2583138495681445992}
   m_Layer: 0
-  m_Name: PortalV4
+  m_Name: PortalWithEarthRelics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4869,7 +4869,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6acecf370d60b294986fc29729d4bc43, type: 2}
+  - {fileID: 2100000, guid: 81c840e28d4b6b44f9b5957e327bd4d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
