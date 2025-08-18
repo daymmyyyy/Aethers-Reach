@@ -2945,14 +2945,12 @@ MonoBehaviour:
     m_Bits: 64
   distanceText: {fileID: 829774310}
   distanceMultiplier: 0.01
-  boostDuration: 2
   runningLoopClip: {fileID: 0}
   glidingWindClip: {fileID: 0}
   runningVolume: 0.6
   glidingVolume: 0.5
   fadeSpeed: 2
   lastPosition: {x: 0, y: 0, z: 0}
-  controlsEnabled: 0
 --- !u!95 &1586384563
 Animator:
   serializedVersion: 5
