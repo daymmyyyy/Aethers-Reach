@@ -11,12 +11,7 @@ public class SoundOnCollision : MonoBehaviour
 
     void Start()
     {
-        // If this sound is intended as background music
-        if (soundToPlay != null && AudioManager.Instance != null)
-        {
-            AudioManager.Instance.musicSource.volume = volume;
-            AudioManager.Instance.PlayMusic(soundToPlay);
-        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

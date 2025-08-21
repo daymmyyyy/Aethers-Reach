@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
     private float boostTimer;
     private float knockbackTimer;
     private float sessionDistance;
+    private float holdTimer = 0f;
+    private float holdThreshold = 0.2f;
 
     public Vector3 lastPosition;
 
@@ -85,7 +87,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isHoldingUp = Input.GetMouseButton(0);
+        // Track button state
+        if (Input.GetMouseButton(0))
+        {
+            holdTimer += Time.deltaTime;
+
+            isHoldingUp = holdTimer >= holdThreshold;
+        }
+        else
+        {
+            holdTimer = 0f;
+            isHoldingUp = false;
+        }
 
         if (isGrounded && Input.GetMouseButtonDown(0))
             Jump();
@@ -93,7 +106,6 @@ public class PlayerController : MonoBehaviour
         UpdateAnimationAndVFX();
         UpdateDistanceCounter();
         HandleAudio();
-
     }
 
     void FixedUpdate()
