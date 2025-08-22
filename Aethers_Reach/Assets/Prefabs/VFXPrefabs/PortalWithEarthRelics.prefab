@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2583138495681445992}
   - component: {fileID: 7808804663804090701}
-  - component: {fileID: 6255831812511777171}
   - component: {fileID: 2920066322904477490}
   m_Layer: 0
   m_Name: PortalWithEarthRelics
@@ -50,21 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Biome 3
---- !u!114 &6255831812511777171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4181712101297206002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9788b667e2125f04c86764a454feb88d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: dfd446e7e8de4ff4686350b9c0d19759, type: 3}
-  volume: 1
-  playOnce: 1
 --- !u!58 &2920066322904477490
 CircleCollider2D:
   m_ObjectHideFlags: 0

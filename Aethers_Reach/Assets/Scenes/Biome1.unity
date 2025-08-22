@@ -1194,7 +1194,7 @@ MonoBehaviour:
   - {fileID: 6903683190642338984, guid: 8b8a791abc106b44cb7dd7e4eb6a214c, type: 3}
   player: {fileID: 1586384561}
   virtualCamera: {fileID: 1518366663}
-  maxChunksOnScreen: 2
+  maxChunksOnScreen: 3
   firstManualChunk: {fileID: 1623766756}
 --- !u!4 &553947086
 Transform:
@@ -1325,7 +1325,7 @@ Transform:
   m_GameObject: {fileID: 681162080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -734.75555, y: 37, z: -10.6}
+  m_LocalPosition: {x: -727.1836, y: 37, z: -10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2822,7 +2822,7 @@ Transform:
   m_GameObject: {fileID: 1518366662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -734.75555, y: 37, z: -10.6}
+  m_LocalPosition: {x: -727.1836, y: 37, z: -10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

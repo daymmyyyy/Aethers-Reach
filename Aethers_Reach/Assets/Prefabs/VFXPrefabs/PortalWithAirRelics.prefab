@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2583138495681445992}
   - component: {fileID: 3858567890235277991}
+  - component: {fileID: 8561723776227601775}
   m_Layer: 0
   m_Name: PortalWithAirRelics
   m_TagString: Untagged
@@ -48,6 +49,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: 
+--- !u!58 &8561723776227601775
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4181712101297206002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.8048286}
+  serializedVersion: 2
+  m_Radius: 38.31458
 --- !u!1 &8583770080558235405
 GameObject:
   m_ObjectHideFlags: 0
