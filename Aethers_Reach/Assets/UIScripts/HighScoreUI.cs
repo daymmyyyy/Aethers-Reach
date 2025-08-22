@@ -9,7 +9,7 @@ public class HighScoreUI : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            highScoreText.text = "High Score: " + GameManager.Instance.highScore.ToString("F2") + " km";
+            highScoreText.text = "Total High Score: " + GameManager.Instance.highScore.ToString("F2") + " km";
         }
     }
 }
