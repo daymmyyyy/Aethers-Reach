@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class CurrencyUI : MonoBehaviour
 {
     public Text totalCurrencyText;
 
