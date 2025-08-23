@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("Global Scores")]
-    public float totalDistanceTravelled;
-    public float highScore; // overall best single run
+    public float totalDistanceTravelled; // sum of all runs
+    public float highScore; // best single run across ALL biomes
     public float sessionDistance;
 
-    [Header("Biome High Scores")]
+    [Header("Biome High Scores (best single run per biome)")]
     public float biome1HighScore;
     public float biome2HighScore;
     public float biome3HighScore;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Load global + biome high scores
+            // Load stored scores
             highScore = PlayerPrefs.GetFloat("HighScore", 0f);
             biome1HighScore = PlayerPrefs.GetFloat("Biome1HighScore", 0f);
             biome2HighScore = PlayerPrefs.GetFloat("Biome2HighScore", 0f);
@@ -42,30 +42,39 @@ public class GameManager : MonoBehaviour
         lastRunDistance = currentSessionDistanceInKm;
         totalDistanceTravelled += currentSessionDistanceInKm;
 
-        // Update global high score
+        // Update global best run
         if (currentSessionDistanceInKm > highScore)
         {
             highScore = currentSessionDistanceInKm;
             PlayerPrefs.SetFloat("HighScore", highScore);
         }
 
-        // Update biome high score
+        // Update biome best run
         string currentScene = SceneManager.GetActiveScene().name;
         switch (currentScene)
         {
             case "Biome1":
-                biome1HighScore += currentSessionDistanceInKm;
-                PlayerPrefs.SetFloat("Biome1HighScore", biome1HighScore);
+                if (currentSessionDistanceInKm > biome1HighScore)
+                {
+                    biome1HighScore = currentSessionDistanceInKm;
+                    PlayerPrefs.SetFloat("Biome1HighScore", biome1HighScore);
+                }
                 break;
 
             case "Biome2":
-                biome2HighScore += currentSessionDistanceInKm;
-                PlayerPrefs.SetFloat("Biome2HighScore", biome2HighScore);
+                if (currentSessionDistanceInKm > biome2HighScore)
+                {
+                    biome2HighScore = currentSessionDistanceInKm;
+                    PlayerPrefs.SetFloat("Biome2HighScore", biome2HighScore);
+                }
                 break;
 
             case "Biome3":
-                biome3HighScore += currentSessionDistanceInKm;
-                PlayerPrefs.SetFloat("Biome3HighScore", biome3HighScore);
+                if (currentSessionDistanceInKm > biome3HighScore)
+                {
+                    biome3HighScore = currentSessionDistanceInKm;
+                    PlayerPrefs.SetFloat("Biome3HighScore", biome3HighScore);
+                }
                 break;
         }
 
