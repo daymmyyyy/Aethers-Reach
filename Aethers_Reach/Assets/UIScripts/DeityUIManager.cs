@@ -8,7 +8,6 @@ public class DeityUIManager : MonoBehaviour
     [Header("UI Elements")]
     public Text deityDialogueText;
     public Button viewDiaryButton;
-    public Button leaveButton;
     public Button yesButton;
     public Button noButton;
 
@@ -21,66 +20,63 @@ public class DeityUIManager : MonoBehaviour
     {
         ShowWelcomeDialogue();
 
-        viewDiaryButton.onClick.AddListener(OpenDiary);
-        leaveButton.onClick.AddListener(CloseDeityScreen);
         yesButton.onClick.AddListener(UnlockEntry);
         noButton.onClick.AddListener(DeclineUnlock);
-
-        yesButton.gameObject.SetActive(false);
-        noButton.gameObject.SetActive(false);
     }
 
     public void ShowWelcomeDialogue()
     {
         deityDialogueText.text = "Mortal… do you seek the knowledge of the diary?";
-        viewDiaryButton.gameObject.SetActive(true);
-        leaveButton.gameObject.SetActive(true);
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
-    }
 
-    private void OpenDiary()
-    {
-        DiaryUIManager.Instance.OpenDiaryScreen();
-        this.gameObject.SetActive(false);
+        viewDiaryButton.gameObject.SetActive(true);
     }
 
     public void ReturnFromDiary()
     {
-        this.gameObject.SetActive(true);
-
         int nextEntry = DiaryUnlockManager.Instance.GetUnlockedEntries();
-        float cost = DiaryUnlockManager.Instance.GetEntryCost(nextEntry);
+        int totalEntries = DiaryUnlockManager.Instance.totalEntries;
+        int cost = DiaryUnlockManager.Instance.GetEntryCost(nextEntry);
 
-        if (nextEntry >= DiaryUnlockManager.Instance.totalEntries)
+        int playerCurrency = RelicCurrency.GetTotalCurrency();
+
+        if (nextEntry >= totalEntries)
         {
-            deityDialogueText.text = "You have unlocked all knowledge I hold.";
+            deityDialogueText.text = "You have unlocked all the knowledge I hold.";
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
         }
-        else if (DiaryUnlockManager.Instance.playerCurrency >= cost)
+        else if (playerCurrency >= cost)
         {
-            deityDialogueText.text = $"You have returned… Do you wish to unlock Entry {nextEntry + 1} for {cost:F0} coins?";
+            deityDialogueText.text =
+                $"You have returned… Do you wish to unlock Entry {nextEntry + 1} for {cost} relics?";
             yesButton.gameObject.SetActive(true);
             noButton.gameObject.SetActive(true);
         }
         else
         {
-            deityDialogueText.text = "Go away… you are too poor.";
+            deityDialogueText.text =
+                $"Go away… you are too poor. Return with {cost} relics.";
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
         }
-
-        viewDiaryButton.gameObject.SetActive(false);
-        leaveButton.gameObject.SetActive(true);
     }
 
     private void UnlockEntry()
     {
         int nextEntry = DiaryUnlockManager.Instance.GetUnlockedEntries();
-        DiaryUnlockManager.Instance.TryUnlockDiary(nextEntry);
 
-        deityDialogueText.text = "It is done. The knowledge is now yours.";
+        bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(nextEntry);
+
+        if (unlocked)
+        {
+            deityDialogueText.text = $"It is done. Diary Entry {nextEntry + 1} is now yours.";
+        }
+        else
+        {
+            deityDialogueText.text = "You dare mock me? You lack the relics!";
+        }
 
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
@@ -93,8 +89,16 @@ public class DeityUIManager : MonoBehaviour
         noButton.gameObject.SetActive(false);
     }
 
-    private void CloseDeityScreen()
+    public void OnBackToMMPressed()
     {
-        this.gameObject.SetActive(false);
+        // hide Yes/No while on main menu
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
     }
+
+    public void OnDeityButtonPressed()
+    {
+        ReturnFromDiary();
+    }
+
 }

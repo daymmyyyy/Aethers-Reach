@@ -62,4 +62,20 @@ public class RelicCurrency : MonoBehaviour
     {
         return PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
     }
+
+    public static bool SpendCurrency(int amount)
+    {
+        int currentCurrency = PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
+
+        if (currentCurrency >= amount)
+        {
+            currentCurrency -= amount;
+            PlayerPrefs.SetInt("TotalCurrencyCollected", currentCurrency);
+            PlayerPrefs.Save();
+            totalCurrency = currentCurrency;
+            return true;
+        }
+        return false; // not enough currency
+    }
+
 }

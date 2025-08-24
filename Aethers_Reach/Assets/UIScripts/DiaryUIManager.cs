@@ -7,7 +7,7 @@ public class DiaryUIManager : MonoBehaviour
 
     public GameObject diaryScreen;
     public Button backButton;
-    public Text[] entryTexts; // assign diary entry text slots in Inspector
+    public Text[] entryTexts;
 
     private void Awake()
     {
