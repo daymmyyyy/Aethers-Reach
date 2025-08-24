@@ -9,6 +9,6 @@ public class CurrencyUI : MonoBehaviour
     {
         int totalCurrency = RelicCurrency.GetTotalCurrency();
         if (totalCurrencyText != null)
-            totalCurrencyText.text = "Total : " + totalCurrency;
+            totalCurrencyText.text = "" + totalCurrency;
     }
 }

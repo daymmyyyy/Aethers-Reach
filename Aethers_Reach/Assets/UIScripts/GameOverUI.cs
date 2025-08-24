@@ -23,7 +23,7 @@ public class GameOverUI : MonoBehaviour
             distanceText.text = "Distance: " + finalDistance.ToString("F2") + " km";
 
         if (highScoreText != null)
-            highScoreText.text = "High Score: " + highScore.ToString("F2") + " km";
+            highScoreText.text = "Total High Score: " + highScore.ToString("F2") + " km";
 
         int currencyCollected = RelicCurrency.GetSessionCurrency();
         if (currencyText != null)
