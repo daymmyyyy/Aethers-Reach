@@ -466,8 +466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131.79865, y: -92}
-  m_SizeDelta: {x: 83.6683, y: 74.1664}
+  m_AnchoredPosition: {x: -131.79865, y: -230}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1337883258
 MonoBehaviour:
@@ -594,7 +594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceText: {fileID: 1747225418}
   highScoreText: {fileID: 710335072}
-  relicsText: {fileID: 0}
   currencyText: {fileID: 1219246106}
 --- !u!4 &1743580541
 Transform:
@@ -793,8 +792,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: -81}
-  m_SizeDelta: {x: 119.6093, y: 109.1905}
+  m_AnchoredPosition: {x: 140, y: -219}
+  m_SizeDelta: {x: 115, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1954351574
 MonoBehaviour:
