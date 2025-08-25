@@ -15,7 +15,7 @@ public class RelicManager : MonoBehaviour
     public Text relicCounterText;
     public GameObject fullRelicUI;
 
-    private PlayerController playerController; // reference to player
+   private PlayerController playerController; // reference to player
 
     [Header("Relic Drop")]
     public GameObject relicPrefab;
@@ -87,9 +87,6 @@ public class RelicManager : MonoBehaviour
         StartCoroutine(ShowFullRelicUI());
     }
 
-
-
-
     private IEnumerator ShowFullRelicUI()
     {
         if (fullRelicUI != null)
@@ -104,20 +101,6 @@ public class RelicManager : MonoBehaviour
             relicCounterText.gameObject.SetActive(false);
     }
 
-    public void LoseRelics(int amount)
-    {
-        currentPieces = Mathf.Max(0, currentPieces - amount);
-        UpdateRelicUI();
-
-        if (currentPieces == 0)
-        {
-            if (relicCounterText != null)
-                relicCounterText.gameObject.SetActive(false);
-
-            if (fullRelicUI != null)
-                fullRelicUI.SetActive(false);
-        }
-    }
     public bool HasCompletedRelic()
     {
         return currentPieces >= totalPiecesRequired;

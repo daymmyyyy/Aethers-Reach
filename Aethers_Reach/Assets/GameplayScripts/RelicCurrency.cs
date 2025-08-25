@@ -78,4 +78,11 @@ public class RelicCurrency : MonoBehaviour
         return false; // not enough currency
     }
 
+    public void LoseCurrency(int amount)
+    {
+        PlayerPrefs.SetInt("TotalCurrencyCollected", totalCurrency);
+        totalCurrency = Mathf.Max(0, totalCurrency - amount);
+        UpdateCurrencyText();
+    }
+
 }

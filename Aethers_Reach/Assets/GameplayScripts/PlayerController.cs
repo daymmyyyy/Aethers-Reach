@@ -301,6 +301,7 @@ public class PlayerController : MonoBehaviour
             currentGlideSpeed *= multiplier;
         }
     }
+
     void CheckGrounded()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -322,10 +323,14 @@ public class PlayerController : MonoBehaviour
 
             foreach (ContactPoint2D contact in collision.contacts)
             {
+
                 Vector2 normal = contact.normal.normalized;
+
+                Debug.Log(Vector2.Dot(normal, Vector2.up));
 
                 if (Vector2.Dot(normal, Vector2.up) < 0.4f)
                 {
+
                     if (!isKnockedBack)
                     {
                         Vector2 direction = transform.position.normalized;
@@ -337,7 +342,12 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (collision.collider.CompareTag("TopLimit") || collision.collider.CompareTag("BottomLimit"))
+        if (collision.collider.CompareTag("WindCollider"))
+        {
+            ActivateWindGustBoost(1f, 1f);
+        }
+
+        else if (collision.collider.CompareTag("BottomLimit"))
         {
             AudioManager.Instance.musicSource.Stop();
             AudioManager.Instance.sfxSource.Stop();
