@@ -2220,15 +2220,15 @@ RectTransform:
   m_GameObject: {fileID: 815633862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7707, y: 1.7707, z: 1.7707}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 470675365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 215}
-  m_SizeDelta: {x: 23, y: 23}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815633864
 MonoBehaviour:
@@ -2528,7 +2528,7 @@ Transform:
   m_GameObject: {fileID: 1167869069}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.3, y: -18.3, z: 21.7}
+  m_LocalPosition: {x: 4.3, y: -18.3, z: 70}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2616,6 +2616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalPiecesRequired: 5
+  disablePiecesThreshold: 5
   relicCounterText: {fileID: 434816330}
   fullRelicUI: {fileID: 2051982965}
   relicPrefab: {fileID: 2091641604930388957, guid: 0767f39a74facae43aa25e752016dccb, type: 3}

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RelicPiece : MonoBehaviour
 {
@@ -6,6 +6,15 @@ public class RelicPiece : MonoBehaviour
     [Range(0f, 1f)] public float collectionVolume = 0.5f;
 
     private bool collected = false;
+
+    private void Start()
+    {
+        if (RelicManager.Instance != null && RelicManager.Instance.ShouldHideRelics())
+        {
+            RelicManager.Instance.DestroyRelicPiece(gameObject);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,6 +36,7 @@ public class RelicPiece : MonoBehaviour
 
             AudioManager.Instance.sfxSource.volume = 0.3f;
         }
+
         Destroy(gameObject);
     }
 }

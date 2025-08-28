@@ -21,8 +21,6 @@ public class ChunkManager : MonoBehaviour
     private Transform lastChunkEnd;
 
     private GameObject currentPortal;
-    private int chunksSinceLastPortal = 0;
-    private bool portalMissed = false;
     private int fillerChunksSincePortal = 0;
     private List<int> usedFillerIndices = new List<int>();
 
@@ -46,36 +44,27 @@ public class ChunkManager : MonoBehaviour
         {
             SpawnNextChunk();
         }
-
-        // Check if player missed current portal
-        if (currentPortal != null && !portalMissed)
-        {
-            float portalX = currentPortal.transform.position.x;
-            if (player.position.x > portalX + 1f) // small buffer
-            {
-                portalMissed = true;
-                chunksSinceLastPortal = 0; // reset counter to spawn next portal after N chunks
-            }
-        }
     }
 
     public void SpawnNextChunk()
     {
         GameObject prefab;
 
-        bool spawnPortal = currentPortal == null && fillerChunksSincePortal >= 3;
+        // Only spawn portal if player has collected at least 5 relic pieces
+        bool canSpawnPortal = RelicManager.Instance != null &&
+                              RelicManager.Instance.HasCompletedRelic() &&
+                              currentPortal == null &&
+                              fillerChunksSincePortal >= chunksBetweenPortals;
 
-        if (spawnPortal)
+        if (canSpawnPortal)
         {
             prefab = portalChunkPrefab;
             fillerChunksSincePortal = 0;
-
-            currentPortal = null; // assign after spawn below
             Debug.Log("Spawning portal chunk!");
         }
         else
         {
-            // Random filler chunk without repetition
+            // Spawn a normal filler chunk
             if (usedFillerIndices.Count >= chunkPrefabs.Length)
                 usedFillerIndices.Clear();
 
@@ -87,7 +76,6 @@ public class ChunkManager : MonoBehaviour
 
             usedFillerIndices.Add(index);
             prefab = chunkPrefabs[index];
-
             fillerChunksSincePortal++;
         }
 
@@ -98,37 +86,22 @@ public class ChunkManager : MonoBehaviour
         Renderer[] renderers = newChunk.GetComponentsInChildren<Renderer>();
         foreach (Renderer rend in renderers)
         {
-            rend.material = new Material(rend.material); // unique material
-            Color c = rend.material.color;
-            c.a = 1f;
-            rend.material.color = c;
+            Material mat = new Material(rend.material);
+            Color col = mat.color;
+            col.a = 1f;
+            mat.color = col;
+            rend.material = mat;
         }
 
         // Position chunk
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
-        if (newChunkEnd == null)
-            newChunkEnd = newChunk.transform;
+        if (newChunkEnd == null) newChunkEnd = newChunk.transform;
 
         Vector3 spawnPosition = lastChunkEnd != null
-            ? new Vector3(lastChunkEnd.position.x, 14f, lastChunkEnd.position.z)
+            ? new Vector3(lastChunkEnd.position.x, 14f, 50f)
             : new Vector3(0, 14f, 50f);
 
         newChunk.transform.position = spawnPosition;
-
-        // Assign Teleporter if this is a portal
-        if (prefab == portalChunkPrefab)
-        {
-            currentPortal = newChunk;
-            Teleporter teleporter = newChunk.GetComponentInChildren<Teleporter>();
-            if (teleporter != null)
-            {
-                teleporter.targetSceneName = "YourTargetScene";
-            }
-            else
-            {
-                Debug.LogWarning("Portal chunk missing Teleporter script!");
-            }
-        }
 
         lastChunkEnd = newChunkEnd;
         spawnedChunks.Add(newChunk);

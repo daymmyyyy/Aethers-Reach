@@ -1,32 +1,27 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class RelicManager : MonoBehaviour
 {
     public static RelicManager Instance;
-    private int fullRelicsThisSession = 0;
 
     [Header("Relic Settings")]
-    public int totalPiecesRequired = 10;
+    public int totalPiecesRequired = 5;          // total for full relic
+    public int disablePiecesThreshold = 5;       // disable all pieces after 5
     private int currentPieces = 0;
 
     [Header("UI")]
     public Text relicCounterText;
     public GameObject fullRelicUI;
 
-   private PlayerController playerController; // reference to player
-
     [Header("Relic Drop")]
     public GameObject relicPrefab;
 
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
@@ -38,8 +33,6 @@ public class RelicManager : MonoBehaviour
 
         if (relicCounterText != null)
             relicCounterText.gameObject.SetActive(false);
-
-        playerController = FindObjectOfType<PlayerController>();
     }
 
     public void CollectPiece()
@@ -51,41 +44,40 @@ public class RelicManager : MonoBehaviour
 
         UpdateRelicUI();
 
+        if (currentPieces >= disablePiecesThreshold)
+            HideAllRelicPieces();
+
         if (currentPieces >= totalPiecesRequired)
-        {
             CompleteRelic();
-        }
     }
 
     void UpdateRelicUI()
     {
         if (relicCounterText != null)
-            relicCounterText.text = $"{currentPieces}/{totalPiecesRequired} Relic Pieces";
+            relicCounterText.text = $"{currentPieces}/{totalPiecesRequired}";
     }
 
     void CompleteRelic()
     {
         Debug.Log("Relic fully assembled!");
+        StartCoroutine(ShowFullRelicUI());
+    }
 
-        // Update total
-        int totalRelics = PlayerPrefs.GetInt("RelicsCollected", 0);
-        PlayerPrefs.SetInt("RelicsCollected", totalRelics + 1);
-        PlayerPrefs.Save();
-
-        // Track session-only relics
-        fullRelicsThisSession++;
-        PlayerPrefs.SetInt("RelicsThisSession", fullRelicsThisSession);
-        PlayerPrefs.Save();
-
-        // Disable all relic pieces
+    private void HideAllRelicPieces()
+    {
         GameObject[] relicPieces = GameObject.FindGameObjectsWithTag("RelicPiece");
         foreach (GameObject piece in relicPieces)
         {
-            piece.SetActive(false);
+            DestroyRelicPiece(piece);
         }
-
-        StartCoroutine(ShowFullRelicUI());
     }
+
+    public void DestroyRelicPiece(GameObject piece)
+    {
+        if (piece == null) return;
+        Destroy(piece);
+    }
+
 
     private IEnumerator ShowFullRelicUI()
     {
@@ -106,15 +98,13 @@ public class RelicManager : MonoBehaviour
         return currentPieces >= totalPiecesRequired;
     }
 
-    public int GetRelicsThisSession()
-    {
-        return fullRelicsThisSession;
-    }
     public void ResetSessionRelics()
     {
-        fullRelicsThisSession = 0;
-
+        currentPieces = 0;
     }
 
-
+    public bool ShouldHideRelics()
+    {
+        return currentPieces >= disablePiecesThreshold;
+    }
 }
