@@ -4,12 +4,14 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("Audio Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
     private float lastMusicVolume = 1f;
     private float lastSFXVolume = 1f;
+
+    private bool isMusicMuted = false;
+    private bool isSFXMuted = false;
 
     private void Awake()
     {
@@ -17,11 +19,66 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Load saved volumes & mute states
+            lastMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+            lastSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+            isMusicMuted = PlayerPrefs.GetInt("MusicMuted", 0) == 1;
+            isSFXMuted = PlayerPrefs.GetInt("SFXMuted", 0) == 1;
+
+            ApplyMusicVolume();
+            ApplySFXVolume();
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        lastMusicVolume = volume;
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+        PlayerPrefs.Save();
+        ApplyMusicVolume();
+    }
+
+    public void ToggleMuteMusic()
+    {
+        isMusicMuted = !isMusicMuted;
+        PlayerPrefs.SetInt("MusicMuted", isMusicMuted ? 1 : 0);
+        PlayerPrefs.Save();
+        ApplyMusicVolume();
+    }
+
+    public float GetMusicVolume() => isMusicMuted ? 0f : lastMusicVolume;
+
+    private void ApplyMusicVolume()
+    {
+        musicSource.volume = isMusicMuted ? 0f : lastMusicVolume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        lastSFXVolume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
+        PlayerPrefs.Save();
+        ApplySFXVolume();
+    }
+
+    public void ToggleMuteSFX()
+    {
+        isSFXMuted = !isSFXMuted;
+        PlayerPrefs.SetInt("SFXMuted", isSFXMuted ? 1 : 0);
+        PlayerPrefs.Save();
+        ApplySFXVolume();
+    }
+
+    public float GetSFXVolume() => isSFXMuted ? 0f : lastSFXVolume;
+
+    private void ApplySFXVolume()
+    {
+        sfxSource.volume = isSFXMuted ? 0f : lastSFXVolume;
     }
 
     public void PlayMusic(AudioClip clip)
@@ -37,38 +94,4 @@ public class AudioManager : MonoBehaviour
         if (clip == null) return;
         sfxSource.PlayOneShot(clip, volume * sfxSource.volume);
     }
-
-    // Music
-    public void SetMusicVolume(float volume)
-    {
-        musicSource.volume = volume;
-        if (volume > 0f) lastMusicVolume = volume;
-    }
-
-    public void ToggleMuteMusic()
-    {
-        if (musicSource.volume > 0f)
-            musicSource.volume = 0f;
-        else
-            musicSource.volume = lastMusicVolume;
-    }
-
-    public float GetMusicVolume() => musicSource.volume;
-
-    // SFX
-    public void SetSFXVolume(float volume)
-    {
-        sfxSource.volume = volume;
-        if (volume > 0f) lastSFXVolume = volume;
-    }
-
-    public void ToggleMuteSFX()
-    {
-        if (sfxSource.volume > 0f)
-            sfxSource.volume = 0f;
-        else
-            sfxSource.volume = lastSFXVolume;
-    }
-
-    public float GetSFXVolume() => sfxSource.volume;
 }

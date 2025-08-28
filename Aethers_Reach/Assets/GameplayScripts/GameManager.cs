@@ -37,49 +37,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveProgressBeforeSceneChange(float currentSessionDistanceInKm)
+    public void SaveProgressBeforeSceneChange(float currentBiomeDistance)
     {
-        lastRunDistance = currentSessionDistanceInKm;
-        totalDistanceTravelled += currentSessionDistanceInKm;
+        // Add to total distance across all sessions
+        totalDistanceTravelled += currentBiomeDistance;
 
-        // Update global best run
-        if (currentSessionDistanceInKm > highScore)
-        {
-            highScore = currentSessionDistanceInKm;
-            PlayerPrefs.SetFloat("HighScore", highScore);
-        }
-
-        // Update biome best run
         string currentScene = SceneManager.GetActiveScene().name;
+
+        // Update per-biome high score
         switch (currentScene)
         {
             case "Biome1":
-                if (currentSessionDistanceInKm > biome1HighScore)
-                {
-                    biome1HighScore = currentSessionDistanceInKm;
-                    PlayerPrefs.SetFloat("Biome1HighScore", biome1HighScore);
-                }
+                biome1HighScore = Mathf.Max(biome1HighScore, currentBiomeDistance);
+                PlayerPrefs.SetFloat("Biome1HighScore", biome1HighScore);
                 break;
-
             case "Biome2":
-                if (currentSessionDistanceInKm > biome2HighScore)
-                {
-                    biome2HighScore = currentSessionDistanceInKm;
-                    PlayerPrefs.SetFloat("Biome2HighScore", biome2HighScore);
-                }
+                biome2HighScore = Mathf.Max(biome2HighScore, currentBiomeDistance);
+                PlayerPrefs.SetFloat("Biome2HighScore", biome2HighScore);
                 break;
-
             case "Biome3":
-                if (currentSessionDistanceInKm > biome3HighScore)
-                {
-                    biome3HighScore = currentSessionDistanceInKm;
-                    PlayerPrefs.SetFloat("Biome3HighScore", biome3HighScore);
-                }
+                biome3HighScore = Mathf.Max(biome3HighScore, currentBiomeDistance);
+                PlayerPrefs.SetFloat("Biome3HighScore", biome3HighScore);
                 break;
+        }
+
+        // Update global high score = longest distance in ONE run
+        if (currentBiomeDistance > highScore)
+        {
+            highScore = currentBiomeDistance;
+            PlayerPrefs.SetFloat("HighScore", highScore);
         }
 
         PlayerPrefs.Save();
     }
+
+
+
+
+
+
 
     public void ResetProgress()
     {

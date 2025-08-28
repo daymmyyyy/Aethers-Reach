@@ -20,7 +20,6 @@ public class AudioSettingsUI : MonoBehaviour
 
     void Start()
     {
-        // Init sliders
         sfxSlider.value = AudioManager.Instance.GetSFXVolume();
         musicSlider.value = AudioManager.Instance.GetMusicVolume();
 
