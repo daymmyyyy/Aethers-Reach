@@ -14,13 +14,17 @@ public class ChunkManager : MonoBehaviour
 
     [Header("Portal Settings")]
     public GameObject portalChunkPrefab;
+    public string portalTag = "PortalChunk";
+    public int chunksBetweenPortals = 3;
 
     private readonly List<GameObject> spawnedChunks = new();
     private Transform lastChunkEnd;
 
-    private int chunksSinceRelicComplete = 0;
-    private bool relicWasCompletedLastCheck = false;
-    private bool spawnedInitialPortal = false;
+    private GameObject currentPortal;
+    private int chunksSinceLastPortal = 0;
+    private bool portalMissed = false;
+    private int fillerChunksSincePortal = 0;
+    private List<int> usedFillerIndices = new List<int>();
 
     private void Awake()
     {
@@ -35,79 +39,100 @@ public class ChunkManager : MonoBehaviour
 
     private void Update()
     {
-        if (lastChunkEnd == null || virtualCamera == null) return;
+        if (lastChunkEnd == null || virtualCamera == null || player == null) return;
 
         Vector3 viewportPos = Camera.main.WorldToViewportPoint(lastChunkEnd.position);
-
-        if (viewportPos.x <1.1f && viewportPos.x >1f)
+        if (viewportPos.x < 1.1f && viewportPos.x > 1f)
         {
             SpawnNextChunk();
+        }
+
+        // Check if player missed current portal
+        if (currentPortal != null && !portalMissed)
+        {
+            float portalX = currentPortal.transform.position.x;
+            if (player.position.x > portalX + 1f) // small buffer
+            {
+                portalMissed = true;
+                chunksSinceLastPortal = 0; // reset counter to spawn next portal after N chunks
+            }
         }
     }
 
     public void SpawnNextChunk()
     {
         GameObject prefab;
-        bool relicComplete = RelicManager.Instance != null && RelicManager.Instance.HasCompletedRelic();
 
-        if (relicComplete)
+        bool spawnPortal = currentPortal == null && fillerChunksSincePortal >= 3;
+
+        if (spawnPortal)
         {
-            if (!relicWasCompletedLastCheck)
-            {
-                chunksSinceRelicComplete = 0;
-                spawnedInitialPortal = false;
-                relicWasCompletedLastCheck = true;
-            }
+            prefab = portalChunkPrefab;
+            fillerChunksSincePortal = 0;
 
-            if (!spawnedInitialPortal)
-            {
-                prefab = portalChunkPrefab;
-                spawnedInitialPortal = true;
-                Debug.Log("Spawning initial portal chunk!");
-            }
-            else
-            {
-                chunksSinceRelicComplete++;
-                if (chunksSinceRelicComplete >= 3)
-                {
-                    prefab = portalChunkPrefab;
-                    chunksSinceRelicComplete = 0;
-                    Debug.Log("Spawning recurring portal chunk!");
-                }
-                else
-                {
-                    prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
-                }
-            }
+            currentPortal = null; // assign after spawn below
+            Debug.Log("Spawning portal chunk!");
         }
         else
         {
-            prefab = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
-            relicWasCompletedLastCheck = false;
-            spawnedInitialPortal = false;
-            chunksSinceRelicComplete = 0;
+            // Random filler chunk without repetition
+            if (usedFillerIndices.Count >= chunkPrefabs.Length)
+                usedFillerIndices.Clear();
+
+            int index;
+            do
+            {
+                index = Random.Range(0, chunkPrefabs.Length);
+            } while (usedFillerIndices.Contains(index));
+
+            usedFillerIndices.Add(index);
+            prefab = chunkPrefabs[index];
+
+            fillerChunksSincePortal++;
         }
 
+        // Instantiate chunk
         GameObject newChunk = Instantiate(prefab);
+
+        // Force full opacity
+        Renderer[] renderers = newChunk.GetComponentsInChildren<Renderer>();
+        foreach (Renderer rend in renderers)
+        {
+            rend.material = new Material(rend.material); // unique material
+            Color c = rend.material.color;
+            c.a = 1f;
+            rend.material.color = c;
+        }
+
+        // Position chunk
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
+        if (newChunkEnd == null)
+            newChunkEnd = newChunk.transform;
 
         Vector3 spawnPosition = lastChunkEnd != null
             ? new Vector3(lastChunkEnd.position.x, 14f, lastChunkEnd.position.z)
-            : new Vector3(0, 14f, 0);
+            : new Vector3(0, 14f, 50f);
 
         newChunk.transform.position = spawnPosition;
 
-        if (relicComplete)
+        // Assign Teleporter if this is a portal
+        if (prefab == portalChunkPrefab)
         {
-            foreach (Transform child in newChunk.GetComponentsInChildren<Transform>())
+            currentPortal = newChunk;
+            Teleporter teleporter = newChunk.GetComponentInChildren<Teleporter>();
+            if (teleporter != null)
             {
-                if (child.CompareTag("RelicPiece"))
-                    child.gameObject.SetActive(false);
+                teleporter.targetSceneName = "YourTargetScene";
+            }
+            else
+            {
+                Debug.LogWarning("Portal chunk missing Teleporter script!");
             }
         }
 
         lastChunkEnd = newChunkEnd;
         spawnedChunks.Add(newChunk);
+
         CleanupOldChunks();
     }
 

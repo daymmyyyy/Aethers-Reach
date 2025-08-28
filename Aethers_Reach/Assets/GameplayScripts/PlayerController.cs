@@ -91,7 +91,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             holdTimer += Time.deltaTime;
-
             isHoldingUp = holdTimer >= holdThreshold;
         }
         else
@@ -100,6 +99,10 @@ public class PlayerController : MonoBehaviour
             isHoldingUp = false;
         }
 
+        // Force isHoldingUp to false if grounded
+        if (isGrounded)
+            isHoldingUp = false;
+
         if (isGrounded && Input.GetMouseButtonDown(0))
             Jump();
 
@@ -107,6 +110,7 @@ public class PlayerController : MonoBehaviour
         UpdateDistanceCounter();
         HandleAudio();
     }
+
 
     void FixedUpdate()
     {
@@ -169,21 +173,29 @@ public class PlayerController : MonoBehaviour
         else
         {
             velocity.x = currentGlideSpeed;
-            rb.gravityScale = isHoldingUp ? glideGravityScale : gravityScale;
 
             if (isHoldingUp)
             {
+                // Faster lift
+                rb.gravityScale = glideGravityScale * 0.5f; // reduce gravity more for quicker lift
                 float speedFactor = Mathf.InverseLerp(runSpeed, maxSpeed, currentSpeed);
-                float lift = windLiftForce * (1f + speedFactor);
-                float maxY = maxVerticalSpeed * (1f + speedFactor);
+                float lift = windLiftForce * 2f * (1f + speedFactor); // double lift
+                float maxY = maxVerticalSpeed * 1.5f * (1f + speedFactor); // increase maxY
 
                 velocity.y += lift * Time.fixedDeltaTime;
                 velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, maxY);
+            }
+            else
+            {
+                // Faster drop
+                rb.gravityScale = gravityScale + 3f; // double gravity when falling
+                //velocity.y = Mathf.Max(velocity.y, -maxVerticalSpeed * 2f); // optional clamp
             }
         }
 
         rb.velocity = velocity;
     }
+
 
     private void UpdateDistanceCounter()
     {

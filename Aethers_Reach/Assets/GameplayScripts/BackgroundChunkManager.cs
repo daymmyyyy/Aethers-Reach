@@ -73,6 +73,7 @@ public class BackgroundChunkManager : MonoBehaviour
         }
 
         spawnPosition.y = 10f;
+        spawnPosition.z = 100f;
 
         newChunk.transform.position = spawnPosition;
         lastChunkEnd = newChunkEnd;

@@ -402,17 +402,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 28
-  jumpForce: 20
+  jumpForce: 10
   glideSpeed: 26
-  windLiftForce: 25
-  maxVerticalSpeed: 20
-  gravityScale: 3
+  windLiftForce: 45
+  maxVerticalSpeed: 30
+  gravityScale: 2
   glideGravityScale: 0
-  speedIncreaseRate: 2
-  maxSpeed: 82
-  maxGlideSpeed: 80
+  speedIncreaseRate: 0.5
+  maxSpeed: 52
+  maxGlideSpeed: 50
   groundCheck: {fileID: 9174227811997125796}
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -421,8 +421,8 @@ MonoBehaviour:
   runningLoopClip: {fileID: 8300000, guid: 96f46a7a33aefe244a8f06910b83946a, type: 3}
   glidingWindClip: {fileID: 8300000, guid: 2231100f6e684c543ad34a4789859711, type: 3}
   runningVolume: 0.6
-  glidingVolume: 0.15
-  fadeSpeed: 0.5
+  glidingVolume: 0.1
+  fadeSpeed: 1
   lastPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &8231897606461455165
 Animator:
