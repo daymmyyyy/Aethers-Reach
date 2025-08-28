@@ -7,7 +7,8 @@ public class RelicCurrency : MonoBehaviour
     public static int currencyThisSession = 0;
 
     public int currencyValue = 10;
-    private Text currencyText;
+    private static Text currencyText;
+
 
     void Start()
     {
@@ -22,11 +23,15 @@ public class RelicCurrency : MonoBehaviour
         UpdateCurrencyText();
     }
 
-    void UpdateCurrencyText()
+    public static void UpdateCurrencyText()
     {
         if (currencyText != null)
+        {
             currencyText.text = currencyThisSession.ToString();
+        }
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -69,7 +74,7 @@ public class RelicCurrency : MonoBehaviour
 
         if (currentCurrency >= amount)
         {
-            currentCurrency -= amount;
+            currentCurrency = Mathf.Max(0, currentCurrency - amount);
             PlayerPrefs.SetInt("TotalCurrencyCollected", currentCurrency);
             PlayerPrefs.Save();
             totalCurrency = currentCurrency;
@@ -78,11 +83,14 @@ public class RelicCurrency : MonoBehaviour
         return false; // not enough currency
     }
 
-    public void LoseCurrency(int amount)
+    public static void LoseCurrency(int amount)
     {
-        PlayerPrefs.SetInt("TotalCurrencyCollected", totalCurrency);
-        totalCurrency = Mathf.Max(0, totalCurrency - amount);
+        // Decrease session relics
+        currencyThisSession = Mathf.Max(0, currencyThisSession - amount);
+
         UpdateCurrencyText();
     }
+
+
 
 }

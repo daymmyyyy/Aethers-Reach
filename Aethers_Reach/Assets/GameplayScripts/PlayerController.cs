@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance != null)
             GameManager.Instance.sessionDistance = sessionDistance;
 
-        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + " km";
+        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + "km";
     }
 
     private void UpdateAnimationAndVFX()
@@ -342,16 +342,16 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (collision.collider.CompareTag("WindCollider"))
-        {
-            ActivateWindGustBoost(1f, 1f);
-        }
-
-        else if (collision.collider.CompareTag("BottomLimit"))
+        if (collision.collider.CompareTag("BottomLimit"))
         {
             AudioManager.Instance.musicSource.Stop();
             AudioManager.Instance.sfxSource.Stop();
             Die();
+        }
+        else if (collision.collider.CompareTag("TopLimit"))
+        {
+            // Apply a strong downward wind gust
+            ApplyDownwardGust();
         }
     }
 
@@ -379,5 +379,15 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
     }
+    private void ApplyDownwardGust()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, -15f);
+
+        ActivateWindGustBoost(1.2f, 1f);
+
+        isKnockedBack = true;
+        knockbackTimer = 0.5f;
+    }
+
 }
 

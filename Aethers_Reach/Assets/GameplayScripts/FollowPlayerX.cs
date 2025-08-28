@@ -1,14 +1,13 @@
 using UnityEngine;
+public class FollowPlayerX : MonoBehaviour 
+{ 
+    public Transform player; 
 
-public class FollowPlayerX : MonoBehaviour
-{
-    public Transform player;
-
-    void Update()
+    void Update() 
     {
-        if (player != null)
-        {
-            transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
-        }
-    }
+        if (player != null) 
+        { 
+            transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z); 
+        } 
+    } 
 }

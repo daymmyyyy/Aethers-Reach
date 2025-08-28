@@ -6,7 +6,7 @@ public class Fish : MonoBehaviour
     private bool shouldMove = false;
     private Camera mainCamera;
     private bool hasHitPlayer = false;
-    public float breakSpeedThreshold = 60f;
+    public float breakSpeedThreshold = 50f;
 
     void Start()
     {
@@ -59,7 +59,7 @@ public class Fish : MonoBehaviour
                 Vector2 direction = (player.transform.position - transform.position).normalized;
                 player.ApplyKnockback(direction);
 
-                Transform vfxTransform = other.transform.Find("CrashKnockbackVFX");
+                Transform vfxTransform = other.transform.Find("CrystalLossBurstVFX");
                 if (vfxTransform != null)
                 {
                     ParticleSystem knockbackVFX = vfxTransform.GetComponent<ParticleSystem>();
@@ -70,9 +70,9 @@ public class Fish : MonoBehaviour
                 }
 
                 // Lose relics
-                if (RelicManager.Instance != null)
-                {
-                }
+                int lossAmount = 20; // choose penalty
+                RelicCurrency.LoseCurrency(lossAmount);
+
             }
         }
     }

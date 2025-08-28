@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7996336627482643256}
   - component: {fileID: 1290518441428130637}
   m_Layer: 0
-  m_Name: CrystalLossBurstVFX 1
+  m_Name: CrystalLossBurstVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -604,7 +604,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0

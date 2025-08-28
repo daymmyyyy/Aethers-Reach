@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InvincibilityPowerUp : MonoBehaviour
 {
-    public float invincibilityDuration = 5f;
-    private float transparentAlpha = 0.5f;
+    public float invincibilityDuration = 2f;
+    private float transparentAlpha = 0.3f;
     private float originalAlpha = 1f;
 
     void OnTriggerEnter2D(Collider2D other)
