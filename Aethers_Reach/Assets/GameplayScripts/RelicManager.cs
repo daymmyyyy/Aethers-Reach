@@ -14,6 +14,7 @@ public class RelicManager : MonoBehaviour
     [Header("UI")]
     public Text relicCounterText;
     public GameObject fullRelicUI;
+    public Image relicSprite; // relic icon
 
     [Header("Relic Drop")]
     public GameObject relicPrefab;
@@ -33,6 +34,9 @@ public class RelicManager : MonoBehaviour
 
         if (relicCounterText != null)
             relicCounterText.gameObject.SetActive(false);
+
+        if (relicSprite != null)
+            relicSprite.gameObject.SetActive(false);
     }
 
     public void CollectPiece()
@@ -41,6 +45,8 @@ public class RelicManager : MonoBehaviour
 
         if (relicCounterText != null && !relicCounterText.gameObject.activeSelf)
             relicCounterText.gameObject.SetActive(true);
+            relicSprite.gameObject.SetActive(true);
+
 
         UpdateRelicUI();
 
@@ -91,6 +97,7 @@ public class RelicManager : MonoBehaviour
 
         if (relicCounterText != null)
             relicCounterText.gameObject.SetActive(false);
+            relicSprite.gameObject.SetActive(false);
     }
 
     public bool HasCompletedRelic()

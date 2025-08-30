@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnetDuration: 10
-  magnetRadius: 100
+  attractionRadius: 30
 --- !u!58 &3355148916464392943
 CircleCollider2D:
   m_ObjectHideFlags: 0

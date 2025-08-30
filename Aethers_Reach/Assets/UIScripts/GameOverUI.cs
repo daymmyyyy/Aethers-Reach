@@ -27,7 +27,7 @@ public class GameOverUI : MonoBehaviour
 
         int currencyCollected = RelicCurrency.GetSessionCurrency();
         if (currencyText != null)
-            currencyText.text = $"Relic Currency: {currencyCollected}";
+            currencyText.text = $"{currencyCollected}";
 
     }
 

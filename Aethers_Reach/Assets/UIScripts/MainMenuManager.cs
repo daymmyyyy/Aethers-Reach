@@ -33,7 +33,6 @@ public class MainMenuManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
     public void MainMenu()
     {
         AudioManager.Instance.PlayMusic(menuBGM);
@@ -47,7 +46,6 @@ public class MainMenuManager : MonoBehaviour
         RelicCurrency.ResetCurrency();  //session-based
         SceneManager.LoadScene("MainMenu");
     }
-
 
     public void HighScore()
     {

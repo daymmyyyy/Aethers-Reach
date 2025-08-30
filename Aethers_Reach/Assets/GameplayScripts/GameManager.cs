@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public float biome3HighScore;
 
     public float lastRunDistance;
+    public string previousScene;
+    public bool cameFromMainMenu = false;
 
     void Awake()
     {
@@ -71,15 +73,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
-
-
-
-
-
     public void ResetProgress()
     {
         totalDistanceTravelled = 0f;
         sessionDistance = 0f;
     }
+
+    public void LoadScene(string sceneName)
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        cameFromMainMenu = currentScene == "MainMenu"; // set true if loading from MainMenu
+
+        previousScene = currentScene;
+        SceneManager.LoadScene(sceneName);
+    }
+
 }

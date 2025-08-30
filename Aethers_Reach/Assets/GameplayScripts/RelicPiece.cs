@@ -23,7 +23,7 @@ public class RelicPiece : MonoBehaviour
 
         RelicManager.Instance.CollectPiece();
 
-        ParticleSystem collectVFX = other.transform.Find("ItemCollectVFX")?.GetComponent<ParticleSystem>();
+        ParticleSystem collectVFX = other.transform.Find("RelicCollectVFX")?.GetComponent<ParticleSystem>();
         if (collectVFX != null)
         {
             collectVFX.Play();

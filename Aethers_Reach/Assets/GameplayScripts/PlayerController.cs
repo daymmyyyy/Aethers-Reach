@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -49,6 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool isKnockedBack;
     private bool wasGroundedLastFrame;
     private bool wasHoldingUpLastFrame;
+    private bool isJumping;
+    private bool controlsEnabled = false;
 
     private float currentSpeed;
     private float currentGlideSpeed;
@@ -61,32 +64,58 @@ public class PlayerController : MonoBehaviour
     private float knockbackTimer;
     private float sessionDistance;
     private float holdTimer = 0f;
-    private float holdThreshold = 0.2f;
+    private float holdThreshold = 0.15f;
+    private float jumpTimer;
 
     public Vector3 lastPosition;
 
     private int groundContacts = 0;
 
-    private ParticleSystem windTrailVFX;
+    private TrailRenderer windTrailVFX;
+    private ParticleSystem grassTrailVFX;
+    private ParticleSystem sandTrailVFX;
+    private ParticleSystem ruinsTrailVFX;
+
 
     void Start()
     {
+        // Disable controls initially
+        controlsEnabled = false;
+
+        StartCoroutine(EnableControlsAfterDelay(1f));
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         rb.gravityScale = gravityScale;
-
-        SetupAudio();
 
         currentSpeed = runSpeed;
         currentGlideSpeed = glideSpeed;
         sessionDistance = GameManager.Instance != null ? GameManager.Instance.sessionDistance : 0f;
         lastPosition = transform.position;
 
-        windTrailVFX = transform.Find("WindTrailVFX")?.GetComponent<ParticleSystem>();
+        windTrailVFX = transform.Find("WindTrailVFX")?.GetComponent<TrailRenderer>();
+        grassTrailVFX = transform.Find("LeafGroundTrailVFX")?.GetComponent<ParticleSystem>();
+        sandTrailVFX = transform.Find("SandGroundTrailVFX")?.GetComponent<ParticleSystem>();
+        ruinsTrailVFX = transform.Find("RuinsGroundTrailVFX")?.GetComponent<ParticleSystem>();
+
+        //set active ground trail based on biome
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        grassTrailVFX?.Stop();
+        sandTrailVFX?.Stop();
+        ruinsTrailVFX?.Stop();
+    }
+
+    private IEnumerator EnableControlsAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        controlsEnabled = true;
     }
 
     void Update()
     {
+        if (!controlsEnabled) return; // ignore input until enabled
+
         // Track button state
         if (Input.GetMouseButton(0))
         {
@@ -126,11 +155,6 @@ public class PlayerController : MonoBehaviour
 
         HandleBoostAndRecovery();
         MovePlayer();
-    }
-
-    private void SetupAudio()
-    {
-
     }
 
     private void HandleBoostAndRecovery()
@@ -189,7 +213,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Faster drop
                 rb.gravityScale = gravityScale + 3f; // double gravity when falling
-                //velocity.y = Mathf.Max(velocity.y, -maxVerticalSpeed * 2f); // optional clamp
+                //velocity.y = Mathf.Max(velocity.y, -maxVerticalSpeed * 2f);
             }
         }
 
@@ -205,38 +229,74 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance != null)
             GameManager.Instance.sessionDistance = sessionDistance;
 
-        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + "km";
+        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + "KM";
     }
 
     private void UpdateAnimationAndVFX()
     {
+        if (jumpTimer > 0f)
+        {
+            jumpTimer -= Time.deltaTime;
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
+
+        // Core states
         animator.SetBool("running", isGrounded && !isHoldingUp);
         animator.SetBool("gliding", !isGrounded && isHoldingUp);
         animator.SetBool("descending", !isGrounded && !isHoldingUp);
 
-        // Triggers for transitions
-        if ( isGrounded && isHoldingUp)
-            animator.SetTrigger("run2glide");
-        else if ( isHoldingUp && !isGrounded)
-            animator.SetTrigger("descent2glide");
-        else if (!isHoldingUp && !isGrounded)
-            animator.SetTrigger("glide2descent");
-
-        wasGroundedLastFrame = isGrounded;
-        wasHoldingUpLastFrame = isHoldingUp;
-
-        // VFX
-        if (!isGrounded)
+        if (isGrounded)
         {
-            if (windTrailVFX != null && !windTrailVFX.isPlaying)
-                windTrailVFX.Play();
+            animator.ResetTrigger("run2glide");
+            animator.ResetTrigger("descent2glide");
+            animator.ResetTrigger("glide2descent");
+            animator.SetBool("gliding", false);
+            animator.SetBool("descending", false);
+
+            // play the correct ground trail for this biome
+            if (SceneManager.GetActiveScene().name.Contains("Biome1"))
+            {
+                if (!grassTrailVFX.isPlaying) grassTrailVFX?.Play();
+                sandTrailVFX?.Stop();
+                ruinsTrailVFX?.Stop();
+            }
+            else if (SceneManager.GetActiveScene().name.Contains("Biome2"))
+            {
+                if (!sandTrailVFX.isPlaying) sandTrailVFX?.Play();
+                grassTrailVFX?.Stop();
+                ruinsTrailVFX?.Stop();
+            }
+            else if (SceneManager.GetActiveScene().name.Contains("Biome3"))
+            {
+                if (!ruinsTrailVFX.isPlaying) ruinsTrailVFX?.Play();
+                grassTrailVFX?.Stop();
+                sandTrailVFX?.Stop();
+            }
         }
         else
         {
-            if (windTrailVFX != null && windTrailVFX.isPlaying)
-                windTrailVFX.Stop();
+            if (!wasGroundedLastFrame && isHoldingUp)
+                animator.SetTrigger("descent2glide");
+            else if (!wasHoldingUpLastFrame && isHoldingUp)
+                animator.SetTrigger("descent2glide");
+            else if (wasHoldingUpLastFrame && !isHoldingUp)
+                animator.SetTrigger("glide2descent");
+
+            //stop all ground trails when airborne
+            grassTrailVFX?.Stop();
+            sandTrailVFX?.Stop();
+            ruinsTrailVFX?.Stop();
+
+            if (windTrailVFX != null) windTrailVFX.emitting = true;
         }
 
+        wasGroundedLastFrame = isGrounded;
+        wasHoldingUpLastFrame = isHoldingUp;
+       
     }
 
     private void Jump()
@@ -244,7 +304,10 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rb.velocity;
         velocity.y = jumpForce;
         rb.velocity = velocity;
+        isJumping = true;
+        jumpTimer = 0.2f; // Prevent gliding
     }
+
 
     private void HandleAudio()
     {

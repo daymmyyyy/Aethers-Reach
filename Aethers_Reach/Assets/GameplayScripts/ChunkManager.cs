@@ -82,17 +82,6 @@ public class ChunkManager : MonoBehaviour
         // Instantiate chunk
         GameObject newChunk = Instantiate(prefab);
 
-        // Force full opacity
-        Renderer[] renderers = newChunk.GetComponentsInChildren<Renderer>();
-        foreach (Renderer rend in renderers)
-        {
-            Material mat = new Material(rend.material);
-            Color col = mat.color;
-            col.a = 1f;
-            mat.color = col;
-            rend.material = mat;
-        }
-
         // Position chunk
         Transform newChunkEnd = newChunk.transform.Find("ChunkEnd");
         if (newChunkEnd == null) newChunkEnd = newChunk.transform;

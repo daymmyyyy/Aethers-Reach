@@ -8,20 +8,25 @@ public class RelicCurrency : MonoBehaviour
 
     public int currencyValue = 10;
     private static Text currencyText;
+    private static Animator currencyAnimator;
 
 
     void Start()
     {
+
         GameObject currencyTextObj = GameObject.Find("RelicCurrencyCounter");
         if (currencyTextObj != null)
         {
             currencyText = currencyTextObj.GetComponent<Text>();
+            currencyAnimator = currencyTextObj.GetComponent<Animator>();
+
         }
 
         // Load total relics from PlayerPrefs
         totalCurrency = PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
         UpdateCurrencyText();
     }
+
 
     public static void UpdateCurrencyText()
     {
@@ -89,8 +94,15 @@ public class RelicCurrency : MonoBehaviour
         currencyThisSession = Mathf.Max(0, currencyThisSession - amount);
 
         UpdateCurrencyText();
+
+        if (currencyAnimator != null)
+        {
+            currencyAnimator.SetBool("isShaking", false);
+
+            // Force Animator to update this frame
+            currencyAnimator.Update(0f);
+
+            currencyAnimator.SetBool("isShaking", true);
+        }
     }
-
-
-
 }
