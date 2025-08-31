@@ -299,6 +299,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
+
     private void Jump()
     {
         Vector2 velocity = rb.velocity;
@@ -307,7 +308,6 @@ public class PlayerController : MonoBehaviour
         isJumping = true;
         jumpTimer = 0.2f; // Prevent gliding
     }
-
 
     private void HandleAudio()
     {
@@ -336,8 +336,6 @@ public class PlayerController : MonoBehaviour
         // Smoothly fade to target volume
         AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(AudioManager.Instance.sfxSource.volume, targetVolume, fadeSpeed * Time.deltaTime);
     }
-
-
 
     public void ApplyKnockback(Vector2 direction)
     {
