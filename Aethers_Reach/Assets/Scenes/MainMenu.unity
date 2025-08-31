@@ -2999,6 +2999,8 @@ MonoBehaviour:
   biome2HighScore: 0
   biome3HighScore: 0
   lastRunDistance: 0
+  previousScene: 
+  cameFromMainMenu: 0
 --- !u!4 &602942374
 Transform:
   m_ObjectHideFlags: 0

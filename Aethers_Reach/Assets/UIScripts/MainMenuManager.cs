@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;  // important!
 
 public class MainMenuManager : MonoBehaviour
@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.ResetProgress();
+            GameManager.Instance.cameFromMainMenu = true; // ✅ Tell GameManager we are coming from Main Menu
         }
 
         if (RelicManager.Instance != null)
@@ -32,6 +33,7 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("Biome1");
         Time.timeScale = 1f;
     }
+
 
     public void MainMenu()
     {
