@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5852476770507147464}
   - component: {fileID: 5923372380058291855}
   - component: {fileID: 7785022959764204503}
+  - component: {fileID: 6036051203524545550}
   m_Layer: 0
   m_Name: Wind Gusts
   m_TagString: Untagged
@@ -109,6 +110,21 @@ MonoBehaviour:
   soundToPlay: {fileID: 8300000, guid: 9ce0c5788dabb5f4184c4160d67b57eb, type: 3}
   volume: 0.63
   playOnce: 1
+--- !u!114 &6036051203524545550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809874319190849626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb44c3911110e54792b06e73b90d2eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomAmount: 5
+  zoomDuration: 2
+  holdTime: 0.5
 --- !u!1001 &4407945757129260888
 PrefabInstance:
   m_ObjectHideFlags: 0

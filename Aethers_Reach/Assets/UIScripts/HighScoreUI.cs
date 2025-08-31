@@ -13,6 +13,9 @@ public class HighScoreUI : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
 
+        float bestMeters = GameManager.Instance.highScore;
+        float bestKm = bestMeters * 0.001f;
+
         if (biome1Text != null)
             biome1Text.text = $"Skylands: {GameManager.Instance.biome1HighScore:F2}km";
 
@@ -23,6 +26,7 @@ public class HighScoreUI : MonoBehaviour
             biome3Text.text = $"Ruins: {GameManager.Instance.biome3HighScore:F2}km";
 
         if (totalHighScoreText != null)
-            totalHighScoreText.text = $"Total: {GameManager.Instance.highScore:F2}km";
+
+            totalHighScoreText.text = "Best Single Run: " + bestKm.ToString("F2") + " km";
     }
 }

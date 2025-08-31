@@ -16,7 +16,7 @@ public class MainMenuManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.ResetProgress();
-            GameManager.Instance.cameFromMainMenu = true; // ✅ Tell GameManager we are coming from Main Menu
+            GameManager.Instance.cameFromMainMenu = true;
         }
 
         if (RelicManager.Instance != null)
@@ -47,17 +47,5 @@ public class MainMenuManager : MonoBehaviour
 
         RelicCurrency.ResetCurrency();  //session-based
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void HighScore()
-    {
-
-        SceneManager.LoadScene("HighScore");
-    }
-
-    public void Quit()
-    {
-        Debug.Log("Quit button pressed");
-        Application.Quit();
     }
 }

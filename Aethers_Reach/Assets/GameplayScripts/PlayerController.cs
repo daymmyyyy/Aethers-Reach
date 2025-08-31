@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Distance Display")]
     public Text distanceText;
-    public float distanceMultiplier = 0.01f;
+    public float distanceMultiplier = 0.001f;
 
     [Header("Audio Clips")]
     public AudioClip runningLoopClip;
@@ -449,6 +449,12 @@ public class PlayerController : MonoBehaviour
     {
         float kmTravelled = sessionDistance * distanceMultiplier;
         GameManager.Instance?.SaveProgressBeforeSceneChange(kmTravelled);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameOver();
+        }
+
         SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
     }

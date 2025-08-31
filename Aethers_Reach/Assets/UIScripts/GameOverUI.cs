@@ -11,25 +11,23 @@ public class GameOverUI : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while (GameManager.Instance == null)
-        {
-            yield return null;
-        }
+        while (GameManager.Instance == null) { yield return null; }
 
-        float finalDistance = GameManager.Instance.lastRunDistance;
-        float highScore = GameManager.Instance.highScore;
+        float finalMeters = GameManager.Instance.lastRunDistance;
+        float bestMeters = GameManager.Instance.highScore;
+
+        float finalKm = finalMeters * 0.001f;
+        float bestKm = bestMeters * 0.001f;
 
         if (distanceText != null)
-            distanceText.text = "Distance: " + finalDistance.ToString("F2") + " km";
+            distanceText.text = "Distance: " + finalKm.ToString("F2") + " km";
 
         if (highScoreText != null)
-            highScoreText.text = "Total High Score: " + highScore.ToString("F2") + " km";
+            highScoreText.text = "Total High Score: " + bestKm.ToString("F2") + " km";
 
         int currencyCollected = RelicCurrency.GetSessionCurrency();
         if (currencyText != null)
             currencyText.text = $"{currencyCollected}";
-
     }
-
 
 }
