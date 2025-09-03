@@ -245,9 +245,18 @@ public class PlayerController : MonoBehaviour
         }
 
         // Core states
-        animator.SetBool("running", isGrounded && isHoldingUp ||isGrounded && !isHoldingUp);
+        animator.SetBool("running", isGrounded && !isHoldingUp);
         animator.SetBool("gliding", !isGrounded && isHoldingUp);
         animator.SetBool("descending", !isGrounded && !isHoldingUp);
+
+        // 🔥 Force "running" immediately when grounded and letting go
+        if (isGrounded && !isHoldingUp)
+        {
+            animator.ResetTrigger("run2glide");
+            animator.ResetTrigger("descent2glide");
+            animator.ResetTrigger("glide2descent");
+            animator.Play("Player Run V2", -1, 0f); // Force "Run" state instantly
+        }
 
         if (isGrounded)
         {
@@ -258,8 +267,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("descending", false);
             animator.SetBool("running", true);
 
-
-            // play the correct ground trail for this biome
+            // Play biome ground trails
             if (SceneManager.GetActiveScene().name.Contains("Biome1"))
             {
                 if (!grassTrailVFX.isPlaying) grassTrailVFX?.Play();
@@ -288,7 +296,7 @@ public class PlayerController : MonoBehaviour
             else if (wasGroundedLastFrame && isHoldingUp)
                 animator.SetTrigger("run2glide");
 
-            //stop all ground trails when airborne
+            // Stop all ground trails when airborne
             grassTrailVFX?.Stop();
             sandTrailVFX?.Stop();
             ruinsTrailVFX?.Stop();
@@ -298,8 +306,8 @@ public class PlayerController : MonoBehaviour
 
         wasGroundedLastFrame = isGrounded;
         wasHoldingUpLastFrame = isHoldingUp;
-       
     }
+
 
 
     private void Jump()

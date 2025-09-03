@@ -7,15 +7,15 @@ public class ButtonOpacityController : MonoBehaviour
     [System.Serializable]
     public class ButtonMapping
     {
-        public Button triggerButton;          // The button clicked
-        public List<Button> targetButtons;    // The buttons whose opacity will change
+        public Button triggerButton;          //button clicked
+        public List<Image> targetImages;      //images whose opacity will change
     }
 
     [Header("Button mappings")]
     public List<ButtonMapping> buttonMappings;
 
     [Range(0f, 1f)] public float fadedOpacity = 0.5f;
-    public float normalOpacity = 1f;             
+    public float normalOpacity = 1f;
 
     void Start()
     {
@@ -30,25 +30,27 @@ public class ButtonOpacityController : MonoBehaviour
 
     void OnButtonClicked(ButtonMapping mapping)
     {
+        // Reset all images to normal opacity
         foreach (var bm in buttonMappings)
         {
-            if (bm.triggerButton != null) SetButtonOpacity(bm.triggerButton, normalOpacity);
-            foreach (var t in bm.targetButtons) SetButtonOpacity(t, normalOpacity);
+            foreach (var img in bm.targetImages) SetImageOpacity(img, normalOpacity);
+            if (bm.triggerButton != null) SetImageOpacity(bm.triggerButton.image, normalOpacity);
         }
 
-        foreach (var target in mapping.targetButtons)
+        // Fade the target images
+        foreach (var img in mapping.targetImages)
         {
-            SetButtonOpacity(target, fadedOpacity);
+            SetImageOpacity(img, fadedOpacity);
         }
     }
 
-    void SetButtonOpacity(Button button, float opacity)
+    void SetImageOpacity(Image img, float opacity)
     {
-        if (button != null && button.image != null)
+        if (img != null)
         {
-            Color c = button.image.color;
+            Color c = img.color;
             c.a = opacity;
-            button.image.color = c;
+            img.color = c;
         }
     }
 }

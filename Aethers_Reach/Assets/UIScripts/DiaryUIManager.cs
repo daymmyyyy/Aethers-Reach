@@ -16,7 +16,6 @@ public class DiaryUIManager : MonoBehaviour
 
     private void Start()
     {
-        diaryScreen.SetActive(false);
         backButton.onClick.AddListener(ReturnToDeity);
     }
 
@@ -41,7 +40,7 @@ public class DiaryUIManager : MonoBehaviour
 
     private void ReturnToDeity()
     {
-        diaryScreen.SetActive(false);
+        //diaryScreen.SetActive(false);
         DeityUIManager.Instance.ReturnFromDiary();
     }
 }
