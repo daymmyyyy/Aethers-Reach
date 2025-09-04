@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,25 +8,35 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        // Hide the pause menu
         pauseMenuUI.SetActive(false);
 
-        // Resume game time and physics
+        if (AudioManager.Instance != null)
+        {
+            if (AudioManager.Instance.musicSource.clip != null)
+                AudioManager.Instance.musicSource.UnPause();
+            if (AudioManager.Instance.sfxSource.clip != null)
+                AudioManager.Instance.sfxSource.UnPause();
+        }
+
         Time.timeScale = 1f;
         isPaused = false;
     }
 
     public void PauseGame()
     {
-        AudioManager.Instance.musicSource.Stop(); 
+        if (AudioManager.Instance != null)
+        {
+            if (AudioManager.Instance.musicSource.clip != null)
+                AudioManager.Instance.musicSource.Pause();
+            if (AudioManager.Instance.sfxSource.clip != null)
+                AudioManager.Instance.sfxSource.Pause();
+        }
 
-        // Show the pause menu
         pauseMenuUI.SetActive(true);
-
-        // Pause game time and physics
         Time.timeScale = 0f;
         isPaused = true;
     }
+
     public void MainMenu()
     {
         Time.timeScale = 1f;
@@ -36,6 +45,13 @@ public class PauseMenu : MonoBehaviour
             RelicManager.Instance.ResetSessionRelics();
 
         RelicCurrency.ResetCurrency();
+
+        if (AudioManager.Instance != null)
+        {
+            // Stop all scene audio and apply saved volume to AudioManager
+            AudioManager.Instance.musicSource.Stop();
+            AudioManager.Instance.sfxSource.Stop();
+        }
 
         SceneManager.LoadScene("MainMenu");
     }

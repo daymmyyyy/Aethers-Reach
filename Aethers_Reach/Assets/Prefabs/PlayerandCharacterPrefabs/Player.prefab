@@ -418,14 +418,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  lastPosition: {x: 0, y: 0, z: 0}
   distanceText: {fileID: 0}
   distanceMultiplier: 0.001
   runningLoopClip: {fileID: 8300000, guid: 96f46a7a33aefe244a8f06910b83946a, type: 3}
   glidingWindClip: {fileID: 8300000, guid: 2231100f6e684c543ad34a4789859711, type: 3}
-  runningVolume: 0.6
-  glidingVolume: 0.1
   fadeSpeed: 1
-  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &8231897606461455165
 Animator:
   serializedVersion: 5
@@ -479,8 +477,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.053975914, y: 0.1328535}
-  m_Size: {x: 10.355335, y: 4.5543594}
+  m_Offset: {x: -2.1096919, y: -0.22284152}
+  m_Size: {x: 6.2439594, y: 5.2658024}
   m_Direction: 1
 --- !u!1 &7388893514517215177
 GameObject:

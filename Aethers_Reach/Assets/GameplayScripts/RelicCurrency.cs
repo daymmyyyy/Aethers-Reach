@@ -10,23 +10,22 @@ public class RelicCurrency : MonoBehaviour
     private static Text currencyText;
     private static Animator currencyAnimator;
 
+    [Header("Audio")]
+    public AudioClip collectSFX; // assign in inspector
 
     void Start()
     {
-
         GameObject currencyTextObj = GameObject.Find("RelicCurrencyCounter");
         if (currencyTextObj != null)
         {
             currencyText = currencyTextObj.GetComponent<Text>();
             currencyAnimator = currencyTextObj.GetComponent<Animator>();
-
         }
 
         // Load total relics from PlayerPrefs
         totalCurrency = PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
         UpdateCurrencyText();
     }
-
 
     public static void UpdateCurrencyText()
     {
@@ -35,8 +34,6 @@ public class RelicCurrency : MonoBehaviour
             currencyText.text = currencyThisSession.ToString();
         }
     }
-
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,6 +52,13 @@ public class RelicCurrency : MonoBehaviour
         PlayerPrefs.Save();
 
         UpdateCurrencyText();
+
+        // Play collect SFX
+        if (AudioManager.Instance != null && collectSFX != null)
+        {
+            AudioManager.Instance.PlaySFX(collectSFX);
+        }
+
         Destroy(gameObject);
     }
 
@@ -98,11 +102,20 @@ public class RelicCurrency : MonoBehaviour
         if (currencyAnimator != null)
         {
             currencyAnimator.SetBool("isShaking", false);
-
-            // Force Animator to update this frame
             currencyAnimator.Update(0f);
-
             currencyAnimator.SetBool("isShaking", true);
+        }
+    }
+
+    // To allow static methods to access instance SFX
+    private static RelicCurrency _instance;
+    public static RelicCurrency Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = GameObject.FindObjectOfType<RelicCurrency>();
+            return _instance;
         }
     }
 }

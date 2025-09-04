@@ -8,6 +8,9 @@ public class Fish : MonoBehaviour
     private bool hasHitPlayer = false;
     public float breakSpeedThreshold = 50f;
 
+    [Header("Collision SFX")]
+    public AudioClip collisionSFX;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -35,7 +38,6 @@ public class Fish : MonoBehaviour
         }
     }
 
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (hasHitPlayer) return;
@@ -56,9 +58,17 @@ public class Fish : MonoBehaviour
 
                 hasHitPlayer = true;
 
+                // Play collision SFX
+                if (collisionSFX != null && AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX(collisionSFX);
+                }
+
+                // Apply knockback
                 Vector2 direction = (player.transform.position - transform.position).normalized;
                 player.ApplyKnockback(direction);
 
+                // Play VFX
                 Transform vfxTransform = other.transform.Find("CrystalLossBurstVFX");
                 if (vfxTransform != null)
                 {
@@ -72,9 +82,7 @@ public class Fish : MonoBehaviour
                 // Lose relics
                 int lossAmount = 20; // choose penalty
                 RelicCurrency.LoseCurrency(lossAmount);
-
             }
         }
     }
-
 }

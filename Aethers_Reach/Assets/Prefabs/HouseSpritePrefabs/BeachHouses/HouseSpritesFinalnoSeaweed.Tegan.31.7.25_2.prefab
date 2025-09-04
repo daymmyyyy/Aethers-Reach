@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4375959572286230658}
   - component: {fileID: 2940246698823038341}
-  - component: {fileID: 850779237084742030}
   m_Layer: 0
   m_Name: HouseSpritesFinalnoSeaweed.Tegan.31.7.25_2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,119 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &850779237084742030
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638733879879243895}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4, y: 10.764669}
-    newSize: {x: 6.4, y: 10.764669}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 2.241251, y: -3.6723096}
-      - {x: 2.5928135, y: -3.2738721}
-      - {x: 2.8740635, y: -2.8519971}
-      - {x: 3.038126, y: -2.8519971}
-      - {x: 3.2021885, y: -2.6879346}
-      - {x: 3.2021885, y: -2.3129346}
-      - {x: 3.178751, y: -2.1488721}
-      - {x: 3.038126, y: -1.5394971}
-      - {x: 2.9209385, y: -1.0941846}
-      - {x: 2.7334385, y: -0.55512214}
-      - {x: 2.569376, y: -0.29730964}
-      - {x: 2.006876, y: 0.28862786}
-      - {x: 1.7021885, y: 0.49956536}
-      - {x: 1.819376, y: 0.64019036}
-      - {x: 1.8896885, y: 0.89800286}
-      - {x: 1.866251, y: 1.2730029}
-      - {x: 1.6553135, y: 1.6714404}
-      - {x: 1.444376, y: 1.9058154}
-      - {x: 1.3271885, y: 2.0933154}
-      - {x: 1.397501, y: 2.3276904}
-      - {x: 1.397501, y: 2.6323779}
-      - {x: 1.2803135, y: 2.8198779}
-      - {x: 0.9990635, y: 3.1011279}
-      - {x: 0.9990635, y: 3.5464404}
-      - {x: 0.928751, y: 3.7105029}
-      - {x: 0.6709385, y: 4.5073776}
-      - {x: 0.460001, y: 4.95269}
-      - {x: 0.413126, y: 5.280815}
-      - {x: 0.3428135, y: 5.374565}
-      - {x: 0.20218849, y: 5.374565}
-      - {x: 0.03812599, y: 5.280815}
-      - {x: -0.21968651, y: 4.7417526}
-      - {x: -0.430624, y: 4.4605026}
-      - {x: -0.571249, y: 4.10894}
-      - {x: -0.571249, y: 3.8511279}
-      - {x: -0.8759365, y: 3.4058154}
-      - {x: -0.8290615, y: 3.2183154}
-      - {x: -1.086874, y: 3.0073779}
-      - {x: -1.227499, y: 2.7964404}
-      - {x: -1.2978115, y: 2.1636279}
-      - {x: -1.368124, y: 1.8355029}
-      - {x: -1.461874, y: 1.3433154}
-      - {x: -1.461874, y: 0.99175286}
-      - {x: -1.414999, y: 0.61675286}
-      - {x: -1.2978115, y: 0.45269036}
-      - {x: -1.649374, y: 0.28862786}
-      - {x: -1.7665615, y: 0.21831536}
-      - {x: -2.0478115, y: 0.030815363}
-      - {x: -2.399374, y: -0.29730964}
-      - {x: -2.680624, y: -0.76605964}
-      - {x: -2.961874, y: -0.83637214}
-      - {x: -3.1728115, y: -1.1176221}
-      - {x: -3.1728115, y: -1.3519971}
-      - {x: -2.9384365, y: -2.0316846}
-      - {x: -2.914999, y: -2.3129346}
-      - {x: -2.7040615, y: -2.9691846}
-      - {x: -2.4228115, y: -3.5082471}
-      - {x: -2.164999, y: -3.8598096}
-      - {x: -1.743124, y: -4.1644974}
-      - {x: -1.743124, y: -4.3519974}
-      - {x: -1.5790615, y: -4.562935}
-      - {x: -1.274374, y: -5.0082474}
-      - {x: -1.1103115, y: -5.1488724}
-      - {x: -0.758749, y: -5.2894974}
-      - {x: -0.524374, y: -5.35981}
-      - {x: 0.647501, y: -5.35981}
-      - {x: 1.163126, y: -5.0082474}
-      - {x: 1.585001, y: -4.14106}
-  m_UseDelaunayMesh: 0
 --- !u!1001 &9028999143342138018
 PrefabInstance:
   m_ObjectHideFlags: 0

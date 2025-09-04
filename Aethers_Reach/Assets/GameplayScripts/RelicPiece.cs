@@ -3,7 +3,6 @@
 public class RelicPiece : MonoBehaviour
 {
     public AudioClip collectionClip;
-    [Range(0f, 1f)] public float collectionVolume = 0.5f;
 
     private bool collected = false;
 
@@ -15,7 +14,6 @@ public class RelicPiece : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (collected || !other.CompareTag("Player")) return;
@@ -23,6 +21,7 @@ public class RelicPiece : MonoBehaviour
 
         RelicManager.Instance.CollectPiece();
 
+        // Play VFX
         ParticleSystem collectVFX = other.transform.Find("RelicCollectVFX")?.GetComponent<ParticleSystem>();
         if (collectVFX != null)
         {
@@ -31,10 +30,7 @@ public class RelicPiece : MonoBehaviour
 
         if (collectionClip != null && AudioManager.Instance != null)
         {
-            AudioManager.Instance.sfxSource.volume = collectionVolume;
             AudioManager.Instance.PlaySFX(collectionClip);
-
-            AudioManager.Instance.sfxSource.volume = 0.3f;
         }
 
         Destroy(gameObject);

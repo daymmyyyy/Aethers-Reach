@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+    public Vector3 lastPosition;
 
     [Header("Distance Display")]
     public Text distanceText;
@@ -34,10 +35,6 @@ public class PlayerController : MonoBehaviour
     [Header("Audio Clips")]
     public AudioClip runningLoopClip;
     public AudioClip glidingWindClip;
-
-    [Header("Audio Volume Settings")]
-    [Range(0f, 1f)] public float runningVolume = 0.6f; 
-    [Range(0f, 1f)] public float glidingVolume = 0.5f; 
     public float fadeSpeed = 3f;
 
     private Rigidbody2D rb;
@@ -66,8 +63,6 @@ public class PlayerController : MonoBehaviour
     private float holdTimer = 0f;
     private float holdThreshold = 0.15f;
     private float jumpTimer;
-
-    public Vector3 lastPosition;
 
     private int groundContacts = 0;
 
@@ -244,30 +239,26 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
-        // Core states
-        animator.SetBool("running", isGrounded && !isHoldingUp);
-        animator.SetBool("gliding", !isGrounded && isHoldingUp);
-        animator.SetBool("descending", !isGrounded && !isHoldingUp);
-
-        // 🔥 Force "running" immediately when grounded and letting go
-        if (isGrounded && !isHoldingUp)
-        {
-            animator.ResetTrigger("run2glide");
-            animator.ResetTrigger("descent2glide");
-            animator.ResetTrigger("glide2descent");
-            animator.Play("Player Run V2", -1, 0f); // Force "Run" state instantly
-        }
-
         if (isGrounded)
         {
-            animator.ResetTrigger("run2glide");
-            animator.ResetTrigger("descent2glide");
-            animator.ResetTrigger("glide2descent");
+            //if grounded but were gliding, FORCE snap to running
+            if (!wasGroundedLastFrame || animator.GetCurrentAnimatorStateInfo(0).IsName("FlightIdleV2") ||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("FlightDescent"))
+            {
+                animator.ResetTrigger("run2glide");
+                animator.ResetTrigger("descent2glide");
+                animator.ResetTrigger("glide2descent");
+
+                //force-snap to Run, no transition
+                animator.Play("PlayerRunV2", 0, 0f);
+                animator.Update(0f);
+            }
+
+            animator.SetBool("running", true);
             animator.SetBool("gliding", false);
             animator.SetBool("descending", false);
-            animator.SetBool("running", true);
 
-            // Play biome ground trails
+            //trails for each biome
             if (SceneManager.GetActiveScene().name.Contains("Biome1"))
             {
                 if (!grassTrailVFX.isPlaying) grassTrailVFX?.Play();
@@ -289,6 +280,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            animator.SetBool("running", false);
+            animator.SetBool("gliding", isHoldingUp);
+            animator.SetBool("descending", !isHoldingUp);
+
             if (!wasGroundedLastFrame && isHoldingUp && wasHoldingUpLastFrame)
                 animator.SetTrigger("descent2glide");
             else if (!wasHoldingUpLastFrame && !isHoldingUp)
@@ -296,19 +291,15 @@ public class PlayerController : MonoBehaviour
             else if (wasGroundedLastFrame && isHoldingUp)
                 animator.SetTrigger("run2glide");
 
-            // Stop all ground trails when airborne
             grassTrailVFX?.Stop();
             sandTrailVFX?.Stop();
             ruinsTrailVFX?.Stop();
-
             if (windTrailVFX != null) windTrailVFX.emitting = true;
         }
 
         wasGroundedLastFrame = isGrounded;
         wasHoldingUpLastFrame = isHoldingUp;
     }
-
-
 
     private void Jump()
     {
@@ -323,13 +314,15 @@ public class PlayerController : MonoBehaviour
     {
         if (AudioManager.Instance == null) return;
 
-        AudioClip targetClip = isGrounded ? runningLoopClip : (!isGrounded ? glidingWindClip : null);
-        float targetVolume = isGrounded ? runningVolume : (!isGrounded ? glidingVolume : 0f);
+        // Choose clip based on grounded/gliding
+        AudioClip targetClip = isGrounded ? runningLoopClip : glidingWindClip;
 
         if (targetClip == null)
         {
             // Fade out if no clip
-            AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(AudioManager.Instance.sfxSource.volume, 0f, fadeSpeed * Time.deltaTime);
+            AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(
+                AudioManager.Instance.sfxSource.volume, 0f, fadeSpeed * Time.deltaTime
+            );
             if (AudioManager.Instance.sfxSource.volume <= 0.01f && AudioManager.Instance.sfxSource.isPlaying)
                 AudioManager.Instance.sfxSource.Stop();
             return;
@@ -343,9 +336,14 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.sfxSource.Play();
         }
 
-        // Smoothly fade to target volume
-        AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(AudioManager.Instance.sfxSource.volume, targetVolume, fadeSpeed * Time.deltaTime);
+        // Fade volume toward the AudioManager SFX volume slider
+        float targetVolume = AudioManager.Instance.GetSFXVolume(); // fully controlled by slider
+        AudioManager.Instance.sfxSource.volume = Mathf.MoveTowards(
+            AudioManager.Instance.sfxSource.volume, targetVolume, fadeSpeed * Time.deltaTime
+        );
     }
+
+
 
     public void ApplyKnockback(Vector2 direction)
     {
