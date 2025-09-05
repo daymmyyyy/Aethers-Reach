@@ -46,13 +46,6 @@ public class PauseMenu : MonoBehaviour
 
         RelicCurrency.ResetCurrency();
 
-        if (AudioManager.Instance != null)
-        {
-            // Stop all scene audio and apply saved volume to AudioManager
-            AudioManager.Instance.musicSource.Stop();
-            AudioManager.Instance.sfxSource.Stop();
-        }
-
         SceneManager.LoadScene("MainMenu");
     }
 }

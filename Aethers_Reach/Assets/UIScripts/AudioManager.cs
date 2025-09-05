@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
 
-    [Header("UI (optional)")]
+    [Header("UI")]
     public Slider musicSlider;
     public Image musicIcon;
     public Sprite musicMuteIcon;
@@ -23,6 +24,12 @@ public class AudioManager : MonoBehaviour
     [Header("Defaults")]
     [Range(0f, 1f)] public float defaultMusicVolume = 1f;
     [Range(0f, 1f)] public float defaultSFXVolume = 1f;
+
+    [Header("Scene Music Clips")]
+    public AudioClip menuMusic;
+    public AudioClip biome1Music;
+    public AudioClip biome2Music;
+    public AudioClip biome3Music;
 
     private float musicVolume;
     private float sfxVolume;
@@ -46,11 +53,19 @@ public class AudioManager : MonoBehaviour
         musicMuted = PlayerPrefs.GetInt("MUSIC_MUTED", 0) == 1;
         sfxMuted = PlayerPrefs.GetInt("SFX_MUTED", 0) == 1;
 
+        // Automatically unmute if volume > 0
+        if (musicVolume > 0f) musicMuted = false;
+        if (sfxVolume > 0f) sfxMuted = false;
+
         ApplyVolumes();
-        UpdateIcons();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        AttachSliders();
     }
 
-    private void OnEnable()
+
+    private void AttachSliders()
     {
         if (musicSlider != null)
         {
@@ -69,33 +84,55 @@ public class AudioManager : MonoBehaviour
         UpdateIcons();
     }
 
-    #region Public API
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlaySceneMusic(scene.name);
+        RefreshUI();
+    }
 
-    // Play music
-    public void PlayMusic(AudioClip clip, bool loop = true)
+    public void PlaySceneMusic(string sceneName)
+    {
+        AudioClip clip = null;
+
+        if (sceneName == "MainMenu") clip = menuMusic;
+        else if (sceneName == "Biome1") clip = biome1Music;
+        else if (sceneName == "Biome2") clip = biome2Music;
+        else if (sceneName == "Biome3") clip = biome3Music;
+
+        if (clip != null)
+        {
+            musicSource.Stop();
+            musicSource.clip = clip;
+            musicSource.loop = true;
+            musicSource.volume = GetMusicVolume();
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Stop();
+            musicSource.clip = null;
+        }
+    }
+
+    #region Public API
+    public void PlayMusic(AudioClip clip)
     {
         if (clip == null || musicSource == null) return;
+
+        if (musicSource.clip == clip && musicSource.isPlaying) return;
+
+        musicSource.Stop();
         musicSource.clip = clip;
-        musicSource.loop = loop;
+        musicSource.loop = true;
         musicSource.volume = GetMusicVolume();
         musicSource.Play();
     }
 
-    // Play SFX with current volume
     public void PlaySFX(AudioClip clip)
     {
         if (clip == null || sfxSource == null) return;
-        sfxSource.PlayOneShot(clip, GetSFXVolume());
-    }
 
-    public void ToggleMusicMute()
-    {
-        musicMuted = !musicMuted;
-        PlayerPrefs.SetInt("MUSIC_MUTED", musicMuted ? 1 : 0);
-        PlayerPrefs.Save();
-        ApplyVolumes();
-        UpdateIcons();
-        if (musicSlider != null) musicSlider.value = GetMusicVolume();
+        sfxSource.PlayOneShot(clip, GetSFXVolume());
     }
 
     public void ToggleSFXMute()
@@ -104,43 +141,62 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetInt("SFX_MUTED", sfxMuted ? 1 : 0);
         PlayerPrefs.Save();
         ApplyVolumes();
-        UpdateIcons();
-        if (sfxSlider != null) sfxSlider.value = GetSFXVolume();
+        RefreshUI();
     }
 
-    // Set volume from slider
+    public void ToggleMusicMute()
+    {
+        musicMuted = !musicMuted;
+        PlayerPrefs.SetInt("MUSIC_MUTED", musicMuted ? 1 : 0);
+        PlayerPrefs.Save();
+        ApplyVolumes();
+        RefreshUI();
+    }
+
+    private void SetSFXVolume(float value)
+    {
+        sfxVolume = Mathf.Clamp01(value);
+        PlayerPrefs.SetFloat("SFX_VOLUME", sfxVolume);
+        PlayerPrefs.Save();
+
+        // Automatically unmute if slider > 0
+        if (sfxVolume > 0f && sfxMuted) sfxMuted = false;
+
+        ApplyVolumes();
+        UpdateIcons();
+    }
+
     public void SetMusicVolume(float value)
     {
         musicVolume = Mathf.Clamp01(value);
         PlayerPrefs.SetFloat("MUSIC_VOLUME", musicVolume);
         PlayerPrefs.Save();
+
+        // Automatically unmute if slider > 0
+        if (musicVolume > 0f && musicMuted) musicMuted = false;
+
         ApplyVolumes();
         UpdateIcons();
     }
 
-    public void SetSFXVolume(float value)
-    {
-        sfxVolume = Mathf.Clamp01(value);
-        PlayerPrefs.SetFloat("SFX_VOLUME", sfxVolume);
-        PlayerPrefs.Save();
-        ApplyVolumes();
-        UpdateIcons();
-    }
-
-    // Get effective volume
     public float GetMusicVolume() => musicMuted ? 0f : musicVolume;
     public float GetSFXVolume() => sfxMuted ? 0f : sfxVolume;
-
     #endregion
 
-    #region Private Helpers
-
+    #region Helpers
     private void ApplyVolumes()
     {
         if (musicSource != null)
             musicSource.volume = GetMusicVolume();
         if (sfxSource != null)
-            sfxSource.volume = GetSFXVolume(); // ensures PlayOneShot uses correct volume
+            sfxSource.volume = GetSFXVolume();
+    }
+
+    public void RefreshUI()
+    {
+        if (musicSlider != null) musicSlider.value = GetMusicVolume();
+        if (sfxSlider != null) sfxSlider.value = GetSFXVolume();
+        UpdateIcons();
     }
 
     private void UpdateIcons()
@@ -152,8 +208,33 @@ public class AudioManager : MonoBehaviour
             sfxIcon.sprite = GetSFXVolume() <= 0.01f ? sfxMuteIcon : sfxUnmuteIcon;
     }
 
+    public void AttachSliders(Slider musicSlider, Slider sfxSlider)
+    {
+        // Remove old listeners
+        if (this.musicSlider != null) this.musicSlider.onValueChanged.RemoveAllListeners();
+        if (this.sfxSlider != null) this.sfxSlider.onValueChanged.RemoveAllListeners();
+
+        // Assign new references
+        this.musicSlider = musicSlider;
+        this.sfxSlider = sfxSlider;
+
+        // Add listeners
+        if (musicSlider != null)
+        {
+            musicSlider.onValueChanged.AddListener(SetMusicVolumeFromSlider);
+            musicSlider.value = GetMusicVolume(); // sync value
+        }
+
+        if (sfxSlider != null)
+        {
+            sfxSlider.onValueChanged.AddListener(SetSFXVolumeFromSlider);
+            sfxSlider.value = GetSFXVolume(); // sync value
+        }
+
+        UpdateIcons();
+    }
+
     private void SetMusicVolumeFromSlider(float value) => SetMusicVolume(value);
     private void SetSFXVolumeFromSlider(float value) => SetSFXVolume(value);
-
     #endregion
 }

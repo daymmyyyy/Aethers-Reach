@@ -3,19 +3,8 @@ using UnityEngine.SceneManagement;  // important!
 
 public class MainMenuManager : MonoBehaviour
 {
-    public AudioClip menuBGM;
-
-    private void Start()
-    {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlayMusic(menuBGM);
-        }
-    }
-
     public void StartGame()
     {
-
         if (GameManager.Instance != null)
         {
             GameManager.Instance.ResetProgress();
@@ -39,16 +28,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        if (AudioManager.Instance != null)
-        {
-            // Stop any currently playing scene music/SFX
-            AudioManager.Instance.musicSource.Stop();
-            AudioManager.Instance.sfxSource.Stop();
-
-            // Play menu BGM
-            AudioManager.Instance.PlayMusic(menuBGM);
-        }
-
         if (RelicManager.Instance != null)
         {
             RelicManager.Instance.ResetSessionRelics();
