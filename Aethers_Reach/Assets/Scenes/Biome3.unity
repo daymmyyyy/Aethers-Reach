@@ -1009,6 +1009,10 @@ PrefabInstance:
       propertyPath: speedIncreaseRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7101808570167023883, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
+      propertyPath: m_Name
+      value: CrystalLossBurstVFX
+      objectReference: {fileID: 0}
     - target: {fileID: 7702660585204748538, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.23
@@ -2802,7 +2806,7 @@ Transform:
   m_GameObject: {fileID: 1473859785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -218.3956, y: 37, z: -10}
+  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3550,7 +3554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6cce7d2d2ecf44da175ed56d30bb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuBGM: {fileID: 0}
 --- !u!114 &1809355893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3835,7 +3838,7 @@ Transform:
   m_GameObject: {fileID: 1956133952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -218.3956, y: 37, z: -10}
+  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
