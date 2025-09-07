@@ -5,53 +5,53 @@ using System.Collections;
 public class WindGustCameraZoom : MonoBehaviour
 {
     [Header("Camera Settings")]
-    public float zoomAmount = 5f;       // How much to zoom out
-    public float zoomDuration = 0.5f;   // How long each zoom transition takes
-    public float holdTime = 1f;         // How long to hold the zoom-out before zooming back in
-    public float maxZoomSize = 8f;      // Maximum camera size allowed
+    public float zoomAmount = 5f;      // How much to zoom out
+    public float zoomDuration = 0.5f;  // Zoom transition duration
+    public float holdTime = 1f;        // How long to hold zoom-out
+    public float maxZoomOut = 8f;      // Max allowed zoom-out
 
     private CinemachineVirtualCamera virtualCamera;
+    private CinemachineFramingTransposer transposer;
     private float originalSize;
     private bool isZooming = false;
-    private Coroutine zoomCoroutine;
-    private float currentHoldTime;
 
     private void Start()
     {
         virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-
         if (virtualCamera != null)
+        {
             originalSize = virtualCamera.m_Lens.OrthographicSize;
+            transposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            if (transposer != null)
+            {
+                // Slightly soften the follow so player isn't perfectly centered
+                transposer.m_XDamping = 1f;
+                transposer.m_YDamping = 1f;
+            }
+        }
         else
+        {
             Debug.LogWarning("No CinemachineVirtualCamera found in the scene!");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && virtualCamera != null)
+        if (collision.CompareTag("Player") && !isZooming && virtualCamera != null)
         {
-            if (!isZooming)
-            {
-                zoomCoroutine = StartCoroutine(ZoomCoroutine());
-            }
-            else
-            {
-                // Reset hold timer if already zoomed
-                currentHoldTime = 0f;
-            }
+            StartCoroutine(ZoomCoroutine());
         }
     }
 
     private IEnumerator ZoomCoroutine()
     {
         isZooming = true;
-        currentHoldTime = 0f;
 
-        float targetSize = Mathf.Min(originalSize + zoomAmount, maxZoomSize);
+        float targetSize = Mathf.Min(originalSize + zoomAmount, originalSize + maxZoomOut);
         float startSize = virtualCamera.m_Lens.OrthographicSize;
+        float elapsed = 0f;
 
         // Zoom out
-        float elapsed = 0f;
         while (elapsed < zoomDuration)
         {
             elapsed += Time.deltaTime;
@@ -60,20 +60,15 @@ public class WindGustCameraZoom : MonoBehaviour
         }
         virtualCamera.m_Lens.OrthographicSize = targetSize;
 
-        // Hold zoom until holdTime is reached
-        while (currentHoldTime < holdTime)
-        {
-            currentHoldTime += Time.deltaTime;
-            yield return null;
-        }
+        // Hold zoom
+        yield return new WaitForSeconds(holdTime);
 
         // Zoom back in
         elapsed = 0f;
-        startSize = virtualCamera.m_Lens.OrthographicSize;
         while (elapsed < zoomDuration)
         {
             elapsed += Time.deltaTime;
-            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(startSize, originalSize, elapsed / zoomDuration);
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(targetSize, originalSize, elapsed / zoomDuration);
             yield return null;
         }
         virtualCamera.m_Lens.OrthographicSize = originalSize;
