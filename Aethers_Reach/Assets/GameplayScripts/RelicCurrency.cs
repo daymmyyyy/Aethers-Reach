@@ -94,7 +94,13 @@ public class RelicCurrency : MonoBehaviour
 
     public static void LoseCurrency(int amount)
     {
-        // Decrease session relics
+        // Decrease both total and session relics
+        int currentTotal = PlayerPrefs.GetInt("TotalCurrencyCollected", 0);
+        currentTotal = Mathf.Max(0, currentTotal - amount);
+        PlayerPrefs.SetInt("TotalCurrencyCollected", currentTotal);
+        PlayerPrefs.Save();
+        totalCurrency = currentTotal;
+
         currencyThisSession = Mathf.Max(0, currencyThisSession - amount);
 
         UpdateCurrencyText();
@@ -106,6 +112,7 @@ public class RelicCurrency : MonoBehaviour
             currencyAnimator.SetBool("isShaking", true);
         }
     }
+
 
     // To allow static methods to access instance SFX
     private static RelicCurrency _instance;

@@ -66,21 +66,40 @@ public class DeityUIManager : MonoBehaviour
     private void UnlockEntry()
     {
         int nextEntry = DiaryUnlockManager.Instance.GetUnlockedEntries();
+        int cost = DiaryUnlockManager.Instance.GetEntryCost(nextEntry);
 
-        bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(nextEntry);
-
-        if (unlocked)
+        // Try to spend currency
+        if (RelicCurrency.SpendCurrency(cost))
         {
-            deityDialogueText.text = $"It is done. Diary Entry {nextEntry + 1} is now yours.";
+            // Deduct from session as well for UI consistency
+            RelicCurrency.LoseCurrency(cost);
+
+            // Unlock the diary entry
+            bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(nextEntry);
+
+            if (unlocked)
+            {
+                deityDialogueText.text = $"It is done. Diary Entry {nextEntry + 1} is now yours.";
+            }
+            else
+            {
+                deityDialogueText.text = "Something went wrong. Please try again.";
+            }
         }
         else
         {
             deityDialogueText.text = "You dare mock me? You lack the relics!";
         }
 
+        // Hide buttons
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
+
+        // Update currency UI immediately
+        if (CurrencyUI.Instance != null)
+            CurrencyUI.Instance.UpdateCurrencyDisplay();
     }
+
 
     private void DeclineUnlock()
     {
