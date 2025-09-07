@@ -123,8 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomAmount: 8
-  zoomDuration: 2
-  holdTime: 0.5
+  zoomDuration: 1.5
+  holdTime: 0.3
+  maxZoomSize: 8
 --- !u!1001 &4407945757129260888
 PrefabInstance:
   m_ObjectHideFlags: 0
