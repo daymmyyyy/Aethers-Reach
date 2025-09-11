@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5516669465590630344}
   - component: {fileID: 6639226003996896948}
-  - component: {fileID: 7697429114229452842}
+  - component: {fileID: 3461767751366059009}
   m_Layer: 6
   m_Name: SkyBridgeSheet_26.8.25_9
   m_TagString: Ground
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7697429114229452842
+--- !u!60 &3461767751366059009
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

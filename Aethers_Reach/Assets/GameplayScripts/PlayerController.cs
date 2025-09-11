@@ -431,7 +431,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.collider.CompareTag("TopLimit"))
         {
-            // Apply a strong downward wind gust
             ApplyDownwardGust();
         }
     }
@@ -466,6 +465,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene("GameOver");
         Destroy(gameObject);
     }
+
     private void ApplyDownwardGust()
     {
         rb.velocity = new Vector2(rb.velocity.x, -15f);

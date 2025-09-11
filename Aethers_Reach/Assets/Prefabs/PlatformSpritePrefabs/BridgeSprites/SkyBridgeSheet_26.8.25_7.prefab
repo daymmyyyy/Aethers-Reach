@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8631414310311818154}
   - component: {fileID: 3956491078547783053}
-  - component: {fileID: 6747427960300094278}
+  - component: {fileID: 9174810863011048241}
   m_Layer: 6
   m_Name: SkyBridgeSheet_26.8.25_7
   m_TagString: Ground
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &6747427960300094278
-PolygonCollider2D:
+--- !u!70 &9174810863011048241
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,23 +118,5 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.88, y: 0.38000003}
-    newSize: {x: 3.88, y: 0.38000003}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.8812498, y: 0.20437516}
-      - {x: -1.9374998, y: 0.11062516}
-      - {x: -1.9374998, y: -0.15187483}
-      - {x: -1.8812498, y: -0.18937482}
-      - {x: 1.85, y: -0.18937482}
-      - {x: 1.9625, y: -0.09562482}
-      - {x: 1.9625, y: 0.11062516}
-      - {x: 1.90625, y: 0.20437516}
-  m_UseDelaunayMesh: 0
+  m_Size: {x: 3.88, y: 0.38000003}
+  m_Direction: 1

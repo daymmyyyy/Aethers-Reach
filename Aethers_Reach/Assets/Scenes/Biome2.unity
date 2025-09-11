@@ -941,11 +941,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: maxSpeed
-      value: 52
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: runSpeed
-      value: 28
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: fadeSpeed
@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: glideSpeed
-      value: 26
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: distanceText
@@ -989,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: maxVerticalSpeed
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: groundCheckRadius
@@ -3660,6 +3660,10 @@ PrefabInstance:
     - target: {fileID: 6903683190642338984, guid: 9d3b7a2aeb6d8504da3683ab72f78157, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799480928238277249, guid: 9d3b7a2aeb6d8504da3683ab72f78157, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 241
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
