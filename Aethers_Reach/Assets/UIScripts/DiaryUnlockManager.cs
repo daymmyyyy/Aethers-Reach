@@ -4,12 +4,10 @@ public class DiaryUnlockManager : MonoBehaviour
 {
     public static DiaryUnlockManager Instance;
 
-    [Header("Diary Settings")]
-    public int totalEntries = 10;          // total diary entries
-    public int baseCost = 2000000;         // starting relic cost
-    public int costIncreasePerEntry = 500000; // how much more each new unlock costs
+    [Header("Diary Data")]
+    public DiaryDatabase diaryDatabase;
 
-    private int unlockedEntries = 0;       // how many diary entries are unlocked
+    private bool[,] unlockedEntries; // [biomeIndex, entryIndex]
 
     private void Awake()
     {
@@ -17,6 +15,7 @@ public class DiaryUnlockManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            InitializeUnlocks();
             LoadProgress();
         }
         else
@@ -25,44 +24,90 @@ public class DiaryUnlockManager : MonoBehaviour
         }
     }
 
-    //returns how many entries the player has unlocked
-    public int GetUnlockedEntries()
+    private void InitializeUnlocks()
     {
-        return unlockedEntries;
+        if (diaryDatabase == null)
+        {
+            Debug.LogError("DiaryDatabase is not assigned in DiaryUnlockManager!");
+            return;
+        }
+
+        int biomeCount = diaryDatabase.biomes.Length;
+        unlockedEntries = new bool[biomeCount, 3]; // Assuming 3 entries per biome
     }
 
-    //returns cost for unlocking the next diary entry
-    public int GetEntryCost(int entryIndex)
+    /// <summary>
+    /// Check if an entry is unlocked
+    /// </summary>
+    public bool IsEntryUnlocked(int biomeIndex, int entryIndex)
     {
-        return baseCost + (entryIndex * costIncreasePerEntry);
+        if (!IsValidEntry(biomeIndex, entryIndex))
+            return false;
+
+        return unlockedEntries[biomeIndex, entryIndex];
     }
 
-    //attempts to unlock a diary entry if player has enough relics
-    public bool TryUnlockDiary(int entryIndex)
+    /// <summary>
+    /// Try unlocking an entry if player has enough relics
+    /// </summary>
+    public bool TryUnlockDiary(int biomeIndex, int entryIndex)
     {
-        int cost = GetEntryCost(entryIndex);
+        if (!IsValidEntry(biomeIndex, entryIndex))
+            return false;
+
+        DiaryEntry entry = diaryDatabase.biomes[biomeIndex].entries[entryIndex];
+        int cost = entry.cost;
         int playerCurrency = RelicCurrency.GetTotalCurrency();
 
         if (playerCurrency >= cost)
         {
             RelicCurrency.SpendCurrency(cost);
-            unlockedEntries++;
+            unlockedEntries[biomeIndex, entryIndex] = true;
             SaveProgress();
             return true;
         }
+
         return false;
     }
 
-    //Save progress to PlayerPrefs
+    /// <summary>
+    /// Unlock an entry for free (first biome entry reward)
+    /// </summary>
+    public void UnlockFreeEntry(int biomeIndex, int entryIndex)
+    {
+        if (IsValidEntry(biomeIndex, entryIndex))
+        {
+            unlockedEntries[biomeIndex, entryIndex] = true;
+            SaveProgress();
+        }
+    }
+
+    private bool IsValidEntry(int biomeIndex, int entryIndex)
+    {
+        return biomeIndex >= 0 && biomeIndex < diaryDatabase.biomes.Length &&
+               entryIndex >= 0 && entryIndex < diaryDatabase.biomes[biomeIndex].entries.Length;
+    }
+
     private void SaveProgress()
     {
-        PlayerPrefs.SetInt("UnlockedEntries", unlockedEntries);
+        for (int b = 0; b < diaryDatabase.biomes.Length; b++)
+        {
+            for (int e = 0; e < diaryDatabase.biomes[b].entries.Length; e++)
+            {
+                PlayerPrefs.SetInt($"DiaryEntry_{b}_{e}", unlockedEntries[b, e] ? 1 : 0);
+            }
+        }
         PlayerPrefs.Save();
     }
 
-    //load progress from PlayerPrefs
     private void LoadProgress()
     {
-        unlockedEntries = PlayerPrefs.GetInt("UnlockedEntries", 0);
+        for (int b = 0; b < diaryDatabase.biomes.Length; b++)
+        {
+            for (int e = 0; e < diaryDatabase.biomes[b].entries.Length; e++)
+            {
+                unlockedEntries[b, e] = PlayerPrefs.GetInt($"DiaryEntry_{b}_{e}", 0) == 1;
+            }
+        }
     }
 }

@@ -5,11 +5,17 @@ public class DeityUIManager : MonoBehaviour
 {
     public static DeityUIManager Instance;
 
+    [Header("Testing")]
+    [Tooltip("Check this to simulate first-time player dialogue.")]
+    public bool isFirstTimePlayer = true;
+
     [Header("UI Elements")]
     public Text deityDialogueText;
     public Button viewDiaryButton;
     public Button yesButton;
     public Button noButton;
+
+    private int currentBiomeIndex;
 
     private void Awake()
     {
@@ -18,106 +24,130 @@ public class DeityUIManager : MonoBehaviour
 
     private void Start()
     {
-        ShowWelcomeDialogue();
+        // Auto-detect current biome from BiomeManager
+        if (BiomeManager.Instance != null)
+            currentBiomeIndex = BiomeManager.Instance.currentBiomeIndex;
 
-        yesButton.onClick.AddListener(UnlockEntry);
-        noButton.onClick.AddListener(DeclineUnlock);
+        // First-time dialogue or normal welcome
+        if (isFirstTimePlayer || GetUnlockedCount(currentBiomeIndex) == 0)
+        {
+            ShowFirstTimeDialogue();
+        }
+        else
+        {
+            ShowDeityDialogue();
+        }
+
+        yesButton.onClick.AddListener(OnYesPressed);
+        noButton.onClick.AddListener(OnNoPressed);
     }
 
-    public void ShowWelcomeDialogue()
+    /// <summary>
+    /// Show first-time dialogue
+    /// </summary>
+    public void ShowFirstTimeDialogue()
     {
-        deityDialogueText.text = "Mortal… do you seek the knowledge of the diary?";
+        deityDialogueText.text = "Welcome, mortal. You hold the diary for the first time...";
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
-
         viewDiaryButton.gameObject.SetActive(true);
     }
 
-    public void ReturnFromDiary()
+    /// <summary>
+    /// Show deity dialogue based on unlocked entries and currency
+    /// </summary>
+    public void ShowDeityDialogue()
     {
-        int nextEntry = DiaryUnlockManager.Instance.GetUnlockedEntries();
-        int totalEntries = DiaryUnlockManager.Instance.totalEntries;
-        int cost = DiaryUnlockManager.Instance.GetEntryCost(nextEntry);
+        int unlockedCount = GetUnlockedCount(currentBiomeIndex);
+        int totalEntries = DiaryUnlockManager.Instance.diaryDatabase.biomes[currentBiomeIndex].entries.Length;
 
-        int playerCurrency = RelicCurrency.GetTotalCurrency();
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        viewDiaryButton.gameObject.SetActive(true);
 
-        if (nextEntry >= totalEntries)
+        if (unlockedCount >= totalEntries)
         {
-            deityDialogueText.text = "You have unlocked all the knowledge I hold.";
-            yesButton.gameObject.SetActive(false);
-            noButton.gameObject.SetActive(false);
+            deityDialogueText.text = "You have learned all I know…";
         }
-        else if (playerCurrency >= cost)
+        else if (unlockedCount == 0)
         {
-            deityDialogueText.text =
-                $"You have returned… Do you wish to unlock Entry {nextEntry + 1} for {cost} relics?";
-            yesButton.gameObject.SetActive(true);
-            noButton.gameObject.SetActive(true);
+            deityDialogueText.text = "Venture forth and earn the first tale of this land!";
         }
         else
         {
-            deityDialogueText.text =
-                $"Go away… you are too poor. Return with {cost} relics.";
-            yesButton.gameObject.SetActive(false);
-            noButton.gameObject.SetActive(false);
-        }
-    }
+            int cost = DiaryUnlockManager.Instance.diaryDatabase.biomes[currentBiomeIndex].entries[unlockedCount].cost;
+            int playerCurrency = RelicCurrency.GetTotalCurrency();
 
-    private void UnlockEntry()
-    {
-        int nextEntry = DiaryUnlockManager.Instance.GetUnlockedEntries();
-        int cost = DiaryUnlockManager.Instance.GetEntryCost(nextEntry);
-
-        // Try to spend currency
-        if (RelicCurrency.SpendCurrency(cost))
-        {
-            // Deduct from session as well for UI consistency
-            RelicCurrency.LoseCurrency(cost);
-
-            // Unlock the diary entry
-            bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(nextEntry);
-
-            if (unlocked)
+            if (playerCurrency >= cost)
             {
-                deityDialogueText.text = $"It is done. Diary Entry {nextEntry + 1} is now yours.";
+                deityDialogueText.text = $"Ah… for {cost} relics, I shall share my secrets (Entry {unlockedCount + 1})!";
+                yesButton.gameObject.SetActive(true);
+                noButton.gameObject.SetActive(true);
             }
             else
             {
-                deityDialogueText.text = "Something went wrong. Please try again.";
+                deityDialogueText.text = $"Begone, penniless mortal! You need {cost} relics.";
             }
         }
-        else
-        {
-            deityDialogueText.text = "You dare mock me? You lack the relics!";
-        }
+    }
 
-        // Hide buttons
+    /// <summary>
+    /// Unlocks the next entry for current biome
+    /// </summary>
+    private void OnYesPressed()
+    {
+        int unlockedCount = GetUnlockedCount(currentBiomeIndex);
+        bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(currentBiomeIndex, unlockedCount);
+
+        deityDialogueText.text = unlocked
+            ? $"It is done. Diary Entry {unlockedCount + 1} is now yours."
+            : "Something went wrong. Please try again.";
+
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
 
-        // Update currency UI immediately
         if (CurrencyUI.Instance != null)
             CurrencyUI.Instance.UpdateCurrencyDisplay();
     }
 
-
-    private void DeclineUnlock()
+    /// <summary>
+    /// Player declines unlocking
+    /// </summary>
+    private void OnNoPressed()
     {
         deityDialogueText.text = "Very well. Return when you are ready.";
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Get number of unlocked entries in the current biome
+    /// </summary>
+    private int GetUnlockedCount(int biomeIndex)
+    {
+        int count = 0;
+        var biome = DiaryUnlockManager.Instance.diaryDatabase.biomes[biomeIndex];
+
+        for (int i = 0; i < biome.entries.Length; i++)
+        {
+            if (DiaryUnlockManager.Instance.IsEntryUnlocked(biomeIndex, i))
+                count++;
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    /// Called when the deity button on main menu is pressed
+    /// </summary>
+    public void OnDeityButtonPressed()
+    {
+        ShowDeityDialogue();
+    }
+
     public void OnBackToMMPressed()
     {
-        // hide Yes/No while on main menu
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
     }
-
-    public void OnDeityButtonPressed()
-    {
-        ReturnFromDiary();
-    }
-
 }
