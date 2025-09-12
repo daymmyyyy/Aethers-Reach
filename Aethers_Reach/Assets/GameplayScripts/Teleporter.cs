@@ -6,6 +6,11 @@ public class Teleporter : MonoBehaviour
     [Header("Target Scene Name")]
     public string targetSceneName;
 
+    [Header("Biome Index for Target Scene")]
+    [Tooltip("0 = Skylands, 1 = Beach, 2 = Ruins")]
+    public int targetBiomeIndex = 0;
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -23,6 +28,10 @@ public class Teleporter : MonoBehaviour
                     Vector3.Distance(position, other.transform.position) * multiplier
                 );
             }
+
+            // Set biome index
+            if (BiomeManager.Instance != null)
+                BiomeManager.Instance.SetCurrentBiome(targetBiomeIndex);
 
             // Load target scene
             if (!string.IsNullOrEmpty(targetSceneName))

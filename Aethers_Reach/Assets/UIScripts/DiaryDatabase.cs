@@ -19,5 +19,5 @@ public class DiaryEntry
     public string title;
     [TextArea] public string content;
     public int cost; // Cost to unlock
-    public bool unlocked;
 }
+

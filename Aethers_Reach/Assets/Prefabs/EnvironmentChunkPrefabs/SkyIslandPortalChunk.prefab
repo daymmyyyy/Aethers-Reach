@@ -374,6 +374,10 @@ PrefabInstance:
       propertyPath: targetSceneName
       value: Biome2
       objectReference: {fileID: 0}
+    - target: {fileID: 910862942698627609, guid: 832451edda5d0e04e9e6c74668229014, type: 3}
+      propertyPath: targetBiomeIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2583138495681445992, guid: 832451edda5d0e04e9e6c74668229014, type: 3}
       propertyPath: m_LocalPosition.x
       value: 157

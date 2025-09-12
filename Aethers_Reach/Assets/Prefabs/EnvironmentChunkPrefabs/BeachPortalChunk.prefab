@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: targetSceneName
       value: Biome3
       objectReference: {fileID: 0}
+    - target: {fileID: 7808804663804090701, guid: bae4c0e4d5f08d94da27abf8ccc2c931, type: 3}
+      propertyPath: targetBiomeIndex
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

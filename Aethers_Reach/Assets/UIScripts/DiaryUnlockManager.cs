@@ -33,7 +33,7 @@ public class DiaryUnlockManager : MonoBehaviour
         }
 
         int biomeCount = diaryDatabase.biomes.Length;
-        unlockedEntries = new bool[biomeCount, 3]; // Assuming 3 entries per biome
+        unlockedEntries = new bool[biomeCount, 3]; // 3 entries per biome
     }
 
     /// <summary>

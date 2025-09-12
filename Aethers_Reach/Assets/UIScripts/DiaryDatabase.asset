@@ -12,4 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9436f0457e7d44fbdc7f2a5ba5e68c, type: 3}
   m_Name: DiaryDatabase
   m_EditorClassIdentifier: 
-  biomes: []
+  biomes:
+  - biomeName: Skylands
+    entries:
+    - title: Skylands 1
+      content: asdfghjkl
+      cost: 0
+      unlocked: 0
+    - title: Skylands 2
+      content: asdfghjkl
+      cost: 1000
+      unlocked: 0
+    - title: Skylands 3
+      content: asdfghjkl
+      cost: 2000
+      unlocked: 0
+  - biomeName: Underwater Beach
+    entries:
+    - title: Beach 1
+      content: asdfghjkl
+      cost: 0
+      unlocked: 0
+    - title: Beach 2
+      content: asdfghjkl
+      cost: 3000
+      unlocked: 0
+    - title: Beach 3
+      content: asdfghjkl
+      cost: 4000
+      unlocked: 0
+  - biomeName: Ruins
+    entries:
+    - title: Ruins 1
+      content: ASDFGHJKL
+      cost: 0
+      unlocked: 0
+    - title: Ruins 2
+      content: asdfghjkl
+      cost: 5000
+      unlocked: 0
+    - title: Ruins 3
+      content: asdfghjkl
+      cost: 6000
+      unlocked: 0
