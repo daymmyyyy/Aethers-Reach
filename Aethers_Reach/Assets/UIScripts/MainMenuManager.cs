@@ -25,7 +25,7 @@ public class MainMenuManager : MonoBehaviour
         Time.timeScale = 1f;
 
         BiomeManager.Instance.SetCurrentBiome(0);
-
+        DiaryManager.Instance.OnBiomeEntered(0);
         SceneManager.LoadScene("Biome1");
     }
 
@@ -37,7 +37,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         RelicCurrency.ResetCurrency();  // session-based
-
+        BiomeManager.Instance.SetCurrentBiome(-1);
         SceneManager.LoadScene("MainMenu");
     }
 }

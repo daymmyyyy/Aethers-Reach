@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class DeityUIManager : MonoBehaviour
@@ -14,12 +14,12 @@ public class DeityUIManager : MonoBehaviour
     public Button viewDiaryButton;
     public Button yesButton;
     public Button noButton;
-    public Button nextButton; // Next button to progress dialogue
+    public Button nextButton;
 
     private int currentBiomeIndex;
     private string[] currentDialogue;
     private int dialogueIndex = 0;
-    private bool pendingYesNo; // Track if Yes/No should appear
+    private bool pendingYesNo; // Track if Yes/No button should appear
 
     private void Awake()
     {
@@ -28,17 +28,17 @@ public class DeityUIManager : MonoBehaviour
 
     private void Start()
     {
-        // Auto-detect biome
         if (BiomeManager.Instance != null)
             currentBiomeIndex = BiomeManager.Instance.currentBiomeIndex;
 
-        // Decide which dialogue to show
         if (isFirstTimePlayer)
         {
+            Debug.Log("Forced first time dialogue for testing.");
             ShowFirstTimeDialogue();
         }
         else
         {
+            // Natural flow
             ShowDeityDialogue();
         }
 
@@ -47,9 +47,10 @@ public class DeityUIManager : MonoBehaviour
         nextButton.onClick.AddListener(OnNextPressed);
     }
 
-    /// <summary>
+
+
     /// First-time dialogue
-    /// </summary>
+
     public void ShowFirstTimeDialogue()
     {
         currentDialogue = new string[]
@@ -63,32 +64,57 @@ public class DeityUIManager : MonoBehaviour
         StartDialogueSequence(false); // No Yes/No here
     }
 
-    /// <summary>
     /// Deity dialogue based on progress
-    /// </summary>
+
     public void ShowDeityDialogue()
     {
+        var diary = DiaryManager.Instance.diaryDatabase;
+        int firstEntriesUnlocked = 0;
+
+        // Count how many first entries are unlocked across all biomes
+        for (int i = 0; i < diary.biomes.Length; i++)
+        {
+            if (DiaryManager.Instance.IsEntryUnlocked(i, 0))
+                firstEntriesUnlocked++;
+        }
+
         int unlockedCount = GetUnlockedCount(currentBiomeIndex);
-        var biome = DiaryUnlockManager.Instance.diaryDatabase.biomes[currentBiomeIndex];
+        var biome = diary.biomes[currentBiomeIndex];
         int totalEntries = biome.entries.Length;
 
         viewDiaryButton.gameObject.SetActive(true);
 
+        // Handle 0 or 1–2 unlocked first entries
+        if (firstEntriesUnlocked == 0)
+        {
+            currentDialogue = new string[]
+            {
+            "Hmph... You wander aimlessly, yet you bring me nothing of value.",
+            "Continue venturing forth, mortal. The first tale of each land shall be free.",
+            "Return when you have proven your curiosity."
+            };
+            StartDialogueSequence(false);
+            return;
+        }
+        else if (firstEntriesUnlocked < diary.biomes.Length)
+        {
+            currentDialogue = new string[]
+            {
+            "I see you have begun your journey, mortal...",
+            "Some lands have yielded their first secrets to you.",
+            "Venture further, and bring me crystals for deeper knowledge."
+            };
+            StartDialogueSequence(false);
+            return;
+        }
+
+        // All 3 first entries unlocked → normal flow
         if (unlockedCount >= totalEntries)
         {
             currentDialogue = new string[]
             {
-                "You have learned all I know... for now.",
-                "Even I, the great one, hold no further secrets for you."
-            };
-            StartDialogueSequence(false);
-        }
-        else if (unlockedCount == 0)
-        {
-            currentDialogue = new string[]
-            {
-                "Venture forth, and prove your worth.",
-                "Return to me with crystals, and I shall enlighten you."
+            "You have learned all I know... for now.",
+            "Even I, the great one, hold no further secrets for you."
             };
             StartDialogueSequence(false);
         }
@@ -101,27 +127,28 @@ public class DeityUIManager : MonoBehaviour
             {
                 currentDialogue = new string[]
                 {
-                    $"Ah... so you desire knowledge of Entry {unlockedCount + 1}.",
-                    $"It shall cost you {cost} relics, mortal.",
-                    "Do you dare pay the price?"
+                $"Ah... so you desire knowledge of Entry {unlockedCount + 1}.",
+                $"It shall cost you {cost} relics, mortal.",
+                "Do you dare pay the price?"
                 };
-                StartDialogueSequence(true); // Yes/No will show at end
+                StartDialogueSequence(true);
             }
             else
             {
                 currentDialogue = new string[]
                 {
-                    $"Begone, penniless mortal! You lack the {cost} relics required.",
-                    "Return when you are worthy of my wisdom."
+                $"Begone, penniless mortal! You lack the {cost} relics required.",
+                "Return when you are worthy of my wisdom."
                 };
                 StartDialogueSequence(false);
             }
         }
     }
 
-    /// <summary>
+
+
     /// Starts dialogue sequence
-    /// </summary>
+
     private void StartDialogueSequence(bool showYesNoAtEnd)
     {
         dialogueIndex = 0;
@@ -134,9 +161,9 @@ public class DeityUIManager : MonoBehaviour
         pendingYesNo = showYesNoAtEnd; // Correctly track Yes/No
     }
 
-    /// <summary>
+
     /// Next button
-    /// </summary>
+
     private void OnNextPressed()
     {
         dialogueIndex++;
@@ -158,7 +185,7 @@ public class DeityUIManager : MonoBehaviour
     private void OnYesPressed()
     {
         int unlockedCount = GetUnlockedCount(currentBiomeIndex);
-        bool unlocked = DiaryUnlockManager.Instance.TryUnlockDiary(currentBiomeIndex, unlockedCount);
+        bool unlocked = DiaryManager.Instance.TryUnlockDiary(currentBiomeIndex, unlockedCount);
 
         deityDialogueText.text = unlocked
             ? $"It is done. Diary Entry {unlockedCount + 1} is now yours."
@@ -181,10 +208,10 @@ public class DeityUIManager : MonoBehaviour
     private int GetUnlockedCount(int biomeIndex)
     {
         int count = 0;
-        var biome = DiaryUnlockManager.Instance.diaryDatabase.biomes[biomeIndex];
+        var biome = DiaryManager.Instance.diaryDatabase.biomes[biomeIndex];
         for (int i = 0; i < biome.entries.Length; i++)
         {
-            if (DiaryUnlockManager.Instance.IsEntryUnlocked(biomeIndex, i))
+            if (DiaryManager.Instance.IsEntryUnlocked(biomeIndex, i))
                 count++;
         }
         return count;

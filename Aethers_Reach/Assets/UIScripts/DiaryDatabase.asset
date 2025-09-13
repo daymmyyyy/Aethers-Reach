@@ -9,49 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9436f0457e7d44fbdc7f2a5ba5e68c, type: 3}
+  m_Script: {fileID: 0}
   m_Name: DiaryDatabase
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiaryDatabase
   biomes:
-  - biomeName: Skylands
-    entries:
-    - title: Skylands 1
+  - entries:
+    - title: s1
       content: asdfghjkl
       cost: 0
-      unlocked: 0
-    - title: Skylands 2
+    - title: s2
       content: asdfghjkl
       cost: 1000
-      unlocked: 0
-    - title: Skylands 3
+    - title: s3
       content: asdfghjkl
       cost: 2000
-      unlocked: 0
-  - biomeName: Underwater Beach
-    entries:
-    - title: Beach 1
+  - entries:
+    - title: b1
       content: asdfghjkl
       cost: 0
-      unlocked: 0
-    - title: Beach 2
+    - title: b2
       content: asdfghjkl
       cost: 3000
-      unlocked: 0
-    - title: Beach 3
+    - title: b3
       content: asdfghjkl
       cost: 4000
-      unlocked: 0
-  - biomeName: Ruins
-    entries:
-    - title: Ruins 1
-      content: ASDFGHJKL
+  - entries:
+    - title: r1
+      content: asdfghjkl
       cost: 0
-      unlocked: 0
-    - title: Ruins 2
+    - title: r2
       content: asdfghjkl
       cost: 5000
-      unlocked: 0
-    - title: Ruins 3
+    - title: r3
       content: asdfghjkl
       cost: 6000
-      unlocked: 0

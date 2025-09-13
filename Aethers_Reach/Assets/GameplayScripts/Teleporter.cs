@@ -33,6 +33,8 @@ public class Teleporter : MonoBehaviour
             if (BiomeManager.Instance != null)
                 BiomeManager.Instance.SetCurrentBiome(targetBiomeIndex);
 
+                DiaryManager.Instance.OnBiomeEntered(targetBiomeIndex);
+
             // Load target scene
             if (!string.IsNullOrEmpty(targetSceneName))
                 SceneManager.LoadScene(targetSceneName);
