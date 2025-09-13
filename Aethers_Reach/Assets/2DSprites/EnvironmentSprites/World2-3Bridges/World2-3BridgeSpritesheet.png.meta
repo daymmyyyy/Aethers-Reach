@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,280 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 3445
+        y: 1703
+        width: 295
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8611f202d858c438df4c34223da733
+      internalID: -1487691982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1480
+        width: 101
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fefabd556c6114aaa717f3fc12eb7b
+      internalID: -316945791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 2382
+        y: 1480
+        width: 94
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336e0b6e72352c04c9a045bf3575fcf0
+      internalID: -451553105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 2547
+        y: 1512
+        width: 296
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76960f7cd86ad814da04448e8ffdfb5b
+      internalID: 1561848207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2887
+        y: 1527
+        width: 320
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd689f462c3aee740bca362d1ba250fa
+      internalID: 803791602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 3284
+        y: 1527
+        width: 77
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83aff075e03fd443ba88d9fc37451e4
+      internalID: 1140664226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 3423
+        y: 1523
+        width: 345
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4753d71d58f9b4f9e4800bf09163f5
+      internalID: -1150911169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1946
+        y: 843
+        width: 90
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f95a241355066b04693a24cd7707592a
+      internalID: -1112124209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 3256
+        y: 1055
+        width: 306
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3493952c66084b4cbf80ca555014398
+      internalID: -1032460484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 2097
+        y: 818
+        width: 358
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5655a5caed1acf24d8014fba22b9a258
+      internalID: -393172924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 2549
+        y: 833
+        width: 246
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c8b9509b332484fadbeb091192df71
+      internalID: 195611110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 2892
+        y: 828
+        width: 38
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95485b7f26f2a754983409c1e2609931
+      internalID: 1878492836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World2-3BridgeSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 3230
+        y: 823
+        width: 350
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e7fc649d27eb984cbc6488ab253193a
+      internalID: 187702866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +405,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      World2-3BridgeSpritesheet_0: -1487691982
+      World2-3BridgeSpritesheet_1: -316945791
+      World2-3BridgeSpritesheet_10: 732396718
+      World2-3BridgeSpritesheet_11: 195611110
+      World2-3BridgeSpritesheet_12: 1878492836
+      World2-3BridgeSpritesheet_13: 187702866
+      World2-3BridgeSpritesheet_2: -451553105
+      World2-3BridgeSpritesheet_3: 1561848207
+      World2-3BridgeSpritesheet_4: 803791602
+      World2-3BridgeSpritesheet_5: 1140664226
+      World2-3BridgeSpritesheet_6: -1150911169
+      World2-3BridgeSpritesheet_7: -1112124209
+      World2-3BridgeSpritesheet_8: -1032460484
+      World2-3BridgeSpritesheet_9: -393172924
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
