@@ -13,7 +13,7 @@ public class BiomeUI
 public class DiaryEntryData
 {
     public string title;
-    public string content; // Added content text
+    public string content;
     public int cost;
 }
 
@@ -38,7 +38,7 @@ public class DiaryManager : MonoBehaviour
 
     [Header("UI Elements")]
     public BiomeUI[] biomesUI; // 0=Skylands, 1=Beach, 2=Ruins
-    public Text contentText;   // Display content of selected diary entry
+    public Text contentText;
 
     [Header("Settings")]
     public float autoUnlockDelay = 2f;
@@ -62,7 +62,7 @@ public class DiaryManager : MonoBehaviour
 
     private void Start()
     {
-        // Hook up tab buttons to switch biomes
+        // Hook up tab buttons
         for (int i = 0; i < biomesUI.Length; i++)
         {
             int index = i;
@@ -85,7 +85,7 @@ public class DiaryManager : MonoBehaviour
 
     private void InitializeUnlocks()
     {
-        unlockedEntries = new bool[diaryDatabase.biomes.Length, 3]; // 3 entries per biome
+        unlockedEntries = new bool[diaryDatabase.biomes.Length, 3];
     }
 
     public void OnBiomeEntered(int biomeIndex)
@@ -99,12 +99,7 @@ public class DiaryManager : MonoBehaviour
 
         if (!IsEntryUnlocked(biomeIndex, 0))
         {
-            unlockedEntries[biomeIndex, 0] = true;
-            SaveProgress();
-            UpdateEntryButtons();
-
-            if (PopUpManager.Instance != null)
-                PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
+            UnlockEntry(biomeIndex, 0);
         }
     }
 
@@ -117,25 +112,31 @@ public class DiaryManager : MonoBehaviour
         return unlockedEntries[biomeIndex, entryIndex];
     }
 
-    public bool TryUnlockDiary(int biomeIndex, int entryIndex)
+    public bool UnlockEntry(int biomeIndex, int entryIndex)
     {
         if (IsEntryUnlocked(biomeIndex, entryIndex))
-            return false; // Already unlocked
+            return false;
 
+        unlockedEntries[biomeIndex, entryIndex] = true;
+        SaveProgress();
+        UpdateEntryButtons();
+
+        // Show pop-up
+        if (PopUpManager.Instance != null)
+            PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
+
+        return true;
+    }
+
+    public bool TryUnlockDiary(int biomeIndex, int entryIndex)
+    {
         var entry = diaryDatabase.biomes[biomeIndex].entries[entryIndex];
         int playerCurrency = RelicCurrency.GetTotalCurrency();
 
         if (playerCurrency >= entry.cost)
         {
             RelicCurrency.SpendCurrency(entry.cost);
-            unlockedEntries[biomeIndex, entryIndex] = true;
-            SaveProgress();
-            UpdateEntryButtons();
-
-            if (PopUpManager.Instance != null)
-                PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
-
-            return true;
+            return UnlockEntry(biomeIndex, entryIndex); // Reuse unlock method for popup
         }
 
         return false;
@@ -145,7 +146,7 @@ public class DiaryManager : MonoBehaviour
     {
         if (!IsEntryUnlocked(biomeIndex, entryIndex))
         {
-            contentText.text = ""; // Locked entry shows nothing
+            contentText.text = "";
             return;
         }
 
@@ -166,7 +167,7 @@ public class DiaryManager : MonoBehaviour
 
     public void SwitchBiome(int biomeIndex)
     {
-        // Hide entries from other biomes
+        // Hide entries of other biomes
         for (int b = 0; b < biomesUI.Length; b++)
         {
             bool active = (b == biomeIndex);

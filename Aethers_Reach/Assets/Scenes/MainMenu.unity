@@ -7495,7 +7495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d585576d4c32cd945b71508b86dbfba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFirstTimePlayer: 1
   deityDialogueText: {fileID: 1405059634}
   viewDiaryButton: {fileID: 1209503650}
   yesButton: {fileID: 896912371}
@@ -7748,7 +7747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: -697.22217}
+  m_AnchoredPosition: {x: -4, y: -697.22217}
   m_SizeDelta: {x: 846.7542, y: 34.4443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1405059634
@@ -7773,7 +7772,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
-    m_FontSize: 45
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

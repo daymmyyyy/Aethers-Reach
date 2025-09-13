@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     public float gravityScale = 3f;
     public float glideGravityScale = 0.5f;
 
+    [Header("Hop 2 Glide Settings")]
+    public float hopForce = 5f;         
+    public float hopDuration = 0.15f;   // how long the hop lasts
+
     [Header("Speed Increase Settings")]
     public float speedIncreaseRate = 0.1f;
     public float maxSpeed = 20f;
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
     private bool wasHoldingUpLastFrame;
     private bool isJumping;
     private bool controlsEnabled = false;
+    private bool isHopping = false;
 
     private float currentSpeed;
     private float currentGlideSpeed;
@@ -63,6 +68,7 @@ public class PlayerController : MonoBehaviour
     private float holdTimer = 0f;
     private float holdThreshold = 0.15f;
     private float jumpTimer;
+    private float hopTimer = 0f;
 
     private int groundContacts = 0;
 
@@ -115,6 +121,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             holdTimer += Time.deltaTime;
+
+            // start hopping when player first presses
+            if (holdTimer >= holdThreshold && isGrounded && !isHopping)
+            {
+                StartHop();
+            }
+
             isHoldingUp = holdTimer >= holdThreshold;
         }
         else
@@ -183,6 +196,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
+            // Run on the ground
             velocity.x = currentSpeed;
             rb.gravityScale = gravityScale;
 
@@ -191,12 +205,22 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            // Air movement
             velocity.x = currentGlideSpeed;
 
-            if (isHoldingUp)
+            if (isHopping)
             {
-                // Faster lift
-                rb.gravityScale = glideGravityScale * 0.5f; // reduce gravity more for quicker lift
+                hopTimer -= Time.fixedDeltaTime;
+                if (hopTimer <= 0f)
+                {
+                    isHopping = false;
+                    rb.gravityScale = glideGravityScale; // restore glide gravity after hop
+                }
+            }
+            else if (isHoldingUp)
+            {
+                // Regular glide after hop
+                rb.gravityScale = glideGravityScale;
                 float speedFactor = Mathf.InverseLerp(runSpeed, maxSpeed, currentSpeed);
                 float lift = windLiftForce * 2f * (1f + speedFactor); // double lift
                 float maxY = maxVerticalSpeed * 1.5f * (1f + speedFactor); // increase maxY
@@ -206,14 +230,13 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Faster drop
-                rb.gravityScale = gravityScale + 3f; // double gravity when falling
-                //velocity.y = Mathf.Max(velocity.y, -maxVerticalSpeed * 2f);
+                rb.gravityScale = gravityScale + 3f; // double gravity when descending
             }
         }
 
         rb.velocity = velocity;
     }
+
 
 
     private void UpdateDistanceCounter()
@@ -474,6 +497,17 @@ public class PlayerController : MonoBehaviour
 
         isKnockedBack = true;
         knockbackTimer = 0.5f;
+    }
+
+    private void StartHop()
+    {
+        isHopping = true;
+        hopTimer = hopDuration;
+
+        rb.velocity = new Vector2(rb.velocity.x, hopForce);
+
+        //temporarily reduce gravity so hop feels floaty
+        rb.gravityScale = glideGravityScale * 0.5f;
     }
 
 }
