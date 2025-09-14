@@ -389,7 +389,7 @@ public class PlayerController : MonoBehaviour
             recoveringSpeed = true;
             speedRecoveryTimer = 0f;
 
-            //Handheld.Vibrate();
+            Handheld.Vibrate();
         }
     }
 
