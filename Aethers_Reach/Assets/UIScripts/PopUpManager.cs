@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -6,17 +7,23 @@ public class PopUpManager : MonoBehaviour
 {
     public static PopUpManager Instance;
 
-    [Header("Pop-up UI")]
-    public GameObject popUpPrefab; // Prefab with Image + Text
-    public Transform popUpParent;  // Canvas transform
+    [Header("Assign in Inspector")]
+    public GameObject popUpPrefab; // The prefab (Text + Image)
+
+    [Header("Settings")]
+    public float displayDuration = 1f;
+
+    private GameObject currentPopUp;
+    private Text popUpText;
+    private Coroutine currentCoroutine;
 
     private void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // persists across scenes
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -24,18 +31,58 @@ public class PopUpManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Show a temporary pop-up with text
-    /// </summary>
-    public void ShowPopUp(string message, float duration = 2f)
+    private void OnDestroy()
     {
-        if (popUpPrefab == null || popUpParent == null) return;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        GameObject popUp = Instantiate(popUpPrefab, popUpParent);
-        Text txt = popUp.GetComponentInChildren<Text>();
-        if (txt != null) txt.text = message;
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetupPopUpForScene();
+    }
 
-        // Destroy after duration
-        Destroy(popUp, duration);
+    private void SetupPopUpForScene()
+    {
+        // Destroy previous pop-up if it exists
+        if (currentPopUp != null)
+        {
+            Destroy(currentPopUp);
+            currentPopUp = null;
+        }
+
+        GameObject canvas = GameObject.Find("PopUpCanvas");
+
+        if (canvas == null)
+        {
+            Debug.LogError("PopUpManager: No PopUpCanvas found in the scene!");
+            return;
+        }
+
+        currentPopUp = Instantiate(popUpPrefab, canvas.transform);
+        popUpText = currentPopUp.GetComponentInChildren<Text>(true);
+        currentPopUp.SetActive(false); // hidden initially
+    }
+
+    public void ShowPopUp(string message)
+    {
+        if (currentPopUp == null) return;
+
+        if (popUpText != null)
+            popUpText.text = message;
+
+        if (currentCoroutine != null)
+            StopCoroutine(currentCoroutine);
+
+        currentCoroutine = StartCoroutine(ShowNotification());
+    }
+
+    private IEnumerator ShowNotification()
+    {
+        currentPopUp.SetActive(true);
+
+        yield return new WaitForSeconds(displayDuration);
+
+        currentPopUp.SetActive(false);
+        currentCoroutine = null;
     }
 }

@@ -9,37 +9,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 707b25c9de052af47b8ea86a05d2ada3, type: 3}
   m_Name: DiaryDatabase
-  m_EditorClassIdentifier: Assembly-CSharp::DiaryDatabase
+  m_EditorClassIdentifier: 
   biomes:
   - entries:
-    - title: s1
-      content: asdfghjkl
+    - title: S1
+      content: s1 content
       cost: 0
-    - title: s2
-      content: asdfghjkl
+    - title: S2
+      content: s2 content
       cost: 1000
-    - title: s3
-      content: asdfghjkl
+    - title: S3
+      content: s3 content
       cost: 2000
   - entries:
     - title: b1
-      content: asdfghjkl
+      content: b2 content
       cost: 0
     - title: b2
-      content: asdfghjkl
+      content: b2 content
       cost: 3000
     - title: b3
-      content: asdfghjkl
+      content: b3 content
       cost: 4000
   - entries:
     - title: r1
-      content: asdfghjkl
+      content: r1 content
       cost: 0
     - title: r2
-      content: asdfghjkl
+      content: r2 content
       cost: 5000
     - title: r3
-      content: asdfghjkl
+      content: r3 content
       cost: 6000

@@ -9,26 +9,6 @@ public class BiomeUI
     public Button[] entryButtons;    // 3 entry buttons
 }
 
-[System.Serializable]
-public class DiaryEntryData
-{
-    public string title;
-    public string content;
-    public int cost;
-}
-
-[System.Serializable]
-public class BiomeData
-{
-    public DiaryEntryData[] entries;
-}
-
-[CreateAssetMenu(fileName = "DiaryDatabase", menuName = "Diary/Database")]
-public class DiaryDatabase : ScriptableObject
-{
-    public BiomeData[] biomes;
-}
-
 public class DiaryManager : MonoBehaviour
 {
     public static DiaryManager Instance;
@@ -47,6 +27,11 @@ public class DiaryManager : MonoBehaviour
 
     private void Awake()
     {
+      #if !UNITY_EDITOR
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+      #endif
+
         if (Instance == null)
         {
             Instance = this;
@@ -85,8 +70,13 @@ public class DiaryManager : MonoBehaviour
 
     private void InitializeUnlocks()
     {
-        unlockedEntries = new bool[diaryDatabase.biomes.Length, 3];
+        int maxEntries = 0;
+        foreach (var biome in diaryDatabase.biomes)
+            maxEntries = Mathf.Max(maxEntries, biome.entries.Length);
+
+        unlockedEntries = new bool[diaryDatabase.biomes.Length, maxEntries];
     }
+
 
     public void OnBiomeEntered(int biomeIndex)
     {
@@ -95,11 +85,19 @@ public class DiaryManager : MonoBehaviour
 
     private IEnumerator AutoUnlockFirstEntry(int biomeIndex)
     {
-        yield return new WaitForSeconds(autoUnlockDelay);
+        yield return new WaitForSeconds(2f);
 
+        // Unlock first entry if not unlocked
         if (!IsEntryUnlocked(biomeIndex, 0))
         {
             UnlockEntry(biomeIndex, 0);
+
+            // Show notification
+            if (PopUpManager.Instance != null)
+            {
+                string entryTitle = diaryDatabase.biomes[biomeIndex].entries[0].title;
+                PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
+            }
         }
     }
 
@@ -158,12 +156,17 @@ public class DiaryManager : MonoBehaviour
     {
         for (int b = 0; b < biomesUI.Length; b++)
         {
+            if (biomesUI[b].entryButtons == null) continue;
+
             for (int e = 0; e < biomesUI[b].entryButtons.Length; e++)
             {
-                biomesUI[b].entryButtons[e].interactable = IsEntryUnlocked(b, e);
+                var btn = biomesUI[b].entryButtons[e];
+                if (btn != null)
+                    btn.interactable = IsEntryUnlocked(b, e);
             }
         }
     }
+
 
     public void SwitchBiome(int biomeIndex)
     {
