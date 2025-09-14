@@ -121,19 +121,27 @@ public class DiaryManager : MonoBehaviour
         return true;
     }
 
-    public bool TryUnlockDiary(int biomeIndex, int entryIndex)
+public bool TryUnlockDiary(int biomeIndex, int entryIndex)
+{
+    // Ensure entries unlock in order
+    if (entryIndex > 0 && !IsEntryUnlocked(biomeIndex, entryIndex - 1))
     {
-        var entry = diaryDatabase.biomes[biomeIndex].entries[entryIndex];
-        int playerCurrency = RelicCurrency.GetTotalCurrency();
-
-        if (playerCurrency >= entry.cost)
-        {
-            RelicCurrency.SpendCurrency(entry.cost);
-            return UnlockEntry(biomeIndex, entryIndex); // Reuse unlock method for popup
-        }
-
-        return false;
+        Debug.Log("You must unlock previous entries first!");
+        return false; // Stop if the previous entry isn't unlocked
     }
+
+    var entry = diaryDatabase.biomes[biomeIndex].entries[entryIndex];
+    int playerCurrency = RelicCurrency.GetTotalCurrency();
+
+    if (playerCurrency >= entry.cost)
+    {
+        RelicCurrency.SpendCurrency(entry.cost);
+        return UnlockEntry(biomeIndex, entryIndex); // Unlock & update UI
+    }
+
+    return false;
+}
+
 
     private void OnEntryClicked(int biomeIndex, int entryIndex)
     {
