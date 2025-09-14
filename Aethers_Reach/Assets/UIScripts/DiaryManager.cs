@@ -27,10 +27,6 @@ public class DiaryManager : MonoBehaviour
 
     private void Awake()
     {
-      #if !UNITY_EDITOR
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-      #endif
 
         if (Instance == null)
         {
@@ -77,7 +73,6 @@ public class DiaryManager : MonoBehaviour
         unlockedEntries = new bool[diaryDatabase.biomes.Length, maxEntries];
     }
 
-
     public void OnBiomeEntered(int biomeIndex)
     {
         StartCoroutine(AutoUnlockFirstEntry(biomeIndex));
@@ -96,7 +91,7 @@ public class DiaryManager : MonoBehaviour
             if (PopUpManager.Instance != null)
             {
                 string entryTitle = diaryDatabase.biomes[biomeIndex].entries[0].title;
-                PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
+                PopUpManager.Instance.ShowPopUp($"Diary Entry Unlocked: {entryTitle}");
             }
         }
     }
@@ -160,13 +155,11 @@ public class DiaryManager : MonoBehaviour
 
             for (int e = 0; e < biomesUI[b].entryButtons.Length; e++)
             {
-                var btn = biomesUI[b].entryButtons[e];
-                if (btn != null)
-                    btn.interactable = IsEntryUnlocked(b, e);
+                if (biomesUI[b].entryButtons[e] != null)
+                    biomesUI[b].entryButtons[e].interactable = IsEntryUnlocked(b, e);
             }
         }
     }
-
 
     public void SwitchBiome(int biomeIndex)
     {

@@ -16,7 +16,8 @@ public class DeityUIManager : MonoBehaviour
     private string[] currentDialogue;
     private int dialogueIndex = 0;
     private bool pendingYesNo;
-    private bool introShown = false; // track if intro has been shown
+
+    private const string INTRO_KEY = "DeityIntroRead"; // PlayerPrefs key to track intro
 
     private void Awake()
     {
@@ -57,59 +58,63 @@ public class DeityUIManager : MonoBehaviour
 
     public void ShowDeityDialogue()
     {
-        // Always show intro first if not yet shown
-        if (!introShown)
+        if (deityDialogueText == null)
         {
-            currentDialogue = new string[]
-            {
-                "Welcome, mortal, to my presence.",
-                "I have heard of your curiosity.",
-                "Complete your tasks: traverse every land to earn the first tale."
-            };
-            introShown = true;
-            StartDialogueSequence(false);
+            Debug.LogError("Cannot show dialogue: deityDialogueText is null!");
             return;
         }
 
-        // After intro, follow normal logic
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
+
+        viewDiaryButton.gameObject.SetActive(true);
+
+        bool introRead = PlayerPrefs.GetInt(INTRO_KEY, 0) == 1;
+
+        if (!introRead)
+        {
+            // Show intro only once
+            currentDialogue = new string[]
+            {
+                "Welcome, traveler. What wisdom do you seek?",
+                "This diary contains knowledge of all lands. Seek and learn."
+            };
+            StartDialogueSequence(false);
+            PlayerPrefs.SetInt(INTRO_KEY, 1);
+            PlayerPrefs.Save();
+            return;
+        }
+
         var diary = DiaryManager.Instance.diaryDatabase;
         int totalUnlocked = 0;
+
         for (int i = 0; i < diary.biomes.Length; i++)
         {
             if (DiaryManager.Instance.IsEntryUnlocked(i, 0))
                 totalUnlocked++;
         }
 
-        if (totalUnlocked == 0)
-        {
-            currentDialogue = new string[]
-            {
-                "You still have no tales unlocked. Venture forth to earn your first entry."
-            };
-            StartDialogueSequence(false);
-            return;
-        }
-
+        // If free entries still available
         if (totalUnlocked < diary.biomes.Length)
         {
             currentDialogue = new string[]
             {
-                "Mortal, you have unlocked some tales, but there are still free secrets waiting in other lands.",
+                "Mortal, you have unlocked some tales, but free secrets remain in other lands.",
                 "Venture forth to earn the first entry before seeking my paid knowledge."
             };
             StartDialogueSequence(false);
             return;
         }
 
-        // Paid entries
+        // All free entries unlocked
         for (int b = 0; b < diary.biomes.Length; b++)
         {
-            var entries = diary.biomes[b].entries;
-            for (int e = 1; e < entries.Length; e++)
+            for (int e = 1; e < diary.biomes[b].entries.Length; e++)
             {
                 if (!DiaryManager.Instance.IsEntryUnlocked(b, e))
                 {
-                    int cost = entries[e].cost;
+                    int cost = diary.biomes[b].entries[e].cost;
                     int playerCurrency = RelicCurrency.GetTotalCurrency();
                     currentBiomeIndex = b;
 
@@ -117,7 +122,7 @@ public class DeityUIManager : MonoBehaviour
                     {
                         currentDialogue = new string[]
                         {
-                            $"Ah, mortal, you seek the knowledge of {entries[e].title}.",
+                            $"Ah, mortal, you seek the knowledge of {diary.biomes[b].entries[e].title}.",
                             $"It shall cost you {cost} crystals. Do you dare pay the price?"
                         };
                         StartDialogueSequence(true);
@@ -127,7 +132,7 @@ public class DeityUIManager : MonoBehaviour
                     {
                         currentDialogue = new string[]
                         {
-                            $"You desire {entries[e].title}, but you lack the {cost} crystals required.",
+                            $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
                             "Return when you have enough crystals to claim my wisdom."
                         };
                         StartDialogueSequence(false);
@@ -137,13 +142,13 @@ public class DeityUIManager : MonoBehaviour
             }
         }
 
-        // All entries unlocked
+        // Everything unlocked
         currentDialogue = new string[]
         {
-            "You have learned all I know... for now.",
-            "Even I, the great one, hold no further secrets for you."
+            "You have unlocked all free knowledge.",
+            "Do you wish to purchase the remaining entries?"
         };
-        StartDialogueSequence(false);
+        StartDialogueSequence(true);
     }
 
     private void StartDialogueSequence(bool showYesNoAtEnd)
@@ -178,11 +183,6 @@ public class DeityUIManager : MonoBehaviour
             {
                 yesButton.gameObject.SetActive(true);
                 noButton.gameObject.SetActive(true);
-            }
-            else
-            {
-                // Allow dialogue to restart if player pressed next after No
-                ShowDeityDialogue();
             }
         }
     }
@@ -222,9 +222,6 @@ public class DeityUIManager : MonoBehaviour
             deityDialogueText.text = "Return when you have enough crystals to claim more wisdom.";
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
-
-            // Let next button cycle dialogue again
-            nextButton.gameObject.SetActive(true);
         }
     }
 
@@ -246,8 +243,6 @@ public class DeityUIManager : MonoBehaviour
         deityDialogueText.text = "Very well. Return when you are ready.";
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
-
-        // Let next button continue dialogue cycle
-        nextButton.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true); // Allow cycling dialogue again
     }
 }
