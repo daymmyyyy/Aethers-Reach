@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Biome 3
+  targetBiomeIndex: 0
 --- !u!58 &2920066322904477490
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4919,7 +4920,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 81c840e28d4b6b44f9b5957e327bd4d2, type: 2}
+  - {fileID: 2100000, guid: 2dbe2c8f9172cc345ac6fd58383a97fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
