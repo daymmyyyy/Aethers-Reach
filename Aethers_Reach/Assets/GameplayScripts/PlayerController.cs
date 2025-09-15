@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance != null)
             GameManager.Instance.sessionDistance = sessionDistance;
 
-        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + "KM";
+        distanceText.text = ((sessionDistance * distanceMultiplier)).ToString("F2") + "m";
     }
 
     private void UpdateAnimationAndVFX()

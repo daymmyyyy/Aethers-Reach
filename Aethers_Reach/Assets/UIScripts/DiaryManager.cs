@@ -18,6 +18,7 @@ public class DiaryManager : MonoBehaviour
 
     [Header("UI Elements")]
     public BiomeUI[] biomesUI; // 0=Skylands, 1=Beach, 2=Ruins
+    public Text titleText;
     public Text contentText;
 
     [Header("Settings")]
@@ -91,7 +92,7 @@ public class DiaryManager : MonoBehaviour
             if (PopUpManager.Instance != null)
             {
                 string entryTitle = diaryDatabase.biomes[biomeIndex].entries[0].title;
-                PopUpManager.Instance.ShowPopUp($"Diary Entry Unlocked: {entryTitle}");
+                PopUpManager.Instance.ShowPopUp($"New Entry Unlocked!");
             }
         }
     }
@@ -152,7 +153,8 @@ public bool TryUnlockDiary(int biomeIndex, int entryIndex)
         }
 
         var entry = diaryDatabase.biomes[biomeIndex].entries[entryIndex];
-        contentText.text = $"{entry.title}\n\n{entry.content}";
+        contentText.text = $"{entry.content}";
+        titleText.text = $"{entry.title}";
     }
 
     public void UpdateEntryButtons()
@@ -179,7 +181,9 @@ public bool TryUnlockDiary(int biomeIndex, int entryIndex)
                 btn.gameObject.SetActive(active);
         }
 
-        contentText.text = ""; // Clear content until player clicks an entry
+        // Clear content until player clicks an entry
+        titleText.text = "";
+        contentText.text = ""; 
     }
 
     private void SaveProgress()
