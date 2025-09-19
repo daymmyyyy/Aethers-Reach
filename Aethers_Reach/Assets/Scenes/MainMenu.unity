@@ -1138,7 +1138,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 234872900}
   m_OnClick:
     m_PersistentCalls:
@@ -1558,6 +1558,68 @@ RectTransform:
   m_AnchoredPosition: {x: 13, y: 10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &301232314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 301232316}
+  - component: {fileID: 301232315}
+  m_Layer: 0
+  m_Name: DiaryUIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &301232315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301232314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363d1a72d4402264492c47021f508f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biomesUI:
+  - tabButton: {fileID: 100537397}
+    entryButtons:
+    - {fileID: 1899744289}
+    - {fileID: 1979001271}
+    - {fileID: 234872899}
+  - tabButton: {fileID: 1573745407}
+    entryButtons:
+    - {fileID: 1613656062}
+    - {fileID: 757183759}
+    - {fileID: 1316057075}
+  - tabButton: {fileID: 173113910}
+    entryButtons:
+    - {fileID: 925788252}
+    - {fileID: 1641568499}
+    - {fileID: 432353242}
+  titleText: {fileID: 790555270}
+  contentText: {fileID: 664341605}
+--- !u!4 &301232316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301232314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 114.076324, y: 621.26184, z: -2.839775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319467982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1895,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 432353243}
   m_OnClick:
     m_PersistentCalls:
@@ -4013,7 +4075,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 757183760}
   m_OnClick:
     m_PersistentCalls:
@@ -5066,7 +5128,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 925788253}
   m_OnClick:
     m_PersistentCalls:
@@ -5537,24 +5599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diaryDatabase: {fileID: 11400000, guid: 571d7cb24c5b561418ea954507bdd05c, type: 2}
-  biomesUI:
-  - tabButton: {fileID: 100537397}
-    entryButtons:
-    - {fileID: 1899744289}
-    - {fileID: 1979001271}
-    - {fileID: 234872899}
-  - tabButton: {fileID: 1573745407}
-    entryButtons:
-    - {fileID: 1613656062}
-    - {fileID: 757183759}
-    - {fileID: 1316057075}
-  - tabButton: {fileID: 173113910}
-    entryButtons:
-    - {fileID: 925788252}
-    - {fileID: 1641568499}
-    - {fileID: 432353242}
-  titleText: {fileID: 790555270}
-  contentText: {fileID: 664341605}
   autoUnlockDelay: 2
 --- !u!1 &1016429385
 GameObject:
@@ -7345,7 +7389,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1316057076}
   m_OnClick:
     m_PersistentCalls:
@@ -8450,7 +8494,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1613656063}
   m_OnClick:
     m_PersistentCalls:
@@ -8645,7 +8689,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1641568500}
   m_OnClick:
     m_PersistentCalls:
@@ -9829,7 +9873,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1899744290}
   m_OnClick:
     m_PersistentCalls:
@@ -10339,7 +10383,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1979001272}
   m_OnClick:
     m_PersistentCalls:
@@ -10801,6 +10845,7 @@ SceneRoots:
   - {fileID: 1084775149}
   - {fileID: 1285547442}
   - {fileID: 1328435995}
+  - {fileID: 301232316}
   - {fileID: 1014940180}
   - {fileID: 813417228}
   - {fileID: 156467687}

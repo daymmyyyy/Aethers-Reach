@@ -12,12 +12,12 @@ public class DeityUIManager : MonoBehaviour
     public Button noButton;
     public Button nextButton;
 
-    private int currentBiomeIndex;
     private string[] currentDialogue;
     private int dialogueIndex = 0;
     private bool pendingYesNo;
+    private int currentBiomeIndex;
 
-    private const string INTRO_KEY = "DeityIntroRead"; // PlayerPrefs key to track intro
+    private const string INTRO_KEY = "DeityIntroRead";
 
     private void Awake()
     {
@@ -26,29 +26,22 @@ public class DeityUIManager : MonoBehaviour
         if (deityDialogueText == null)
             deityDialogueText = GetComponentInChildren<Text>(true);
 
-        if (yesButton == null || noButton == null || nextButton == null)
+        var buttons = GetComponentsInChildren<Button>(true);
+        foreach (var b in buttons)
         {
-            var buttons = GetComponentsInChildren<Button>(true);
-            foreach (var b in buttons)
-            {
-                var name = b.name.ToLower();
-                if (yesButton == null && name.Contains("yes")) yesButton = b;
-                else if (noButton == null && name.Contains("no")) noButton = b;
-                else if (nextButton == null && name.Contains("next")) nextButton = b;
-            }
+            string name = b.name.ToLower();
+            if (yesButton == null && name.Contains("yes")) yesButton = b;
+            else if (noButton == null && name.Contains("no")) noButton = b;
+            else if (nextButton == null && name.Contains("next")) nextButton = b;
         }
     }
 
     private void Start()
     {
-        if (BiomeManager.Instance != null)
-            currentBiomeIndex = BiomeManager.Instance.currentBiomeIndex;
-
         yesButton.onClick.AddListener(OnYesPressed);
         noButton.onClick.AddListener(OnNoPressed);
         nextButton.onClick.AddListener(OnNextPressed);
 
-        // Hide all at start
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
@@ -58,23 +51,16 @@ public class DeityUIManager : MonoBehaviour
 
     public void ShowDeityDialogue()
     {
-        if (deityDialogueText == null)
-        {
-            Debug.LogError("Cannot show dialogue: deityDialogueText is null!");
-            return;
-        }
-
+        viewDiaryButton.gameObject.SetActive(true);
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
-
-        viewDiaryButton.gameObject.SetActive(true);
 
         bool introRead = PlayerPrefs.GetInt(INTRO_KEY, 0) == 1;
 
         if (!introRead)
         {
-            // Show intro only once
+            // Show welcome intro
             currentDialogue = new string[]
             {
                 "Welcome, traveler. What wisdom do you seek?",
@@ -86,17 +72,20 @@ public class DeityUIManager : MonoBehaviour
             return;
         }
 
+        ShowPostIntroDialogue();
+    }
+
+    // Shows dialogue depending on free entries or paid entries
+    public void ShowPostIntroDialogue()
+    {
         var diary = DiaryManager.Instance.diaryDatabase;
-        int totalUnlocked = 0;
+        int freeCollected = 0;
 
-        for (int i = 0; i < diary.biomes.Length; i++)
-        {
-            if (DiaryManager.Instance.IsEntryUnlocked(i, 0))
-                totalUnlocked++;
-        }
+        for (int b = 0; b < diary.biomes.Length; b++)
+            if (DiaryManager.Instance.IsEntryUnlocked(b, 0))
+                freeCollected++;
 
-        // If free entries still available
-        if (totalUnlocked < diary.biomes.Length)
+        if (freeCollected < diary.biomes.Length)
         {
             currentDialogue = new string[]
             {
@@ -107,7 +96,7 @@ public class DeityUIManager : MonoBehaviour
             return;
         }
 
-        // All free entries unlocked
+        // All free entries collected, check for paid entries
         for (int b = 0; b < diary.biomes.Length; b++)
         {
             for (int e = 1; e < diary.biomes[b].entries.Length; e++)
@@ -142,25 +131,23 @@ public class DeityUIManager : MonoBehaviour
             }
         }
 
-        // Everything unlocked
+        // All entries unlocked
         currentDialogue = new string[]
         {
-            "You have unlocked all free knowledge.",
-            "Do you wish to purchase the remaining entries?"
+            "You have unlocked all knowledge. Well done!"
         };
-        StartDialogueSequence(true);
+        StartDialogueSequence(false);
     }
 
     private void StartDialogueSequence(bool showYesNoAtEnd)
     {
         dialogueIndex = 0;
         deityDialogueText.text = currentDialogue[dialogueIndex];
-
-        yesButton.gameObject.SetActive(false);
-        noButton.gameObject.SetActive(false);
+        pendingYesNo = showYesNoAtEnd;
 
         nextButton.gameObject.SetActive(currentDialogue.Length > 1);
-        pendingYesNo = showYesNoAtEnd;
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
 
         if (currentDialogue.Length == 1 && showYesNoAtEnd)
         {
@@ -196,7 +183,7 @@ public class DeityUIManager : MonoBehaviour
         {
             if (!DiaryManager.Instance.IsEntryUnlocked(currentBiomeIndex, e))
             {
-                unlocked = DiaryManager.Instance.TryUnlockDiary(currentBiomeIndex, e);
+                unlocked = DiaryManager.Instance.TryUnlockPaidEntry(currentBiomeIndex, e);
                 break;
             }
         }
@@ -231,10 +218,9 @@ public class DeityUIManager : MonoBehaviour
         int playerCurrency = RelicCurrency.GetTotalCurrency();
 
         for (int e = 1; e < entries.Length; e++)
-        {
             if (!DiaryManager.Instance.IsEntryUnlocked(biomeIndex, e) && playerCurrency >= entries[e].cost)
                 return true;
-        }
+
         return false;
     }
 
@@ -243,6 +229,6 @@ public class DeityUIManager : MonoBehaviour
         deityDialogueText.text = "Very well. Return when you are ready.";
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
-        nextButton.gameObject.SetActive(true); // Allow cycling dialogue again
+        nextButton.gameObject.SetActive(true);
     }
 }

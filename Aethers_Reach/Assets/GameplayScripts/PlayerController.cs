@@ -430,8 +430,6 @@ public class PlayerController : MonoBehaviour
 
                 Vector2 normal = contact.normal.normalized;
 
-                Debug.Log(Vector2.Dot(normal, Vector2.up));
-
                 if (Vector2.Dot(normal, Vector2.up) < 0.4f)
                 {
 
