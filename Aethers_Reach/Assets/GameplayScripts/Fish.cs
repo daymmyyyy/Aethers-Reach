@@ -51,7 +51,33 @@ public class Fish : MonoBehaviour
 
                 if (playerSpeed >= breakSpeedThreshold)
                 {
-                    Destroy(gameObject);
+                    // Player breaks through fish
+                    Collider2D col = GetComponent<Collider2D>();
+                    if (col != null) col.enabled = false; // remove collider
+
+                    SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                    if (sr != null) sr.enabled = false; // hide sprite
+
+                    // Play VFX
+                    Transform vfxTransform = transform.Find("CreatureCloudBurst");
+                    if (vfxTransform != null)
+                    {
+                        ParticleSystem crashVFX = vfxTransform.GetComponent<ParticleSystem>();
+                        if (crashVFX != null)
+                        {
+                            crashVFX.Play();
+                            StartCoroutine(DestroyAfterVFX(crashVFX));
+                        }
+                        else
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
+
                     Debug.Log("Fish destroyed due to high player speed!");
                     return;
                 }
@@ -68,11 +94,11 @@ public class Fish : MonoBehaviour
                 Vector2 direction = (player.transform.position - transform.position).normalized;
                 player.ApplyKnockback(direction);
 
-                // Play VFX
-                Transform vfxTransform = other.transform.Find("CrystalLossBurstVFX");
-                if (vfxTransform != null)
+                // Play VFX for relic loss
+                Transform lossVFXTransform = other.transform.Find("CrystalLossBurstVFX");
+                if (lossVFXTransform != null)
                 {
-                    ParticleSystem knockbackVFX = vfxTransform.GetComponent<ParticleSystem>();
+                    ParticleSystem knockbackVFX = lossVFXTransform.GetComponent<ParticleSystem>();
                     if (knockbackVFX != null && knockbackVFX.gameObject.activeInHierarchy)
                     {
                         knockbackVFX.Play();
@@ -80,9 +106,17 @@ public class Fish : MonoBehaviour
                 }
 
                 // Lose relics
-                int lossAmount = 20; // choose penalty
+                int lossAmount = 20; // penalty amount
                 RelicCurrency.LoseCurrency(lossAmount);
             }
         }
+    }
+
+    private System.Collections.IEnumerator DestroyAfterVFX(ParticleSystem vfx)
+    {
+        float waitTime = vfx.main.duration + vfx.main.startLifetime.constantMax;
+        yield return new WaitForSeconds(waitTime);
+
+        Destroy(gameObject);
     }
 }
