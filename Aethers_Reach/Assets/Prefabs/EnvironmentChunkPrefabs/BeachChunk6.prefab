@@ -236,6 +236,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.2562113
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.7693186
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (5)
@@ -310,6 +318,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.253522
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.7916217
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
+      value: 1.7945079
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (6)
@@ -760,6 +784,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachFlatBridge (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.5246799
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.19577864
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -1.579998
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.061019897
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: -1.579998
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -0.05422592
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: -1.5799987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: -0.09562454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: -1.5237486
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: -0.22687453
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 1.4012511
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: -0.22687453
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].x
+      value: 1.6262511
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
+      value: -0.17062454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].x
+      value: 1.2482375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
+      value: 0.26031187
+      objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 63.2
@@ -883,6 +975,22 @@ PrefabInstance:
     - target: {fileID: 1887160407318182995, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_Name
       value: BeachFlatBridge (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.5799987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.14798048
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 1.679901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: 0.12785795
       objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1082,6 +1190,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachFlatBridge (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.4349267
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.19791487
+      objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.370213
@@ -1280,6 +1396,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachFlatBridge (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 1.6662749
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: 0.1732643
+      objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 129.4
@@ -1338,6 +1462,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[19].x
+      value: 5.5477295
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[19].y
+      value: 2.072223
+      objectReference: {fileID: 0}
     - target: {fileID: 3001073996212612445, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_1 (4)
@@ -1601,6 +1733,14 @@ PrefabInstance:
     - target: {fileID: 1887160407318182995, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_Name
       value: BeachFlatBridge (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.5518081
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.19488981
       objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1908,6 +2048,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.3057275
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.737687
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (3)
@@ -1982,6 +2130,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[19].x
+      value: 5.2907257
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[19].y
+      value: 2.0886269
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[20].x
+      value: 5.533325
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[20].y
+      value: 1.9849999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[21].x
+      value: 5.5950003
+      objectReference: {fileID: 0}
+    - target: {fileID: -8262623118828621427, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[21].y
+      value: 1.195
+      objectReference: {fileID: 0}
     - target: {fileID: 3001073996212612445, guid: 396e27825309bcb49a4a87bac5f8d7b3, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_1 (2)
@@ -2110,6 +2286,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachFlatBridge (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.5366561
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.20394972
+      objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.8
@@ -2168,6 +2352,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.227318
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.7138553
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (4)
@@ -2242,6 +2434,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.260117
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.7951161
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
+      value: 6.2784867
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
+      value: 1.763535
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (7)
@@ -2440,6 +2648,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2847108705251354423}
     m_Modifications:
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
+      value: -6.2872133
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
+      value: 1.8264753
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
+      value: 6.264231
+      objectReference: {fileID: 0}
+    - target: {fileID: -3870279387969369980, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
+      value: 1.7624007
+      objectReference: {fileID: 0}
     - target: {fileID: 8060770060693891396, guid: 3d9d62f16bff621458f71a2487f7990b, type: 3}
       propertyPath: m_Name
       value: UpdatedBeachPlatforms_25.6.25_0 (2)
@@ -3038,6 +3262,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachFlatBridge (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.4855087
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.21279982
+      objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.8
@@ -3607,6 +3839,22 @@ PrefabInstance:
     - target: {fileID: 1887160407318182995, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_Name
       value: BeachFlatBridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.3938978
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.17071608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].x
+      value: 1.5988826
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587109184226078504, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[5].y
+      value: 0.1652458
       objectReference: {fileID: 0}
     - target: {fileID: 4550693485905893251, guid: 6703fb7b8a930364ead44434fa55c92e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -159,6 +159,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.1619517
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.1931571
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 1.267325
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.18007569
+      objectReference: {fileID: 0}
     - target: {fileID: 6112966831872689595, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_Name
       value: RuinsFlatBridge (3)
@@ -440,6 +456,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 1.2575903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.17769256
+      objectReference: {fileID: 0}
     - target: {fileID: 6112966831872689595, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_Name
       value: RuinsFlatBridge
@@ -633,6 +657,30 @@ PrefabInstance:
     - target: {fileID: 2377024280394981324, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.194536
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.19546592
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -1.2549481
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.027116925
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 1.2724531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.1854077
       objectReference: {fileID: 0}
     - target: {fileID: 6112966831872689595, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_Name
@@ -1202,6 +1250,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3774847171541958890, guid: 5e5f67fb05a106e46baeb73272b87450, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 7.2567425
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774847171541958890, guid: 5e5f67fb05a106e46baeb73272b87450, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: 2.4645002
+      objectReference: {fileID: 0}
     - target: {fileID: 3934445000474756018, guid: 5e5f67fb05a106e46baeb73272b87450, type: 3}
       propertyPath: m_Name
       value: RuinsPlatformSprites_JGuy_31.7.25_0 (2)
@@ -1459,6 +1515,30 @@ PrefabInstance:
     - target: {fileID: 2377024280394981324, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -1.1862304
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 0.17686963
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -1.1970614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.092489704
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: 1.2328188
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138767592549456764, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.17945278
       objectReference: {fileID: 0}
     - target: {fileID: 6112966831872689595, guid: 0c3df40eca2d9ca4391191c6f76f66e3, type: 3}
       propertyPath: m_Name

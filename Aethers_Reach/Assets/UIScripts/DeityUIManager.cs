@@ -15,6 +15,7 @@ public class DeityUIManager : MonoBehaviour
     private string[] currentDialogue;
     private int dialogueIndex = 0;
     private bool pendingYesNo;
+    private bool introJustPlayed;
     private int currentBiomeIndex;
 
     private const string INTRO_KEY = "DeityIntroRead";
@@ -60,22 +61,25 @@ public class DeityUIManager : MonoBehaviour
 
         if (!introRead)
         {
-            // Show welcome intro
+            // Always play intro the very first time
             currentDialogue = new string[]
             {
                 "Welcome, traveler. What wisdom do you seek?",
-                "This diary contains knowledge of all lands. Seek and learn."
+                "This diary contains knowledge of all lands. Seek and learn.",
+                "First, unlock the free tales, but afterwards, you must pay me for more."
             };
             StartDialogueSequence(false);
+            introJustPlayed = true;
+
             PlayerPrefs.SetInt(INTRO_KEY, 1);
             PlayerPrefs.Save();
             return;
         }
 
+        // If intro already read, go straight to post-intro logic
         ShowPostIntroDialogue();
     }
 
-    // Shows dialogue depending on free entries or paid entries
     public void ShowPostIntroDialogue()
     {
         var diary = DiaryManager.Instance.diaryDatabase;
@@ -96,45 +100,11 @@ public class DeityUIManager : MonoBehaviour
             return;
         }
 
-        // All free entries collected, check for paid entries
-        for (int b = 0; b < diary.biomes.Length; b++)
-        {
-            for (int e = 1; e < diary.biomes[b].entries.Length; e++)
-            {
-                if (!DiaryManager.Instance.IsEntryUnlocked(b, e))
-                {
-                    int cost = diary.biomes[b].entries[e].cost;
-                    int playerCurrency = RelicCurrency.GetTotalCurrency();
-                    currentBiomeIndex = b;
-
-                    if (playerCurrency >= cost)
-                    {
-                        currentDialogue = new string[]
-                        {
-                            $"Ah, mortal, you seek the knowledge of {diary.biomes[b].entries[e].title}.",
-                            $"It shall cost you {cost} crystals. Do you dare pay the price?"
-                        };
-                        StartDialogueSequence(true);
-                        return;
-                    }
-                    else
-                    {
-                        currentDialogue = new string[]
-                        {
-                            $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
-                            "Return when you have enough crystals to claim my wisdom."
-                        };
-                        StartDialogueSequence(false);
-                        return;
-                    }
-                }
-            }
-        }
-
-        // All entries unlocked
+        // All free entries collected
         currentDialogue = new string[]
         {
-            "You have unlocked all knowledge. Well done!"
+            "I see you have collected all the free tales.",
+            "From here onwards, you must pay me to unlock further knowledge."
         };
         StartDialogueSequence(false);
     }
@@ -168,10 +138,70 @@ public class DeityUIManager : MonoBehaviour
             nextButton.gameObject.SetActive(false);
             if (pendingYesNo)
             {
+                // Re-show the last paid-entry dialogue
+                deityDialogueText.text = currentDialogue[currentDialogue.Length - 1];
                 yesButton.gameObject.SetActive(true);
                 noButton.gameObject.SetActive(true);
             }
+            else
+            {
+                if (introJustPlayed)
+                {
+                    introJustPlayed = false;
+                    ShowPostIntroDialogue();
+                }
+                else
+                {
+                    ShowPostIntroDialoguePaidCheck();
+                }
+            }
         }
+    }
+
+
+    private void ShowPostIntroDialoguePaidCheck()
+    {
+        var diary = DiaryManager.Instance.diaryDatabase;
+
+        for (int b = 0; b < diary.biomes.Length; b++)
+        {
+            for (int e = 1; e < diary.biomes[b].entries.Length; e++)
+            {
+                if (!DiaryManager.Instance.IsEntryUnlocked(b, e))
+                {
+                    int cost = diary.biomes[b].entries[e].cost;
+                    int playerCurrency = RelicCurrency.GetTotalCurrency();
+                    currentBiomeIndex = b;
+
+                    if (playerCurrency >= cost)
+                    {
+                        currentDialogue = new string[]
+                        {
+                            $"I see you seek the knowledge of {diary.biomes[b].entries[e].title}.",
+                            $"It shall cost you {cost} crystals. Do you dare pay the price?"
+                        };
+                        StartDialogueSequence(true);
+                        return;
+                    }
+                    else
+                    {
+                        currentDialogue = new string[]
+                        {
+                            $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
+                            "Return when you have enough crystals to claim my wisdom."
+                        };
+                        StartDialogueSequence(false);
+                        return;
+                    }
+                }
+            }
+        }
+
+        currentDialogue = new string[]
+        {
+            "You have unlocked all knowledge. Well done!"
+        };
+        StartDialogueSequence(false);
     }
 
     private void OnYesPressed()
@@ -209,6 +239,8 @@ public class DeityUIManager : MonoBehaviour
             deityDialogueText.text = "Return when you have enough crystals to claim more wisdom.";
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
+            nextButton.gameObject.SetActive(true);
+            pendingYesNo = true; // deity will repeat same question after next
         }
     }
 
@@ -230,5 +262,7 @@ public class DeityUIManager : MonoBehaviour
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(true);
+        pendingYesNo = true; // pressing next will repeat the same paid-entry question
     }
+
 }

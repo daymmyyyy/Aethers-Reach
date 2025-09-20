@@ -2294,9 +2294,9 @@ MonoBehaviour:
   defaultMusicVolume: 1
   defaultSFXVolume: 1
   menuMusic: {fileID: 8300000, guid: dea55ce8c25321345b0a05e084b76f8d, type: 3}
-  biome1Music: {fileID: 0}
-  biome2Music: {fileID: 0}
-  biome3Music: {fileID: 0}
+  biome1Music: {fileID: 8300000, guid: a7f05f43f878bf246b527abba59e362a, type: 3}
+  biome2Music: {fileID: 8300000, guid: 8c10615a05568e04baef38e7a98c14a1, type: 3}
+  biome3Music: {fileID: 8300000, guid: d4927a9084782394a9fd32514af3b504, type: 3}
 --- !u!4 &473574646
 Transform:
   m_ObjectHideFlags: 0

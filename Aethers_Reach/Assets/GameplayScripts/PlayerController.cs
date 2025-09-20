@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
 
             if (isHopping)
             {
+                // Hop phase: apply upward impulse and reduce gravity temporarily
                 hopTimer -= Time.fixedDeltaTime;
                 if (hopTimer <= 0f)
                 {
@@ -230,13 +231,13 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                // Falling
                 rb.gravityScale = gravityScale + 3f; // double gravity when descending
             }
         }
 
         rb.velocity = velocity;
     }
-
 
 
     private void UpdateDistanceCounter()
