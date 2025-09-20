@@ -44,4 +44,22 @@ public class SoundOnCollision : MonoBehaviour
             AudioManager.Instance.sfxSource.volume = 0.3f;
         }
     }
+    private void OnDisable()
+    {
+        StopSound();
+    }
+
+    private void OnDestroy()
+    {
+        StopSound();
+    }
+
+    private void StopSound()
+    {
+        if (AudioManager.Instance != null && soundToPlay != null)
+        {
+            AudioManager.Instance.sfxSource.Stop();
+        }
+    }
+
 }
