@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public float highScore;           // Highest single run ever
     public float sessionDistance;     // Total distance in current run
 
-    [Header("Per-Biome Distance")]
+    [Header("Per-Biome Distance (this run)")]
     public float biome1Distance;
     public float biome2Distance;
     public float biome3Distance;
@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     public float lastRunDistance;
     public string previousScene;
     public bool cameFromMainMenu = false;
+
+    // Internal biome start markers
+    private float biome1Start;
+    private float biome2Start;
+    private float biome3Start;
 
     void Awake()
     {
@@ -44,25 +49,30 @@ public class GameManager : MonoBehaviour
 
     public void SaveProgressBeforeSceneChange(float currentBiomeDistance)
     {
-        sessionDistance += currentBiomeDistance;
+        // Total session distance so far (always update to current run distance)
+        sessionDistance = currentBiomeDistance;
 
         string currentScene = SceneManager.GetActiveScene().name;
 
-        // Save per-biome distance separately
         switch (currentScene)
         {
             case "Biome1":
-                biome1Distance += currentBiomeDistance - biome2Distance - biome3Distance;
+                if (biome1Start == 0f) biome1Start = currentBiomeDistance;
+                biome1Distance = currentBiomeDistance - biome1Start;
                 biome1HighScore = Mathf.Max(biome1HighScore, biome1Distance);
                 PlayerPrefs.SetFloat("Biome1HighScore", biome1HighScore);
                 break;
+
             case "Biome2":
-                biome2Distance += currentBiomeDistance - biome1Distance;
+                if (biome2Start == 0f) biome2Start = currentBiomeDistance;
+                biome2Distance = currentBiomeDistance - biome2Start;
                 biome2HighScore = Mathf.Max(biome2HighScore, biome2Distance);
                 PlayerPrefs.SetFloat("Biome2HighScore", biome2HighScore);
                 break;
+
             case "Biome3":
-                biome3Distance += currentBiomeDistance - biome2Distance - biome1Distance;
+                if (biome3Start == 0f) biome3Start = currentBiomeDistance;
+                biome3Distance = currentBiomeDistance - biome3Start;
                 biome3HighScore = Mathf.Max(biome3HighScore, biome3Distance);
                 PlayerPrefs.SetFloat("Biome3HighScore", biome3HighScore);
                 break;
@@ -82,11 +92,14 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("HighScore", highScore);
         }
 
-        // Reset session and per-biome distances for next run
+        // Reset everything for the next run
         sessionDistance = 0f;
         biome1Distance = 0f;
         biome2Distance = 0f;
         biome3Distance = 0f;
+        biome1Start = 0f;
+        biome2Start = 0f;
+        biome3Start = 0f;
 
         PlayerPrefs.Save();
     }
@@ -97,6 +110,9 @@ public class GameManager : MonoBehaviour
         biome1Distance = 0f;
         biome2Distance = 0f;
         biome3Distance = 0f;
+        biome1Start = 0f;
+        biome2Start = 0f;
+        biome3Start = 0f;
         cameFromMainMenu = true;
     }
 
@@ -109,3 +125,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 }
+ore
