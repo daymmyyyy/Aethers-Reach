@@ -239,7 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Collect relic pieces to unlock diary entries!
+  m_Text: "Collect relic pieces to open magic portals! \nWhere will they take you?"
 --- !u!222 &48885290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6909049bc8c69ea49b2f9cfb9a479ac5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cdd5192a0e013a4c9ea88d87700fe51, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98c2e01d313e4a74fa199a551c8b7f01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5759c0c4cf19f44b9fa47ce731d8d06, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2628,12 +2628,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
-    m_MaxSize: 50
+    m_MaxSize: 65
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3681,7 +3681,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -3996,7 +3996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11764706, g: 0.27450982, b: 0.39607844, a: 1}
+  m_Color: {r: 0.117958315, g: 0.0665, b: 0.19, a: 0.9490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5519,7 +5519,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -5674,11 +5674,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
-    m_FontSize: 50
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
-    m_MaxSize: 50
+    m_MaxSize: 65
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7345,7 +7345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11587748, g: 0.27389985, b: 0.3962264, a: 0.98039216}
+  m_Color: {r: 0.11977589, g: 0.06790315, b: 0.19245279, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7473,7 +7473,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -7648,8 +7648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: -0.00095367}
-  m_SizeDelta: {x: 1920, y: 887.2}
+  m_AnchoredPosition: {x: -1.5551, y: 1.5552}
+  m_SizeDelta: {x: 1954.2136, y: 1120.4336}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1319755578
 MonoBehaviour:
@@ -7664,7 +7664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11764706, g: 0.27450982, b: 0.39607844, a: 0.53333336}
+  m_Color: {r: 0.11868312, g: 0.0665, b: 0.19, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7928,7 +7928,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -8236,7 +8236,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -8248,7 +8248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Glide through to collect in-game currency
+  m_Text: Glide through and collect in-game currency!
 --- !u!222 &1515615770
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9246,7 +9246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 54f1db88b7097774996354051087bdfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd71bf3fa3889884c9010e6b2d618ef2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9397,7 +9397,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -9409,7 +9409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Avoid obstacles or lose momentum and relics!
+  m_Text: Avoid hitting obstacles or lose your momentum and crystals!
 --- !u!222 &1717051707
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11040,7 +11040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71fa7913fafac5c42b320e4edfdb822e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2613d7619c8c4ea438b7d077be3d44f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11071,7 +11071,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 1362051a4fbe34a49874278ac74ec477, type: 3}
+    m_Font: {fileID: 12800000, guid: 76bb4d32566944643b52e860943f6309, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -11083,7 +11083,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Tap to glide! \nGlide through wind gusts for momentary speed boosts"
+  m_Text: "Tap to glide! \nGlide through wind gusts for momentary speed boosts!"
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
