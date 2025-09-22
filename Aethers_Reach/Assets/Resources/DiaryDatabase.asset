@@ -14,32 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomes:
   - entries:
-    - title: S1
-      content: s1 content
+    - title: '"My first entry~"'
+      content: {fileID: 21300000, guid: 8975814a5029c6c4cb4b23f51a818543, type: 3}
       cost: 0
-    - title: S2
-      content: s2 content
+    - title: '"Off I go!"'
+      content: {fileID: 0}
       cost: 1000
-    - title: S3
-      content: s3 content
+    - title: '"A dragon?!"'
+      content: {fileID: 0}
       cost: 2000
   - entries:
     - title: b1
-      content: b2 content
+      content: {fileID: 0}
       cost: 0
     - title: b2
-      content: b2 content
+      content: {fileID: 0}
       cost: 3000
     - title: b3
-      content: b3 content
+      content: {fileID: 0}
       cost: 4000
   - entries:
     - title: r1
-      content: r1 content
+      content: {fileID: 0}
       cost: 0
     - title: r2
-      content: r2 content
+      content: {fileID: 0}
       cost: 5000
     - title: r3
-      content: r3 content
+      content: {fileID: 0}
       cost: 6000

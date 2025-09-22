@@ -19,15 +19,12 @@ public class InvincibilityPowerUp : MonoBehaviour
     IEnumerator TemporaryDisableColliders()
     {
         Collider2D[] obstacleColliders = DisableTaggedColliders("Obstacle");
-        Collider2D[] groundColliders = DisableTaggedColliders("Ground");
 
         SetAlpha("Obstacle", transparentAlpha);
-        SetAlpha("Ground", transparentAlpha);
 
         yield return new WaitForSeconds(invincibilityDuration);
 
         EnableColliders(obstacleColliders);
-        EnableColliders(groundColliders);
 
         SetAlpha("Obstacle", originalAlpha);
         SetAlpha("Ground", originalAlpha);

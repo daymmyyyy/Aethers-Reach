@@ -11,16 +11,14 @@ public class BiomeUI
 public class DiaryUIManager : MonoBehaviour
 {
     public BiomeUI[] biomesUI;
-    public Text titleText;
-    public Text contentText;
+    public Image contentImage;
 
     private int currentBiomeIndex = 0;
 
     private void Start()
     {
         // Clear title/content at start
-        titleText.text = "";
-        contentText.text = "";
+        contentImage.sprite = null;
 
         // Hook up tab buttons and entry buttons
         for (int i = 0; i < biomesUI.Length; i++)
@@ -53,8 +51,7 @@ public class DiaryUIManager : MonoBehaviour
                 btn.gameObject.SetActive(active);
         }
 
-        titleText.text = "";
-        contentText.text = "";
+        contentImage.sprite = null;
 
         UpdateEntryButtons();
     }
@@ -78,7 +75,6 @@ public class DiaryUIManager : MonoBehaviour
         var entry = DiaryManager.Instance.GetDiaryEntry(biomeIndex, entryIndex);
         if (entry == null) return;
 
-        titleText.text = entry.title;
-        contentText.text = entry.content;
+        contentImage.sprite = entry.content;
     }
 }
