@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8060199748218511424}
   - component: {fileID: 6649956328727170439}
+  - component: {fileID: 2199929253078539514}
   m_Layer: 0
   m_Name: SkylandShrine
-  m_TagString: Untagged
+  m_TagString: Shrine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2199929253078539514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542800885937244872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aadc65da5e57a684890770adb27c545c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8857336267340003477
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +110,7 @@ GameObject:
   - component: {fileID: 8127867545907382884}
   m_Layer: 0
   m_Name: ShrineBellSprites_1
-  m_TagString: Untagged
+  m_TagString: Shrine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
