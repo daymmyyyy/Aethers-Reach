@@ -136,9 +136,10 @@ public class DeityUIManager : MonoBehaviour
         else
         {
             nextButton.gameObject.SetActive(false);
+
             if (pendingYesNo)
             {
-                // Re-show the last paid-entry dialogue
+                // Show the yes/no buttons now, after the last dialogue line
                 deityDialogueText.text = currentDialogue[currentDialogue.Length - 1];
                 yesButton.gameObject.SetActive(true);
                 noButton.gameObject.SetActive(true);
@@ -157,6 +158,7 @@ public class DeityUIManager : MonoBehaviour
             }
         }
     }
+
 
 
     private void ShowPostIntroDialoguePaidCheck()
@@ -223,16 +225,15 @@ public class DeityUIManager : MonoBehaviour
             deityDialogueText.text = "It is done. The entry is now yours.";
             CurrencyUI.Instance?.UpdateCurrencyDisplay();
 
-            if (HasNextAffordableEntry(currentBiomeIndex))
-            {
-                nextButton.gameObject.SetActive(true);
-                pendingYesNo = true;
-            }
-            else
-            {
-                yesButton.gameObject.SetActive(false);
-                noButton.gameObject.SetActive(false);
-            }
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
+
+            // Always show Next after purchase
+            nextButton.gameObject.SetActive(true);
+
+            // If they can afford another, Next continues to buy check
+            // Otherwise, Next just tells them to come back
+            pendingYesNo = HasNextAffordableEntry(currentBiomeIndex);
         }
         else
         {
@@ -240,8 +241,10 @@ public class DeityUIManager : MonoBehaviour
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
             nextButton.gameObject.SetActive(true);
-            pendingYesNo = true; // deity will repeat same question after next
+
+            pendingYesNo = true; // will retry buy check on Next
         }
+
     }
 
     private bool HasNextAffordableEntry(int biomeIndex)
@@ -250,8 +253,13 @@ public class DeityUIManager : MonoBehaviour
         int playerCurrency = RelicCurrency.GetTotalCurrency();
 
         for (int e = 1; e < entries.Length; e++)
-            if (!DiaryManager.Instance.IsEntryUnlocked(biomeIndex, e) && playerCurrency >= entries[e].cost)
+        {
+            if (!DiaryManager.Instance.IsEntryUnlocked(biomeIndex, e) &&
+                playerCurrency >= entries[e].cost)
+            {
                 return true;
+            }
+        }
 
         return false;
     }
