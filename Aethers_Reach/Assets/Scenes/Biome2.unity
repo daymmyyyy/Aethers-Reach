@@ -381,7 +381,6 @@ MonoBehaviour:
   relicCounterText: {fileID: 1275872175}
   fullRelicUI: {fileID: 1410397989}
   relicSprite: {fileID: 1193857649}
-  relicPrefab: {fileID: 2091641604930388957, guid: 0767f39a74facae43aa25e752016dccb, type: 3}
 --- !u!4 &133227248
 Transform:
   m_ObjectHideFlags: 0
@@ -411,11 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8391173961568609400, guid: 431dcfb6e3e569d4197afee1d486746b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -84.3
+      value: -122.4
       objectReference: {fileID: 0}
     - target: {fileID: 8391173961568609400, guid: 431dcfb6e3e569d4197afee1d486746b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 49.9
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 8391173961568609400, guid: 431dcfb6e3e569d4197afee1d486746b, type: 3}
       propertyPath: m_LocalPosition.z
