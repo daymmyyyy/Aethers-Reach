@@ -53,6 +53,10 @@ public class DiaryUIManager : MonoBehaviour
 
         contentImage.sprite = null;
 
+        Color newColor = contentImage.color;
+        newColor.a = 0f;
+        contentImage.color = newColor;
+
         UpdateEntryButtons();
     }
 
@@ -76,5 +80,9 @@ public class DiaryUIManager : MonoBehaviour
         if (entry == null) return;
 
         contentImage.sprite = entry.content;
+
+        Color newColor = contentImage.color;
+        newColor.a = 1f;
+        contentImage.color = newColor;
     }
 }
