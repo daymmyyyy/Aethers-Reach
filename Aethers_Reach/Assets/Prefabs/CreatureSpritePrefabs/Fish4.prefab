@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  breakSpeedThreshold: 50
+  breakSpeedThreshold: 65
   collisionSFX: {fileID: 8300000, guid: 55f0fbca97265c24e8b6135a6692fb89, type: 3}
 --- !u!60 &1921713132009859451
 PolygonCollider2D:

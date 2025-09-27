@@ -1,11 +1,24 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InvincibilityPowerUp : MonoBehaviour
 {
     public float invincibilityDuration = 2f;
     private float transparentAlpha = 0.3f;
     private float originalAlpha = 1f;
+
+    private Slider timerSlider;
+
+    void Awake()
+    {
+        GameObject sliderObj = GameObject.FindGameObjectWithTag("PowerUpSlider");
+        if (sliderObj != null)
+        {
+            timerSlider = sliderObj.GetComponent<Slider>();
+            timerSlider.gameObject.SetActive(false); // hidden at start
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,15 +32,31 @@ public class InvincibilityPowerUp : MonoBehaviour
     IEnumerator TemporaryDisableColliders()
     {
         Collider2D[] obstacleColliders = DisableTaggedColliders("Obstacle");
-
         SetAlpha("Obstacle", transparentAlpha);
 
-        yield return new WaitForSeconds(invincibilityDuration);
+        if (timerSlider != null)
+        {
+            timerSlider.value = 1f; // full bar
+            timerSlider.gameObject.SetActive(true);
+        }
+
+        float elapsed = 0f;
+        while (elapsed < invincibilityDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            if (timerSlider != null)
+                timerSlider.value = 1f - (elapsed / invincibilityDuration);
+
+            yield return null;
+        }
 
         EnableColliders(obstacleColliders);
-
         SetAlpha("Obstacle", originalAlpha);
         SetAlpha("Ground", originalAlpha);
+
+        if (timerSlider != null)
+            timerSlider.gameObject.SetActive(false);
     }
 
     Collider2D[] DisableTaggedColliders(string tag)

@@ -19,6 +19,9 @@ public class DeityUIManager : MonoBehaviour
     private int currentBiomeIndex;
 
     private const string INTRO_KEY = "DeityIntroRead";
+    private const string FREE_ENTRIES_KEY = "FreeEntriesLineSaid";
+    private const string ALL_ENTRIES_KEY = "AllEntriesUnlockedLineSaid";
+
 
     private void Awake()
     {
@@ -93,21 +96,32 @@ public class DeityUIManager : MonoBehaviour
         {
             currentDialogue = new string[]
             {
-                "Mortal, you have unlocked some tales, but free secrets remain in other lands.",
-                "Venture forth to earn the first entry before seeking my paid knowledge."
+            "Mortal, you have unlocked some tales, but free secrets remain in other lands.",
+            "Venture forth to earn the first entry before seeking my paid knowledge."
             };
             StartDialogueSequence(false);
             return;
         }
 
-        // All free entries collected
-        currentDialogue = new string[]
+        // All free entries collected → only say once
+        if (PlayerPrefs.GetInt(FREE_ENTRIES_KEY, 0) == 0)
         {
+            currentDialogue = new string[]
+            {
             "I see you have collected all the free tales.",
             "From here onwards, you must pay me to unlock further knowledge."
-        };
-        StartDialogueSequence(false);
+            };
+            StartDialogueSequence(false);
+
+            PlayerPrefs.SetInt(FREE_ENTRIES_KEY, 1);
+            PlayerPrefs.Save();
+            return;
+        }
+
+        // If already said before, just skip to paid check
+        ShowPostIntroDialoguePaidCheck();
     }
+
 
     private void StartDialogueSequence(bool showYesNoAtEnd)
     {
@@ -159,8 +173,6 @@ public class DeityUIManager : MonoBehaviour
         }
     }
 
-
-
     private void ShowPostIntroDialoguePaidCheck()
     {
         var diary = DiaryManager.Instance.diaryDatabase;
@@ -179,8 +191,8 @@ public class DeityUIManager : MonoBehaviour
                     {
                         currentDialogue = new string[]
                         {
-                            $"I see you seek the knowledge of {diary.biomes[b].entries[e].title}.",
-                            $"It shall cost you {cost} crystals. Do you dare pay the price?"
+                        $"I see you seek the knowledge of {diary.biomes[b].entries[e].title}.",
+                        $"It shall cost you {cost} crystals. Do you dare pay the price?"
                         };
                         StartDialogueSequence(true);
                         return;
@@ -189,8 +201,8 @@ public class DeityUIManager : MonoBehaviour
                     {
                         currentDialogue = new string[]
                         {
-                            $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
-                            "Return when you have enough crystals to claim my wisdom."
+                        $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
+                        "Return when you have enough crystals to claim my wisdom."
                         };
                         StartDialogueSequence(false);
                         return;
@@ -199,12 +211,35 @@ public class DeityUIManager : MonoBehaviour
             }
         }
 
-        currentDialogue = new string[]
+        // All entries unlocked → only say once
+        if (PlayerPrefs.GetInt(ALL_ENTRIES_KEY, 0) == 0)
         {
-            "You have unlocked all knowledge. Well done!"
-        };
-        StartDialogueSequence(false);
+            currentDialogue = new string[]
+            {
+        "You have unlocked all knowledge. Well done!"
+            };
+
+            StartDialogueSequence(false);
+
+            // Forcefully disable buttons so text just stays
+            nextButton.gameObject.SetActive(false);
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
+
+            PlayerPrefs.SetInt(ALL_ENTRIES_KEY, 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            // Keep the last message visible, no buttons
+            deityDialogueText.text = "You have unlocked all knowledge. Well done!";
+            nextButton.gameObject.SetActive(false);
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
+        }
+
     }
+
 
     private void OnYesPressed()
     {

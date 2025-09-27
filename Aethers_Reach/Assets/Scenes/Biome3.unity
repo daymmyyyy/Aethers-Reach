@@ -456,7 +456,6 @@ MonoBehaviour:
   relicCounterText: {fileID: 1275872175}
   fullRelicUI: {fileID: 1410397989}
   relicSprite: {fileID: 1206133218}
-  relicPrefab: {fileID: 2091641604930388957, guid: 0767f39a74facae43aa25e752016dccb, type: 3}
 --- !u!4 &133227248
 Transform:
   m_ObjectHideFlags: 0
@@ -947,8 +946,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
+      propertyPath: hopForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: maxSpeed
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: runSpeed
@@ -967,6 +970,10 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
+      propertyPath: hopDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: distanceText
       value: 
       objectReference: {fileID: 1743800695}
@@ -980,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: maxGlideSpeed
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: runningVolume
@@ -996,7 +1003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: maxVerticalSpeed
-      value: 35
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: groundCheckRadius
@@ -1008,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969117625088087525, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: speedIncreaseRate
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7101808570167023883, guid: 334ed4a1599af9946ba7d8ad88d8e56d, type: 3}
       propertyPath: m_Name
@@ -3226,7 +3233,7 @@ Transform:
   m_GameObject: {fileID: 1473859785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -223.15555, y: 37, z: -10}
+  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4500,7 +4507,7 @@ Transform:
   m_GameObject: {fileID: 1956133952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -223.15555, y: 37, z: -10}
+  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
