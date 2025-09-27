@@ -20,7 +20,7 @@ public class CoinFollower : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance <= attractionRadius)
         {
-            float speed = 45f;
+            float speed = 50f;
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }

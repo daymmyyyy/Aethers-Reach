@@ -36,6 +36,13 @@ public class PlayerController : MonoBehaviour
     public Text distanceText;
     public float distanceMultiplier = 0.001f;
 
+    [Header("Power-Ups")]
+    public bool isInvincible = false;
+    public bool hasMagnet = false;
+
+    [Header("Power-Up UI Sliders")]
+    private PowerUpSliderController invincibilitySlider;
+
     [Header("Audio Clips")]
     public AudioClip runningLoopClip;
     public AudioClip glidingWindClip;
@@ -43,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private Coroutine invincibilityRoutine;
+    private Coroutine magnetRoutine;
 
     private bool isGrounded;
     private bool isHoldingUp;
@@ -105,6 +114,12 @@ public class PlayerController : MonoBehaviour
         grassTrailVFX?.Stop();
         sandTrailVFX?.Stop();
         ruinsTrailVFX?.Stop();
+
+        GameObject invObj = GameObject.FindGameObjectWithTag("InvincibilitySlider");
+        if (invObj != null)
+            invincibilitySlider = invObj.GetComponent<PowerUpSliderController>();
+        else
+            Debug.LogWarning("InvincibilitySlider not found! Make sure it is tagged correctly.");
     }
 
     private IEnumerator EnableControlsAfterDelay(float delay)
@@ -509,5 +524,104 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = glideGravityScale * 0.5f;
     }
 
+    public void ActivateInvincibility(float duration)
+    {
+        if (invincibilityRoutine != null)
+            StopCoroutine(invincibilityRoutine);
+
+        invincibilityRoutine = StartCoroutine(InvincibilityTimer(duration));
+    }
+
+    public void ActivateMagnet(float duration)
+    {
+        if (magnetRoutine != null)
+            StopCoroutine(magnetRoutine);
+
+        magnetRoutine = StartCoroutine(MagnetTimer(duration));
+    }
+
+    private IEnumerator InvincibilityTimer(float duration)
+    {
+        isInvincible = true;
+
+        if (invincibilitySlider != null)
+            invincibilitySlider.StartTimer(duration);
+
+        // Disable obstacle colliders + fade visuals
+        Collider2D[] disabled = DisableTaggedColliders("Obstacle");
+        SetAlpha("Obstacle", 0.2f);
+
+        yield return new WaitForSeconds(duration);
+
+        // Re-enable after duration
+        EnableColliders(disabled);
+        SetAlpha("Obstacle", 1f);
+
+        isInvincible = false;
+    }
+
+    private Collider2D[] DisableTaggedColliders(string tag)
+    {
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+        Collider2D[] disabled = new Collider2D[taggedObjects.Length];
+
+        for (int i = 0; i < taggedObjects.Length; i++)
+        {
+            Collider2D col = taggedObjects[i].GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = false;
+                disabled[i] = col;
+            }
+        }
+        return disabled;
+    }
+
+    private void EnableColliders(Collider2D[] colliders)
+    {
+        foreach (var col in colliders)
+            if (col != null) col.enabled = true;
+    }
+
+    private void SetAlpha(string tag, float alpha)
+    {
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in taggedObjects)
+        {
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                Color c = sr.color;
+                c.a = alpha;
+                sr.color = c;
+            }
+        }
+    }
+
+    private IEnumerator MagnetTimer(float duration)
+    {
+        hasMagnet = true;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+
+            // Pull coins toward player
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coins");
+            foreach (GameObject coin in coins)
+            {
+                CoinFollower follower = coin.GetComponent<CoinFollower>();
+                if (follower != null)
+                    follower.StartFollowing(transform, 30f); //attraction radius
+            }
+
+            yield return null;
+        }
+
+        hasMagnet = false;
+    }
+
 }
+
 
