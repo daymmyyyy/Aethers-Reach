@@ -1415,12 +1415,24 @@ PrefabInstance:
       value: TotemPoleSprites_1
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.x
       value: -139.6
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.12
+      value: 11.17
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2198,12 +2210,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
       propertyPath: m_LocalPosition.x
       value: -111.5
       objectReference: {fileID: 0}
     - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.43
+      value: 12.1
       objectReference: {fileID: 0}
     - target: {fileID: 331304599775435185, guid: f0af63c4d0bcf60408002fb662de9743, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3447,7 +3471,7 @@ Transform:
   m_GameObject: {fileID: 1473859785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
+  m_LocalPosition: {x: -223.15555, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4152,7 +4176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6292880261488865672, guid: 8d1d9c6cb95f5e74e828fd069166a236, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -214.6
+      value: -210.4
       objectReference: {fileID: 0}
     - target: {fileID: 6292880261488865672, guid: 8d1d9c6cb95f5e74e828fd069166a236, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4487,12 +4511,24 @@ PrefabInstance:
       value: TotemPoleSprites_0 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.x
       value: -166.8
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.76
+      value: 12.31
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4721,7 +4757,7 @@ Transform:
   m_GameObject: {fileID: 1956133952}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -215.58359, y: 37, z: -10}
+  m_LocalPosition: {x: -223.15555, y: 37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -823,12 +823,24 @@ PrefabInstance:
       value: TotemPoleSprites_1
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.x
       value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.278473
+      value: -25.07
       objectReference: {fileID: 0}
     - target: {fileID: 5208843565943186728, guid: 5495050ddcd4c9845b4c991ecfc03160, type: 3}
       propertyPath: m_LocalPosition.z

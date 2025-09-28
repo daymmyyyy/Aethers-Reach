@@ -38,8 +38,8 @@ Transform:
   - {fileID: 5852691034530110681}
   - {fileID: 3967845002575807771}
   - {fileID: 5506701083409413403}
-  - {fileID: 1165167939517264420}
   - {fileID: 901514360640230282}
+  - {fileID: 1165167939517264420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2375652552153400044
@@ -695,12 +695,24 @@ PrefabInstance:
       value: TotemPoleSprites_0
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.x
       value: 256.9
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.3
+      value: -3.77
       objectReference: {fileID: 0}
     - target: {fileID: 7384631258485520956, guid: dd03215674e6b1e41bddd823c97c4924, type: 3}
       propertyPath: m_LocalPosition.z
