@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private bool isHoldingUp;
     private bool isBoosted;
     private bool recoveringSpeed;
-    private bool isKnockedBack;
+    public bool isKnockedBack;
     private bool wasGroundedLastFrame;
     private bool wasHoldingUpLastFrame;
     private bool isJumping;
