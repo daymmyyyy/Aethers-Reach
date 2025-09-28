@@ -547,18 +547,25 @@ public class PlayerController : MonoBehaviour
         if (invincibilitySlider != null)
             invincibilitySlider.StartTimer(duration);
 
-        // Disable obstacle colliders + fade visuals
+        // Disable obstacle colliders
         Collider2D[] disabled = DisableTaggedColliders("Obstacle");
+
+        // Set obstacles alpha to 0.2 immediately
         SetAlpha("Obstacle", 0.2f);
 
-        yield return new WaitForSeconds(duration);
+        // Wait until slider finishes
+        while (invincibilitySlider != null && invincibilitySlider.SliderValue() > 0f)
+        {
+            yield return null; // wait for next frame
+        }
 
-        // Re-enable after duration
+        // Re-enable colliders and restore alpha
         EnableColliders(disabled);
         SetAlpha("Obstacle", 1f);
 
         isInvincible = false;
     }
+
 
     private Collider2D[] DisableTaggedColliders(string tag)
     {

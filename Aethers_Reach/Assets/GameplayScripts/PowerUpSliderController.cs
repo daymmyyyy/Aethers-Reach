@@ -65,4 +65,10 @@ public class PowerUpSliderController : MonoBehaviour
         canvasGroup.alpha = 0f; // hide slider again
         activeTimer = null;
     }
+    public float SliderValue()
+    {
+        return slider != null ? slider.value : 0f;
+    }
+
+
 }
