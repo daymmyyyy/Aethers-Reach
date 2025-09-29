@@ -530,6 +530,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5133737100525185914, guid: 587eca813a53a5b48b2ea9824d2a0502, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7083974276870877513, guid: 587eca813a53a5b48b2ea9824d2a0502, type: 3}
       propertyPath: player
       value: 
@@ -5086,7 +5090,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -5158,7 +5162,7 @@ Camera:
   m_GameObject: {fileID: 1510752187}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -6366,7 +6370,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.942098}
@@ -6624,7 +6628,8 @@ MonoBehaviour:
   nightFadeDuration: 10
   nightHoldDuration: 30
   dayFadeDuration: 10
-  starsVFX: {fileID: 399176527}
+  starsVFX:
+  - {fileID: 399176527}
   starsFadeDuration: 2
 --- !u!212 &1964141493
 SpriteRenderer:

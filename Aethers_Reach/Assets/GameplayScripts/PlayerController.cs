@@ -118,8 +118,6 @@ public class PlayerController : MonoBehaviour
         GameObject invObj = GameObject.FindGameObjectWithTag("InvincibilitySlider");
         if (invObj != null)
             invincibilitySlider = invObj.GetComponent<PowerUpSliderController>();
-        else
-            Debug.LogWarning("InvincibilitySlider not found! Make sure it is tagged correctly.");
     }
 
     private IEnumerator EnableControlsAfterDelay(float delay)
