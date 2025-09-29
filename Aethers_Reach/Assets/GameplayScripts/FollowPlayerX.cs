@@ -5,8 +5,6 @@ public class FollowPlayerX : MonoBehaviour
     public Transform player;
     private PlayerController playerController;
 
-    [Header("Follow Settings")]
-    public float smoothSpeed = 5f; // optional smoothing
 
     void Start()
     {
@@ -23,7 +21,7 @@ public class FollowPlayerX : MonoBehaviour
                 return;
 
             Vector3 targetPos = new Vector3(player.position.x, transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime);
         }
     }
 }
