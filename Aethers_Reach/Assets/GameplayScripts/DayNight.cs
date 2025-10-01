@@ -20,8 +20,8 @@ public class DayNight : MonoBehaviour
     public float dayFadeDuration = 5f;
 
     [Header("Night VFX")]
-    public GameObject[] starsVFX; // assign multiple VFX
-    public float starsFadeDuration = 2f;
+    public GameObject[] VFX; // assign multiple VFX
+    public float fadeDuration = 2f;
 
     private enum Phase { Day, NightFadeIn, NightHold, DayFadeIn }
     private Phase currentPhase = Phase.Day;
@@ -32,16 +32,16 @@ public class DayNight : MonoBehaviour
     void Start()
     {
         // Add CanvasGroups to all stars for fading
-        starsCanvasGroups = new CanvasGroup[starsVFX.Length];
-        for (int i = 0; i < starsVFX.Length; i++)
+        starsCanvasGroups = new CanvasGroup[VFX.Length];
+        for (int i = 0; i < VFX.Length; i++)
         {
-            if (starsVFX[i] != null)
+            if (VFX[i] != null)
             {
-                CanvasGroup cg = starsVFX[i].GetComponent<CanvasGroup>();
-                if (!cg) cg = starsVFX[i].AddComponent<CanvasGroup>();
+                CanvasGroup cg = VFX[i].GetComponent<CanvasGroup>();
+                if (!cg) cg = VFX[i].AddComponent<CanvasGroup>();
                 cg.alpha = 0f;
                 starsCanvasGroups[i] = cg;
-                starsVFX[i].SetActive(false); // hide at start
+                VFX[i].SetActive(false); // hide at start
             }
         }
     }
@@ -121,7 +121,7 @@ public class DayNight : MonoBehaviour
 
     void SetStarsActive(bool active)
     {
-        foreach (var star in starsVFX)
+        foreach (var star in VFX)
         {
             if (star != null)
                 star.SetActive(active);

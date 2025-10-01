@@ -1,74 +1,51 @@
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PowerUpSliderController : MonoBehaviour
 {
-    public static PowerUpSliderController Instance; // Singleton reference
+    [SerializeField] private Slider slider;
+    private float startTime;
+    private float duration;
+    private bool running;
 
-    private Slider slider;
-    private CanvasGroup canvasGroup; // for hiding the slider
-    private Coroutine activeTimer;
-
-    private void Awake()
+    void Awake()
     {
-        // Singleton setup
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-
-        slider = GetComponent<Slider>();
-        if (slider == null)
-        {
-            Debug.LogError("PowerUpSliderController requires a Slider component!");
-            return;
-        }
-
-        // Add CanvasGroup if not present
-        canvasGroup = slider.GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-            canvasGroup = slider.gameObject.AddComponent<CanvasGroup>();
-
-        slider.minValue = 0f;
-        slider.maxValue = 1f;
-        slider.value = 1f;
-
-        // Hide visually but keep active so we can find by tag
-        canvasGroup.alpha = 0f;
+        if (slider != null)
+            slider.gameObject.SetActive(false); // hide at the start
     }
 
     public void StartTimer(float duration)
     {
-        if (activeTimer != null)
-            StopCoroutine(activeTimer);
+        if (slider == null) return;
 
-        activeTimer = StartCoroutine(RunTimer(duration));
+        this.duration = duration;
+        startTime = Time.time;
+        running = true;
+
+        slider.gameObject.SetActive(true); // only show when timer starts
+        slider.value = 1f; // start full
     }
 
-    private IEnumerator RunTimer(float duration)
+    void Update()
     {
-        slider.value = 1f;
-        canvasGroup.alpha = 1f; // show slider
+        if (!running || slider == null) return;
 
-        float elapsed = 0f;
-        while (elapsed < duration)
+        float elapsed = Time.time - startTime;
+        float progress = Mathf.Clamp01(elapsed / duration);
+
+        // Slider goes from 1 → 0 over the duration
+        slider.value = 1f - progress;
+
+        if (elapsed >= duration)
         {
-            elapsed += Time.deltaTime;
-            slider.value = 1f - Mathf.Clamp01(elapsed / duration);
-            yield return null;
+            running = false;
+            slider.value = 0f;
+            slider.gameObject.SetActive(false); // hide when done
         }
-
-        slider.value = 0f;
-        canvasGroup.alpha = 0f; // hide slider again
-        activeTimer = null;
     }
+
     public float SliderValue()
     {
         return slider != null ? slider.value : 0f;
     }
-
-
 }

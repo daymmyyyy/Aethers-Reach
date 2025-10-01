@@ -522,20 +522,20 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = glideGravityScale * 0.5f;
     }
 
-    public void ActivateInvincibility(float duration)
-    {
-        if (invincibilityRoutine != null)
-            StopCoroutine(invincibilityRoutine);
-
-        invincibilityRoutine = StartCoroutine(InvincibilityTimer(duration));
-    }
-
     public void ActivateMagnet(float duration)
     {
         if (magnetRoutine != null)
             StopCoroutine(magnetRoutine);
 
         magnetRoutine = StartCoroutine(MagnetTimer(duration));
+    }
+
+    public void ActivateInvincibility(float duration)
+    {
+        if (invincibilityRoutine != null)
+            StopCoroutine(invincibilityRoutine);
+
+        invincibilityRoutine = StartCoroutine(InvincibilityTimer(duration));
     }
 
     private IEnumerator InvincibilityTimer(float duration)
@@ -545,21 +545,45 @@ public class PlayerController : MonoBehaviour
         if (invincibilitySlider != null)
             invincibilitySlider.StartTimer(duration);
 
-        // Disable obstacle colliders
-        Collider2D[] disabled = DisableTaggedColliders("Obstacle");
-
-        // Set obstacles alpha to 0.2 immediately
-        SetAlpha("Obstacle", 0.2f);
-
-        // Wait until slider finishes
-        while (invincibilitySlider != null && invincibilitySlider.SliderValue() > 0f)
+        float elapsed = 0f;
+        while (elapsed < duration)
         {
-            yield return null; // wait for next frame
+            elapsed += Time.deltaTime;
+
+            // Update all obstacles continuously
+            GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            foreach (GameObject obj in obstacles)
+            {
+                Collider2D col = obj.GetComponent<Collider2D>();
+                if (col != null) col.enabled = false;
+
+                SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    c.a = 0.2f;
+                    sr.color = c;
+                }
+            }
+
+            yield return null;
         }
 
-        // Re-enable colliders and restore alpha
-        EnableColliders(disabled);
-        SetAlpha("Obstacle", 1f);
+        // Restore all obstacles once invincibility ends
+        GameObject[] finalObstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        foreach (GameObject obj in finalObstacles)
+        {
+            Collider2D col = obj.GetComponent<Collider2D>();
+            if (col != null) col.enabled = true;
+
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                Color c = sr.color;
+                c.a = 1f;
+                sr.color = c;
+            }
+        }
 
         isInvincible = false;
     }
