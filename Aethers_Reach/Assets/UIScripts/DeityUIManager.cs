@@ -22,7 +22,6 @@ public class DeityUIManager : MonoBehaviour
     private const string FREE_ENTRIES_KEY = "FreeEntriesLineSaid";
     private const string ALL_ENTRIES_KEY = "AllEntriesUnlockedLineSaid";
 
-
     private void Awake()
     {
         Instance = this;
@@ -64,7 +63,6 @@ public class DeityUIManager : MonoBehaviour
 
         if (!introRead)
         {
-            // Always play intro the very first time
             currentDialogue = new string[]
             {
                 "Welcome, traveler. What wisdom do you seek?",
@@ -79,7 +77,6 @@ public class DeityUIManager : MonoBehaviour
             return;
         }
 
-        // If intro already read, go straight to post-intro logic
         ShowPostIntroDialogue();
     }
 
@@ -96,32 +93,16 @@ public class DeityUIManager : MonoBehaviour
         {
             currentDialogue = new string[]
             {
-            "Mortal, you have unlocked some tales, but free secrets remain in other lands.",
-            "Venture forth to earn the first entry before seeking my paid knowledge."
+                "Mortal, you have unlocked some tales, but free secrets remain in other lands.",
+                "Venture forth to earn the first entry before seeking my paid knowledge."
             };
             StartDialogueSequence(false);
             return;
         }
 
-        // All free entries collected → only say once
-        if (PlayerPrefs.GetInt(FREE_ENTRIES_KEY, 0) == 0)
-        {
-            currentDialogue = new string[]
-            {
-            "I see you have collected all the free tales.",
-            "From here onwards, you must pay me to unlock further knowledge."
-            };
-            StartDialogueSequence(false);
-
-            PlayerPrefs.SetInt(FREE_ENTRIES_KEY, 1);
-            PlayerPrefs.Save();
-            return;
-        }
-
-        // If already said before, just skip to paid check
+        // All free entries collected → go straight to paid check
         ShowPostIntroDialoguePaidCheck();
     }
-
 
     private void StartDialogueSequence(bool showYesNoAtEnd)
     {
@@ -153,7 +134,6 @@ public class DeityUIManager : MonoBehaviour
 
             if (pendingYesNo)
             {
-                // Show the yes/no buttons now, after the last dialogue line
                 deityDialogueText.text = currentDialogue[currentDialogue.Length - 1];
                 yesButton.gameObject.SetActive(true);
                 noButton.gameObject.SetActive(true);
@@ -187,26 +167,58 @@ public class DeityUIManager : MonoBehaviour
                     int playerCurrency = RelicCurrency.GetTotalCurrency();
                     currentBiomeIndex = b;
 
+                    // --- New logic starts here ---
                     if (playerCurrency >= cost)
                     {
-                        currentDialogue = new string[]
+                        if (PlayerPrefs.GetInt(FREE_ENTRIES_KEY, 0) == 0)
                         {
-                        $"I see you seek the knowledge of {diary.biomes[b].entries[e].title}.",
-                        $"It shall cost you {cost} crystals. Do you dare pay the price?"
-                        };
+                            currentDialogue = new string[]
+                            {
+                                "You have unlocked all the free tales, mortal.",
+                                "From this point onwards, you must pay me for further knowledge.",
+                                $"The next tale, '{diary.biomes[b].entries[e].title}', costs {cost} crystals. Do you wish to proceed?"
+                            };
+                            PlayerPrefs.SetInt(FREE_ENTRIES_KEY, 1);
+                            PlayerPrefs.Save();
+                        }
+                        else
+                        {
+                            currentDialogue = new string[]
+                            {
+                                $"I see you seek the knowledge of {diary.biomes[b].entries[e].title}.",
+                                $"It shall cost you {cost} crystals. Do you dare pay the price?"
+                            };
+                        }
+
                         StartDialogueSequence(true);
                         return;
                     }
                     else
                     {
-                        currentDialogue = new string[]
+                        if (PlayerPrefs.GetInt(FREE_ENTRIES_KEY, 0) == 0)
                         {
-                        $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
-                        "Return when you have enough crystals to claim my wisdom."
-                        };
+                            currentDialogue = new string[]
+                            {
+                                "You have unlocked all the free tales.",
+                                $"The next tale requires {cost} crystals to uncover.",
+                                "Gather more crystals and return when you are ready to purchase further wisdom."
+                            };
+                            PlayerPrefs.SetInt(FREE_ENTRIES_KEY, 1);
+                            PlayerPrefs.Save();
+                        }
+                        else
+                        {
+                            currentDialogue = new string[]
+                            {
+                                $"You desire {diary.biomes[b].entries[e].title}, but you lack the {cost} crystals required.",
+                                "Return when you have enough crystals to claim my wisdom."
+                            };
+                        }
+
                         StartDialogueSequence(false);
                         return;
                     }
+                    // --- New logic ends here ---
                 }
             }
         }
@@ -216,12 +228,10 @@ public class DeityUIManager : MonoBehaviour
         {
             currentDialogue = new string[]
             {
-        "You have unlocked all knowledge. Well done!"
+                "You have unlocked all knowledge. Well done!"
             };
 
             StartDialogueSequence(false);
-
-            // Forcefully disable buttons so text just stays
             nextButton.gameObject.SetActive(false);
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
@@ -231,15 +241,12 @@ public class DeityUIManager : MonoBehaviour
         }
         else
         {
-            // Keep the last message visible, no buttons
             deityDialogueText.text = "You have unlocked all knowledge. Well done!";
             nextButton.gameObject.SetActive(false);
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
         }
-
     }
-
 
     private void OnYesPressed()
     {
@@ -262,12 +269,8 @@ public class DeityUIManager : MonoBehaviour
 
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
-
-            // Always show Next after purchase
             nextButton.gameObject.SetActive(true);
 
-            // If they can afford another, Next continues to buy check
-            // Otherwise, Next just tells them to come back
             pendingYesNo = HasNextAffordableEntry(currentBiomeIndex);
         }
         else
@@ -276,10 +279,8 @@ public class DeityUIManager : MonoBehaviour
             yesButton.gameObject.SetActive(false);
             noButton.gameObject.SetActive(false);
             nextButton.gameObject.SetActive(true);
-
-            pendingYesNo = true; // will retry buy check on Next
+            pendingYesNo = true;
         }
-
     }
 
     private bool HasNextAffordableEntry(int biomeIndex)
@@ -295,7 +296,6 @@ public class DeityUIManager : MonoBehaviour
                 return true;
             }
         }
-
         return false;
     }
 
@@ -305,7 +305,6 @@ public class DeityUIManager : MonoBehaviour
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(true);
-        pendingYesNo = true; // pressing next will repeat the same paid-entry question
+        pendingYesNo = true;
     }
-
 }
