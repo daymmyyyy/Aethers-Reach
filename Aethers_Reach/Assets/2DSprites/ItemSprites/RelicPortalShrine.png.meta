@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 447018283c90ccd43af0dbc34d4ed570
+guid: 5758fc365d88784488f4d324baaf75c4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: RelicPortalShrine_1
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 274
+        width: 548
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b5661cc5f0b0a41b51f787d672bce0
+      internalID: 962196545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +153,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RelicPortalShrine_0: 1940918462
+      RelicPortalShrine_1: 962196545
+      RelicPortalShrine_2: 1326988587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
