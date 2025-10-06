@@ -824,6 +824,10 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7625641198322652047, guid: 47ce6ca6016dff446a6871eafa07990d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.61960787
+      objectReference: {fileID: 0}
     - target: {fileID: 7789489613993909516, guid: 47ce6ca6016dff446a6871eafa07990d, type: 3}
       propertyPath: m_Name
       value: FireVFX
