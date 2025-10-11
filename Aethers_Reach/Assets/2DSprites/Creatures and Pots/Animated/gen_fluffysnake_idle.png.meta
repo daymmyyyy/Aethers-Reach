@@ -1,0 +1,1020 @@
+fileFormatVersion: 2
+guid: dfa6fd1b1c068714b853e4a9a5ace61b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3988a6e54d082c7479f3baade4637bc2
+      internalID: -1705868578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_1
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc61ef9e47d549c4aaa2ed4208d42b48
+      internalID: -1908677039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_2
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a609a94a484b97c478e7b76be1a87ae1
+      internalID: -1644504181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_3
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c7f455c0e9f374c8de4cc921b0f6db
+      internalID: 382396152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_4
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93d18f9bf7738549ae144623e467ca1
+      internalID: -1863369261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_5
+      rect:
+        serializedVersion: 2
+        x: 8450
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9bb6cf3c19083f4baed6fd528259537
+      internalID: -159896261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_6
+      rect:
+        serializedVersion: 2
+        x: 10140
+        y: 4175
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be1ecf0aaa8adf445aabe5ded1e44008
+      internalID: -1548667447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503277f45f0dde148abdc3edd03946f9
+      internalID: -1251530607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_8
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63555d3c8bb05d48b8d2e6164f7daad
+      internalID: 758684580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_9
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5f123fc869b4a42b8cb4596cce2f46
+      internalID: -1458513773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_10
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc54edf9116ccb42be8cde6a679977a
+      internalID: -716134637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_11
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77fa65128c981ca4ea25ac26c2119462
+      internalID: -272135911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_12
+      rect:
+        serializedVersion: 2
+        x: 8450
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab0de7a544ff9e499a7bd3dc68f43b6
+      internalID: 1859177486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_13
+      rect:
+        serializedVersion: 2
+        x: 10140
+        y: 3340
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ca736f55883614c8831aa1e46bf451
+      internalID: -739321881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ee00d4c8bb8d14d9ebba499b026a33
+      internalID: 95811146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_15
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d55889a655e005488bd9f61bc757af9
+      internalID: 2058118661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_16
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b168dfc03f940464bb8e78a13916d23e
+      internalID: 1668647624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_17
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73e68b5c843f7fe4c983d84a7d7d2d6e
+      internalID: 1874286760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_18
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f9ef23b7fc853488344a79ceb30008
+      internalID: 960004612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_19
+      rect:
+        serializedVersion: 2
+        x: 8450
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1acab0aa00f14e64c91e07e11c3591fd
+      internalID: -392651120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_20
+      rect:
+        serializedVersion: 2
+        x: 10140
+        y: 2505
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8dd92eb2d94ba439c2d4d35828a8c3
+      internalID: 1591584757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18e8dbb021f2ab4499f5ad18cea43966
+      internalID: -1450800402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_22
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 165274992251bd54e9e709cc0b3aea5c
+      internalID: 905809225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_23
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20298f54713711740b428883c7d9a7b5
+      internalID: -1606283719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_24
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67efa758b036eb84a982588520ba0b92
+      internalID: 1271535853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_25
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2a9e121fc7cff498986a4926ed2e55
+      internalID: 1297901530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_26
+      rect:
+        serializedVersion: 2
+        x: 8450
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf26f720ccdfc140ac52c68bac734d1
+      internalID: 867106513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_27
+      rect:
+        serializedVersion: 2
+        x: 10140
+        y: 1670
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3504c5365f18a004eb71f85bb1f16fd4
+      internalID: 1891117711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea72a55d6249d1f4c991dbed4de28cf9
+      internalID: -1095106200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_29
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc822012fb6e8e44ab5812df2048ef7d
+      internalID: -945384810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_30
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82662e4301c72b546ae6b500b2d2a783
+      internalID: 1453619501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_31
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ad8d485b16bee3458b966e40783354a
+      internalID: 838521876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_32
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3540c0644ea66448a809b071ee980fd
+      internalID: -906463105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_33
+      rect:
+        serializedVersion: 2
+        x: 8450
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8b06edadec57b42b34098676dc3426
+      internalID: 1208447010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_34
+      rect:
+        serializedVersion: 2
+        x: 10140
+        y: 835
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17cc3a0eb0cc2c041a5397885774600e
+      internalID: 114591846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9fbf8407a4c0544a9ac6e9675e898b
+      internalID: 1787127890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_36
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 0
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4b8c9d4ad513c74293289ee67a0f65a
+      internalID: -177896492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_37
+      rect:
+        serializedVersion: 2
+        x: 3380
+        y: 0
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f71a574e279db3498ee1b6ca7493b49
+      internalID: -588363211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_38
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 0
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed48cd4b5ebd89647a53e08feae81bfa
+      internalID: 1052520526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gen_fluffysnake_idle_39
+      rect:
+        serializedVersion: 2
+        x: 6760
+        y: 0
+        width: 1690
+        height: 835
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed414974703ebd144aa8b2c212751b27
+      internalID: 254594292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      gen_fluffysnake_idle_0: -1705868578
+      gen_fluffysnake_idle_1: -1908677039
+      gen_fluffysnake_idle_10: -716134637
+      gen_fluffysnake_idle_11: -272135911
+      gen_fluffysnake_idle_12: 1859177486
+      gen_fluffysnake_idle_13: -739321881
+      gen_fluffysnake_idle_14: 95811146
+      gen_fluffysnake_idle_15: 2058118661
+      gen_fluffysnake_idle_16: 1668647624
+      gen_fluffysnake_idle_17: 1874286760
+      gen_fluffysnake_idle_18: 960004612
+      gen_fluffysnake_idle_19: -392651120
+      gen_fluffysnake_idle_2: -1644504181
+      gen_fluffysnake_idle_20: 1591584757
+      gen_fluffysnake_idle_21: -1450800402
+      gen_fluffysnake_idle_22: 905809225
+      gen_fluffysnake_idle_23: -1606283719
+      gen_fluffysnake_idle_24: 1271535853
+      gen_fluffysnake_idle_25: 1297901530
+      gen_fluffysnake_idle_26: 867106513
+      gen_fluffysnake_idle_27: 1891117711
+      gen_fluffysnake_idle_28: -1095106200
+      gen_fluffysnake_idle_29: -945384810
+      gen_fluffysnake_idle_3: 382396152
+      gen_fluffysnake_idle_30: 1453619501
+      gen_fluffysnake_idle_31: 838521876
+      gen_fluffysnake_idle_32: -906463105
+      gen_fluffysnake_idle_33: 1208447010
+      gen_fluffysnake_idle_34: 114591846
+      gen_fluffysnake_idle_35: 1787127890
+      gen_fluffysnake_idle_36: -177896492
+      gen_fluffysnake_idle_37: -588363211
+      gen_fluffysnake_idle_38: 1052520526
+      gen_fluffysnake_idle_39: 254594292
+      gen_fluffysnake_idle_4: -1863369261
+      gen_fluffysnake_idle_5: -159896261
+      gen_fluffysnake_idle_6: -1548667447
+      gen_fluffysnake_idle_7: -1251530607
+      gen_fluffysnake_idle_8: 758684580
+      gen_fluffysnake_idle_9: -1458513773
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
