@@ -116,8 +116,16 @@ public class RelicManager : MonoBehaviour
         GameObject[] shrines = GameObject.FindGameObjectsWithTag("Shrine");
         foreach (GameObject shrine in shrines)
         {
-            DestroyShrines(shrine);
+            StartCoroutine(DestroyShrineAfterDelay(shrine, 1f)); // 1 second delay
         }
+    }
+
+    private IEnumerator DestroyShrineAfterDelay(GameObject shrine, float delay)
+    {
+        if (shrine == null) yield break;
+
+        yield return new WaitForSeconds(delay);
+        Destroy(shrine);
     }
 
     private IEnumerator ShowFullRelicUI()
