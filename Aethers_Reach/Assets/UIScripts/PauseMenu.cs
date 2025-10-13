@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public bool isPaused = false;
+
+    [Header("Cloud Transition")]
+
+    public CloudTransitionController cloudTransition;
+    public GameObject cloudCanvas;
 
     public void ResumeGame()
     {
@@ -39,6 +45,20 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        cloudCanvas.SetActive(true);
+        StartCoroutine(MainMenuRoutine());
+    }
+
+    private IEnumerator MainMenuRoutine()
+    {
+        // Keep game paused while animation plays
+        pauseMenuUI.SetActive(false);
+
+        // Play clouds animation and wait
+        if (cloudTransition != null)
+            yield return cloudTransition.PlayCloudsInAndWait();
+
+        // Now safely resume game and load Main Menu
         Time.timeScale = 1f;
 
         if (RelicManager.Instance != null)
@@ -48,4 +68,6 @@ public class PauseMenu : MonoBehaviour
 
         SceneManager.LoadScene("MainMenu");
     }
+
+
 }

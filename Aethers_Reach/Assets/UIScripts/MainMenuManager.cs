@@ -4,25 +4,35 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Transition Settings")]
-    public Animator cloudAnimator; // Assign in Inspector
-    [SerializeField] private string cloudsInTrigger = "CloudsIn";
-    [SerializeField] private string cloudsOutTrigger = "CloudsOut";
-
-    private static bool hasPlayedCloudOut = false;
+    [Header("Cloud Transition")]
+    public CloudTransitionController cloudTransition;
 
     private void Start()
     {
-        // When first entering main menu, play clouds out once
-        if (!hasPlayedCloudOut && cloudAnimator != null)
+        // Only play CloudsOut automatically if we're in MainMenu
+        if (SceneManager.GetActiveScene().name == "MainMenu" &&
+            cloudTransition != null)
         {
-            cloudAnimator.SetTrigger(cloudsOutTrigger);
-            hasPlayedCloudOut = true;
+            cloudTransition.PlayCloudsOut();
+        }
+        else if (SceneManager.GetActiveScene().name != "MainMenu" && cloudTransition != null)
+        {
+            // Disable clouds on Game Over scene at start
+            cloudTransition.cloudObject.SetActive(false);
         }
     }
 
     public void StartGame()
     {
+        StartCoroutine(StartGameRoutine());
+    }
+
+    private IEnumerator StartGameRoutine()
+    {
+        if (cloudTransition != null)
+            yield return cloudTransition.PlayCloudsInAndWait(); // wait for CloudsIn animation
+
+        // Then do the rest
         if (GameManager.Instance != null)
         {
             GameManager.Instance.ResetProgress();
@@ -30,9 +40,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         if (RelicManager.Instance != null)
-        {
             RelicManager.Instance.ResetSessionRelics();
-        }
 
         RelicCurrency.ResetCurrency();
         PlayerPrefs.SetInt("RelicsThisSession", 0);
@@ -48,38 +56,21 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        if (cloudAnimator != null)
-        {
-            StartCoroutine(CloudsInThenLoadMainMenu());
-        }
-        else
-        {
-            LoadMainMenuImmediate();
-        }
+        StartCoroutine(MainMenuRoutine());
     }
 
-    private IEnumerator CloudsInThenLoadMainMenu()
+    private IEnumerator MainMenuRoutine()
     {
-        cloudAnimator.SetTrigger(cloudsInTrigger);
+        if (cloudTransition != null)
+            yield return cloudTransition.PlayCloudsInAndWait(); // wait for CloudsIn animation
 
-        // Wait until animation finishes
-        yield return new WaitUntil(() =>
-            cloudAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
-            !cloudAnimator.IsInTransition(0));
-
-        LoadMainMenuImmediate();
-    }
-
-    private void LoadMainMenuImmediate()
-    {
         if (RelicManager.Instance != null)
-        {
             RelicManager.Instance.ResetSessionRelics();
-        }
 
         RelicCurrency.ResetCurrency();
         BiomeManager.Instance.SetCurrentBiome(-1);
 
         SceneManager.LoadScene("MainMenu");
     }
+
 }

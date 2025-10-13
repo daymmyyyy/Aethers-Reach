@@ -6790,9 +6790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6cce7d2d2ecf44da175ed56d30bb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudAnimator: {fileID: 0}
-  cloudsInTrigger: CloudsIn
-  cloudsOutTrigger: CloudsOut
+  cloudTransition: {fileID: 1810131808}
 --- !u!4 &846101626
 Transform:
   m_ObjectHideFlags: 0
@@ -14250,6 +14248,7 @@ GameObject:
   - component: {fileID: 1810131807}
   - component: {fileID: 1810131806}
   - component: {fileID: 1810131805}
+  - component: {fileID: 1810131808}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -14335,6 +14334,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810131803}
   m_CullTransparentMesh: 1
+--- !u!114 &1810131808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810131803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6997ad0dfe8c342842c07c9b197cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudAnimator: {fileID: 1810131805}
+  cloudObject: {fileID: 1810131803}
+  cloudsInTrigger: CloudsIn
+  cloudsOutTrigger: CloudsOut
 --- !u!1 &1812941684
 GameObject:
   m_ObjectHideFlags: 0
